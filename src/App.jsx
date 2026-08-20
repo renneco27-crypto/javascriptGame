@@ -4,6 +4,7 @@ import { useWindowSize } from 'react-use'
 import FloatingIDE from './components/FloatingIDE'
 import StoryPanel from './components/StoryPanel'
 import GameWorld from './components/GameWorld'
+import LevelMenu from './components/LevelMenu'
 import ExecutorWorker from './workers/executor.worker.js?worker'
 import { allLevels as levels } from './levels/index.js'
 import './App.css'
@@ -125,15 +126,26 @@ function App() {
         setOutput([]);
         setResultStatus(null);
         setTransitionState('swipe-in');
-      }, 800);
+      }, 500); // reduced from 800 for snappier animation
       
     } else {
       setResultStatus({ success: true, message: 'ALL LEVELS COMPLETED!' });
     }
   }
 
+  const handleJumpLevel = (index) => {
+    setTransitionState('swipe-out');
+    setTimeout(() => {
+      setCurrentLevelIndex(index);
+      setOutput([]);
+      setResultStatus(null);
+      setTransitionState('swipe-in');
+    }, 500);
+  }
+
   return (
     <>
+      <LevelMenu currentLevelIndex={currentLevelIndex} onSelectLevel={handleJumpLevel} />
       <GameWorld />
       
       {resultStatus?.success && currentLevelIndex < levels.length - 1 && (

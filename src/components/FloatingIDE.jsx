@@ -38,10 +38,10 @@ export default function FloatingIDE({ onRunCode, initialCode = '// Write your co
     const startState = EditorState.create({
       doc: initialCode,
       extensions: [
+        runCodeKeymap, // Put this before basicSetup so it takes precedence
         basicSetup,
         javascript(),
         oneDark,
-        runCodeKeymap,
         customTheme
       ]
     });
