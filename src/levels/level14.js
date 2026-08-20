@@ -9,7 +9,7 @@ export const level14 = {
   "Condition: while (threatLevel > 0)",
   "Decrement inside the loop: threatLevel--"
 ],
-  codeHint: `let threatLevel = 10;\nwhile (threatLevel > _) {\n  console.log(threatLevel);\n  threatLevel__;\n}\nconsole.log("THREAT NEUTRALIZED");`,
+  codeHint: `let threatLevel = __;\nwhile (___________ > _) {\n  console.log(___________);\n  threatLevel__;\n}\nconsole.log("______ ____________");`,
   initialCode: "// Your code here\n",
   validate: (code, result, logs) => {
       if (!code.includes('while')) return { success: false, message: "Error: You must use a while loop." };

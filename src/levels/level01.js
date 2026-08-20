@@ -9,7 +9,7 @@ export const level01 = {
   "The formula is (100 - 32) * 5 / 9.",
   "Return the variable at the end: return celsius;"
 ],
-  codeHint: `let _______ = (100 - 32) * 5 / 9;\nreturn _______;`,
+  codeHint: `let _______ = (100 - 32) * _ / 9;\nreturn _______;`,
   initialCode: "// Formula: (F - 32) * 5 / 9\n// Your code here\n\n",
   validate: (code, result) => {
       if (!code.includes('celsius')) return { success: false, message: "Error: You need to declare a variable named 'celsius'." };

@@ -9,7 +9,7 @@ export const level09 = {
   "Add new property: agent.missionsCompleted = 47",
   "Objects are mutable — you can change them directly"
 ],
-  codeHint: `const agent = { name: "Agent Zero", rank: "Recruit", isActive: true };\nagent.____ = "Commander";\nagent._________________ = 47;\nreturn agent;`,
+  codeHint: `const agent = { name: "Agent Zero", ____: "Recruit", isActive: true };\nagent.____ = "Commander";\nagent._________________ = __;\nreturn _____;`,
   initialCode: "const agent = {\\n  name: 'Agent Zero',\\n  rank: 'Recruit',\\n  isActive: true\\n};\\n\\n// Your code here\\n\\nreturn agent;",
   validate: (code, result) => {
       if (!result || result.rank !== 'Commander' || result.missionsCompleted !== 47) return { success: false, message: "Error: The agent object was not updated correctly." };

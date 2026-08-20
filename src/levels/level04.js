@@ -10,7 +10,7 @@ export const level04 = {
   "Use typeof to confirm the conversion worked",
   "Return them like: return [numVar, strVar];"
 ],
-  codeHint: `let numVar = ____("42");\nlet strVar = ____(99);\nreturn [numVar, strVar];`,
+  codeHint: `let numVar = ____("42");\nlet strVar = ____(__);\nreturn [______, ______];`,
   initialCode: "// Your code here\n\n// return [convertedNum, convertedStr];",
   validate: (code, result) => {
       if (!Array.isArray(result) || result.length !== 2) return { success: false, message: "Error: Return the two converted variables in an array." };

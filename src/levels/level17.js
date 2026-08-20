@@ -9,7 +9,7 @@ export const level17 = {
   "Use a for loop counting down: for (let i = start; i >= 0; i--)",
   "Push each value into the array and return it"
 ],
-  codeHint: `function countdown(start) {\n  let arr = [];\n  for (let i = _____; i >= _; i__) {\n    arr.____(i);\n  }\n  return arr;\n}\nreturn countdown(5);`,
+  codeHint: `function countdown(_____) {\n  let arr = [];\n  for (let i = _____; i >= _; i__) {\n    ___.____(i);\n  }\n  return ___;\n}\nreturn countdown(_);`,
   initialCode: "// Your code here\n\n// return countdown(5);",
   validate: (code, result) => {
       if (!Array.isArray(result) || result[result.length - 1] !== 0) return { success: false, message: "Error: Function must return the countdown array." };

@@ -9,7 +9,7 @@ export const level07 = {
   "myArray.length returns the number of items",
   "Return both like: return [myArray, myArray.length];"
 ],
-  codeHint: `let roster = ["Agent Zero", "Agent Fox", "Agent Rook"];\nroster.____("Agent Vex", "Agent Lynx");\nreturn [roster, roster.______];`,
+  codeHint: `let roster = ["Agent Zero", "_________ ", "Agent Rook"];\nroster.____("Agent Vex", "Agent Lynx");\nreturn [______, roster.______];`,
   initialCode: "// Your code here\n",
   validate: (code, result) => {
       if (!code.includes('.push(')) return { success: false, message: "Error: You must use the push() method." };

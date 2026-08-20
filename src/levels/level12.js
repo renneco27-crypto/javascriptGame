@@ -9,7 +9,7 @@ export const level12 = {
   "Check even/odd with the modulo operator: i % 2 === 0",
   "Use console.log()"
 ],
-  codeHint: `for (let i = 1; i <= 10; i++) {\n  if (i % 2 === _) {\n    console.log("Sensor " + i + ": ONLINE");\n  } else {\n    console.log("Sensor " + i + ": _______");\n  }\n}`,
+  codeHint: `for (let i = 1; i <= __; i++) {\n  if (i % _ === _) {\n    console.log("Sensor " + _ + ": ONLINE");\n  } else {\n    console.log("Sensor " + _ + ": _______");\n  }\n}`,
   initialCode: "// Your code here\n",
   validate: (code, result, logs) => {
       if (!code.includes('for') || !code.includes('%')) return { success: false, message: "Error: Use a for loop and the modulo operator %." };

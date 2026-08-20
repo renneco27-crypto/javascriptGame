@@ -10,7 +10,7 @@ export const level11 = {
   "Don't forget break after each case",
   "Test it: return clearanceCheck(2);"
 ],
-  codeHint: `function clearanceCheck(level) {\n  switch (_____) {\n    case 1:\n      return "RESTRICTED";\n    case _: \n      return "CONFIDENTIAL";\n    case 3:\n      return "TOP SECRET";\n    _______:\n      return "DENIED";\n  }\n}\nreturn clearanceCheck(2);`,
+  codeHint: `function clearanceCheck(_____) {\n  switch (_____) {\n    case _:\n      return "RESTRICTED";\n    case _: \n      return "CONFIDENTIAL";\n    case 3:\n      return "___ ______";\n    _______:\n      return "DENIED";\n  }\n}\nreturn clearanceCheck(_);`,
   initialCode: "function clearanceCheck(level) {\n  // Your switch statement here\n}\n\nreturn clearanceCheck(2);",
   validate: (code, result) => {
       if (!code.includes('switch')) return { success: false, message: "Error: You must use a switch statement." };

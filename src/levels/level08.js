@@ -10,7 +10,7 @@ export const level08 = {
   "Arrays inside objects work the same: agent.skills[1]",
   "Return them like: return [agent.rank, agent.skills[1]];"
 ],
-  codeHint: `let agent = {\n  name: "Zero",\n  age: 28,\n  rank: "Recruit",\n  isActive: true,\n  skills: ["combat", "hacking", "stealth"]\n};\nreturn [agent.____, agent.______[_]];`,
+  codeHint: `let agent = {\n  ____: "Zero",\n  age: __,\n  rank: "_______",\n  isActive: ____,\n  skills: ["combat", "_______", "stealth"]\n};\nreturn [agent.____, agent.______[_]];`,
   initialCode: "// Your code here\n",
   validate: (code, result) => {
       if (!code.includes('{') || !code.includes('skills')) return { success: false, message: "Error: Create the agent object." };

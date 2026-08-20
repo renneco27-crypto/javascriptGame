@@ -9,7 +9,7 @@ export const level05 = {
   "isNaN(value) returns true if the value is NaN",
   "Use an if statement to return 'CORRUPTED'"
 ],
-  codeHint: `let badMath = "hello" * 5;\nif (_____(badMath)) {\n  return "_________";\n}`,
+  codeHint: `let badMath = "hello" * _;\nif (_____(badMath)) {\n  return "_________";\n}`,
   initialCode: "// Your code here\n",
   validate: (code, result) => {
       if (result !== 'CORRUPTED') return { success: false, message: "Error: You need to return 'CORRUPTED' when NaN is detected." };

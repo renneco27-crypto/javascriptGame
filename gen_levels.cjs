@@ -270,24 +270,24 @@ const levels = [
 ];
 
 const codeHints = {
-  "01": "let _______ = (100 - 32) * 5 / 9;\\nreturn _______;",
-  "02": "const agentName = \"Agent Zero\";\\nconst ___________ = 4821;\\nconst isCleared = ______;\\nreturn [agentName, badgeNumber, isCleared];",
-  "03": "let ghost = ______;\\nlet unassigned;\\nconsole.log(typeof ghost);\\nconsole.log(typeof __________);",
-  "04": "let numVar = ____(\"42\");\\nlet strVar = ____(99);\\nreturn [numVar, strVar];",
-  "05": "let badMath = \"hello\" * 5;\\nif (_____(badMath)) {\\n  return \"_________\";\\n}",
-  "06": "let stolenItems = [\"laptop\", \"badge\", \"gun\", \"key\", \"radio\"];\\nreturn stolenItems[___];",
-  "07": "let roster = [\"Agent Zero\", \"Agent Fox\", \"Agent Rook\"];\\nroster.____(\"Agent Vex\", \"Agent Lynx\");\\nreturn [roster, roster.______];",
-  "08": "let agent = {\\n  name: \"Zero\",\\n  age: 28,\\n  rank: \"Recruit\",\\n  isActive: true,\\n  skills: [\"combat\", \"hacking\", \"stealth\"]\\n};\\nreturn [agent.____, agent.______[_]];",
-  "09": "const agent = { name: \"Agent Zero\", rank: \"Recruit\", isActive: true };\\nagent.____ = \"Commander\";\\nagent._________________ = 47;\\nreturn agent;",
-  "10": "let cabinet = { folder: { file: { __________: \"NEXUS_LEADER\" } } };\\nreturn cabinet.______.____.__________;",
-  "11": "function clearanceCheck(level) {\\n  switch (_____) {\\n    case 1:\\n      return \"RESTRICTED\";\\n    case _: \\n      return \"CONFIDENTIAL\";\\n    case 3:\\n      return \"TOP SECRET\";\\n    _______:\\n      return \"DENIED\";\\n  }\\n}\\nreturn clearanceCheck(2);",
-  "12": "for (let i = 1; i <= 10; i++) {\\n  if (i % 2 === _) {\\n    console.log(\"Sensor \" + i + \": ONLINE\");\\n  } else {\\n    console.log(\"Sensor \" + i + \": _______\");\\n  }\\n}",
+  "01": "let _______ = (100 - 32) * _ / 9;\\nreturn _______;",
+  "02": "const agentName = \"_____ ____\";\\nconst ___________ = 4821;\\nconst isCleared = ______;\\nreturn [_________, badgeNumber, isCleared];",
+  "03": "let ghost = ______;\\nlet __________;\\nconsole.log(typeof _____);\\nconsole.log(typeof __________);",
+  "04": "let numVar = ____(\"42\");\\nlet strVar = ____(__);\\nreturn [______, ______];",
+  "05": "let badMath = \"hello\" * _;\\nif (_____(badMath)) {\\n  return \"_________\";\\n}",
+  "06": "let stolenItems = [\"laptop\", \"_____\", \"gun\", \"key\", \"_____\"];\\nreturn stolenItems[___];",
+  "07": "let roster = [\"Agent Zero\", \"_________ \", \"Agent Rook\"];\\nroster.____(\"Agent Vex\", \"Agent Lynx\");\\nreturn [______, roster.______];",
+  "08": "let agent = {\\n  ____: \"Zero\",\\n  age: __,\\n  rank: \"_______\",\\n  isActive: ____,\\n  skills: [\"combat\", \"_______\", \"stealth\"]\\n};\\nreturn [agent.____, agent.______[_]];",
+  "09": "const agent = { name: \"Agent Zero\", ____: \"Recruit\", isActive: true };\\nagent.____ = \"Commander\";\\nagent._________________ = __;\\nreturn _____;",
+  "10": "let cabinet = { ______: { file: { __________: \"NEXUS_LEADER\" } } };\\nreturn cabinet.______.____.__________;",
+  "11": "function clearanceCheck(_____) {\\n  switch (_____) {\\n    case _:\\n      return \"RESTRICTED\";\\n    case _: \\n      return \"CONFIDENTIAL\";\\n    case 3:\\n      return \"___ ______\";\\n    _______:\\n      return \"DENIED\";\\n  }\\n}\\nreturn clearanceCheck(_);",
+  "12": "for (let i = 1; i <= __; i++) {\\n  if (i % _ === _) {\\n    console.log(\"Sensor \" + _ + \": ONLINE\");\\n  } else {\\n    console.log(\"Sensor \" + _ + \": _______\");\\n  }\\n}",
   "13": "for (let i = 0; i < roster.______; i++) {\\n  console.log(\\`\\${_ + 1}. \\${roster[_]}\\`);\\n}",
-  "14": "let threatLevel = 10;\\nwhile (threatLevel > _) {\\n  console.log(threatLevel);\\n  threatLevel__;\\n}\\nconsole.log(\"THREAT NEUTRALIZED\");",
-  "15": "for (let system of systems) {\\n  console.log(\"Shutting down: \" + system);\\n  if (system === \"____________\") {\\n    console.log(\"ABORT: Cannot shut down LIFE_SUPPORT\");\\n    _____;\\n  }\\n}",
-  "16": "function _______(message, shift) {\\n  return message.______ + shift;\\n}\\nreturn encrypt(\"hello\", 3);",
-  "17": "function countdown(start) {\\n  let arr = [];\\n  for (let i = _____; i >= _; i__) {\\n    arr.____(i);\\n  }\\n  return arr;\\n}\\nreturn countdown(5);",
-  "18": "function testScope() {\\n  let secretData = 'classified';\\n}\\n___ {\\n  console.log(secretData);\\n} _____ (error) {\\n  return \"CAUGHT\";\\n}"
+  "14": "let threatLevel = __;\\nwhile (___________ > _) {\\n  console.log(___________);\\n  threatLevel__;\\n}\\nconsole.log(\"______ ____________\");",
+  "15": "for (let system of _______) {\\n  console.log(\"Shutting down: \" + ______);\\n  if (system === \"____________\") {\\n    console.log(\"ABORT: Cannot shut down ____________\");\\n    _____;\\n  }\\n}",
+  "16": "function _______(message, shift) {\\n  return message.______ + _____;\\n}\\nreturn _______(\"hello\", _);",
+  "17": "function countdown(_____) {\\n  let arr = [];\\n  for (let i = _____; i >= _; i__) {\\n    ___.____(i);\\n  }\\n  return ___;\\n}\\nreturn countdown(_);",
+  "18": "function testScope() {\\n  let secretData = '__________';\\n}\\n___ {\\n  console.log(__________);\\n} _____ (error) {\\n  return \"______\";\\n}"
 };
 
 let indexContent = '';

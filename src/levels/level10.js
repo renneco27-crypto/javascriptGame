@@ -9,7 +9,7 @@ export const level10 = {
   "Chain dot notation: cabinet.folder.file.targetName",
   "You can also use bracket notation"
 ],
-  codeHint: `let cabinet = { folder: { file: { __________: "NEXUS_LEADER" } } };\nreturn cabinet.______.____.__________;`,
+  codeHint: `let cabinet = { ______: { file: { __________: "NEXUS_LEADER" } } };\nreturn cabinet.______.____.__________;`,
   initialCode: "// Your code here\n",
   validate: (code, result) => {
       if (!code.includes('targetName')) return { success: false, message: "Error: Create the nested object with targetName." };

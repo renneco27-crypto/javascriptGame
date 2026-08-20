@@ -9,7 +9,7 @@ export const level16 = {
   "Use message.length + shift as the encoded value",
   "Return the result"
 ],
-  codeHint: `function _______(message, shift) {\n  return message.______ + shift;\n}\nreturn encrypt("hello", 3);`,
+  codeHint: `function _______(message, shift) {\n  return message.______ + _____;\n}\nreturn _______("hello", _);`,
   initialCode: "// Your code here\n\n// return encrypt('hello', 3);",
   validate: (code, result) => {
       if (!code.includes('function encrypt')) return { success: false, message: "Error: Define the function encrypt." };
