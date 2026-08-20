@@ -3,7 +3,7 @@ import FloatingIDE from './components/FloatingIDE'
 import StoryPanel from './components/StoryPanel'
 import GameWorld from './components/GameWorld'
 import ExecutorWorker from './workers/executor.worker.js?worker'
-import { levels } from './levels.js'
+import { allLevels as levels } from './levels/index.js'
 import './App.css'
 
 function App() {
