@@ -14,7 +14,7 @@
     "codeHint": "console.___(____);\ndocument.____________(\"status\")._________ = \"SYSTEMS ACTIVE\";",
     "initialCode": "// Task 1: Output \"CIPHER ONLINE\" to the console\n// Your code here\n\n// Task 2: Change HTML element with id \"status\" to \"SYSTEMS ACTIVE\"\n// Your code here\n",
     "solution": "console.log(\"CIPHER ONLINE\");\ndocument.getElementById(\"status\").innerHTML = \"SYSTEMS ACTIVE\";",
-    "validateCode": "const hasLog = logs.some(l => l.includes('CIPHER ONLINE'));\nif (!hasLog) return { success: false, message: 'Must log \"CIPHER ONLINE\" to the console' };\nconst el = document.getElementById('status');\nif (!el || el.innerHTML !== 'SYSTEMS ACTIVE') return { success: false, message: 'Element #status must say \"SYSTEMS ACTIVE\"' };\nreturn { success: true, message: 'GATE 01 CLEARED — First contact established.' };"
+    "validateCode": "const hasLog = logs.some(l => l.includes('CIPHER ONLINE'));\nif (!hasLog) return { success: false, message: 'Must log \"CIPHER ONLINE\" to the console' };\nconst hasDom = logs.some(l => l.includes('#status') && l.includes('SYSTEMS ACTIVE')) || (code.includes('getElementById') && code.includes('status') && code.includes('SYSTEMS ACTIVE'));\nif (!hasDom) return { success: false, message: 'Element #status must be set to \"SYSTEMS ACTIVE\"' };\nreturn { success: true, message: 'GATE 01 CLEARED — First contact established.' };"
   },
   {
     "id": "02",

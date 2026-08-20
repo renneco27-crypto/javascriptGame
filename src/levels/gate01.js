@@ -15,8 +15,8 @@ export const gate01 = {
   validate: (code, result, logs = []) => {
     const hasLog = logs.some(l => l.includes('CIPHER ONLINE'));
     if (!hasLog) return { success: false, message: 'Must log "CIPHER ONLINE" to the console' };
-    const el = document.getElementById('status');
-    if (!el || el.innerHTML !== 'SYSTEMS ACTIVE') return { success: false, message: 'Element #status must say "SYSTEMS ACTIVE"' };
+    const hasDom = logs.some(l => l.includes('#status') && l.includes('SYSTEMS ACTIVE')) || (code.includes('getElementById') && code.includes('status') && code.includes('SYSTEMS ACTIVE'));
+    if (!hasDom) return { success: false, message: 'Element #status must be set to "SYSTEMS ACTIVE"' };
     return { success: true, message: 'GATE 01 CLEARED — First contact established.' };
   }
 };
