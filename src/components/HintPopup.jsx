@@ -39,8 +39,8 @@ export default function HintPopup({ onConfirm, onCancel }) {
           let targetX = btnPos.x + Math.cos(angle) * runDistance;
           let targetY = btnPos.y + Math.sin(angle) * runDistance;
 
-          // Apply strict 30 pixel clamp in each direction
-          const MAX_DIST = 30;
+          // Apply strict 200 pixel clamp in each direction
+          const MAX_DIST = 200;
           targetX = Math.max(-MAX_DIST, Math.min(MAX_DIST, targetX));
           targetY = Math.max(-MAX_DIST, Math.min(MAX_DIST, targetY));
 
@@ -90,7 +90,7 @@ export default function HintPopup({ onConfirm, onCancel }) {
         <p>Accessing the hint database requires overriding security protocols.</p>
         <p style={{ marginBottom: '30px' }}>ARE YOU SURE YOU WANT TO PROCEED?</p>
         
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', position: 'relative', minHeight: '50px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', position: 'relative', minHeight: '50px', alignItems: 'center' }}>
           <button
             onClick={onCancel}
             style={{
@@ -120,7 +120,6 @@ export default function HintPopup({ onConfirm, onCancel }) {
               cursor: isRunningAway ? 'default' : 'pointer',
               fontWeight: 'bold',
               fontFamily: 'monospace',
-              position: isRunningAway ? 'absolute' : 'static',
               transform: isRunningAway ? `translate(${btnPos.x}px, ${btnPos.y}px)` : 'none',
               transition: isRunningAway ? 'transform 0.1s ease-out' : 'transform 0.5s ease',
               zIndex: 2
