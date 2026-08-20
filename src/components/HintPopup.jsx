@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 export default function HintPopup({ onConfirm, onCancel }) {
   const [btnPos, setBtnPos] = useState({ x: 0, y: 0 });
@@ -56,7 +57,7 @@ export default function HintPopup({ onConfirm, onCancel }) {
     };
   }, [isRunningAway]);
 
-  return (
+  return createPortal(
     <div style={{
       position: 'fixed',
       top: 0,
@@ -67,7 +68,7 @@ export default function HintPopup({ onConfirm, onCancel }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      zIndex: 2000
+      zIndex: 9999
     }}>
       <div style={{
         backgroundColor: '#111',
@@ -123,6 +124,7 @@ export default function HintPopup({ onConfirm, onCancel }) {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
