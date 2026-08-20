@@ -6,6 +6,7 @@ export default function HintPopup({ onConfirm, onCancel }) {
   const [isRunningAway, setIsRunningAway] = useState(true);
   const btnRef = useRef(null);
   const movementTimerRef = useRef(null);
+  const lastRunTime = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -22,6 +23,8 @@ export default function HintPopup({ onConfirm, onCancel }) {
 
       // 2. Handle button running away
       if (isRunningAway && btnRef.current) {
+        if (Date.now() - lastRunTime.current < 200) return; // 200ms cooldown to finish CSS transition
+
         const rect = btnRef.current.getBoundingClientRect();
         const btnCenterX = rect.left + rect.width / 2;
         const btnCenterY = rect.top + rect.height / 2;
@@ -44,6 +47,7 @@ export default function HintPopup({ onConfirm, onCancel }) {
           targetX = Math.max(-MAX_DIST, Math.min(MAX_DIST, targetX));
           targetY = Math.max(-MAX_DIST, Math.min(MAX_DIST, targetY));
 
+          lastRunTime.current = Date.now();
           setBtnPos({ x: targetX, y: targetY });
         }
       }
