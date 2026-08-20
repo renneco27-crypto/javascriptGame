@@ -5,6 +5,7 @@ import { EditorView, keymap } from '@codemirror/view';
 import { basicSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark } from '@codemirror/theme-one-dark';
+import { linter, lintGutter } from '@codemirror/lint';
 import HintPopup from './HintPopup';
 
 const customTheme = EditorView.theme({
@@ -15,7 +16,60 @@ const customTheme = EditorView.theme({
   ".cm-scroller": {
     overflow: "auto",
     fontFamily: "monospace"
+  },
+  ".cm-lintRange-error": {
+    backgroundImage: `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='3'%3E%3Cpath d='m0 2.5 l3 -2 l3 2' stroke='%23ff3333' fill='none' stroke-width='1.2'/%3E%3C/svg%3E")`,
+    backgroundPosition: "bottom left",
+    backgroundRepeat: "repeat-x",
+    paddingBottom: "2px"
+  },
+  ".cm-lint-marker-error": {
+    content: '"●"',
+    color: '#ff3333'
   }
+});
+
+const jsLinter = linter((view) => {
+  const code = view.state.doc.toString();
+  const diagnostics = [];
+  const trimmed = code.trim();
+
+  // If empty or HTML markup (e.g. Gate 02), skip JS syntax linting
+  if (!trimmed || trimmed.startsWith('<') || trimmed.startsWith('<!--')) {
+    return diagnostics;
+  }
+
+  try {
+    new Function('document', 'window', 'alert', `"use strict";\n${code}`);
+  } catch (e) {
+    let from = 0;
+    let to = Math.min(view.state.doc.length, 20);
+
+    // Try to find the line where error occurred
+    const lineMatch = e.stack?.match(/<anonymous>:(\d+):(\d+)/);
+    if (lineMatch) {
+      const lineNum = Math.max(1, parseInt(lineMatch[1]) - 1);
+      if (lineNum <= view.state.doc.lines) {
+        const line = view.state.doc.line(lineNum);
+        from = line.from;
+        to = line.to;
+      }
+    } else {
+      // Highlight the first non-empty line or full document
+      const firstLine = view.state.doc.line(1);
+      from = firstLine.from;
+      to = firstLine.to || view.state.doc.length;
+    }
+
+    diagnostics.push({
+      from: from,
+      to: Math.max(from + 1, to),
+      severity: "error",
+      message: e.message
+    });
+  }
+
+  return diagnostics;
 });
 
 export default function FloatingIDE({ onRunCode, initialCode, codeHint }) {
@@ -54,6 +108,8 @@ export default function FloatingIDE({ onRunCode, initialCode, codeHint }) {
       extensions: [
         runCodeKeymap, // Put this before basicSetup so it takes precedence
         basicSetup,
+        lintGutter(),
+        jsLinter,
         javascript(),
         oneDark,
         customTheme

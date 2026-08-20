@@ -36,6 +36,10 @@ self.onmessage = function(e) {
       }
     };
 
+    const mockAlert = function(msg) {
+      logs.push(`[ALERT] ${msg}`);
+    };
+
     const trimmed = code.trim();
     // Check if input is HTML markup (e.g., Gate 02 deployment exercises)
     if (trimmed.startsWith('<') || (trimmed.startsWith('<!--') && (trimmed.includes('<script') || trimmed.includes('<')))) {
