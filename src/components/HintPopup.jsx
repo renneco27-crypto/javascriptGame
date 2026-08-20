@@ -109,6 +109,15 @@ export default function HintPopup({ onConfirm, onCancel }) {
           
           <button
             ref={btnRef}
+            onMouseEnter={() => {
+              if (isRunningAway) {
+                // If mouse actually touches the button, immediately escape to opposite corner
+                setBtnPos(prev => ({
+                  x: prev.x >= 0 ? -200 : 200,
+                  y: prev.y >= 0 ? -200 : 200
+                }));
+              }
+            }}
             onClick={() => {
               if (!isRunningAway) onConfirm();
             }}
