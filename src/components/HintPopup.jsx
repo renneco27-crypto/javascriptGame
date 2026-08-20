@@ -35,17 +35,14 @@ export default function HintPopup({ onConfirm, onCancel }) {
           let angle = Math.atan2(dy, dx);
           angle += (Math.random() - 0.5) * (Math.PI / 1.5); // Random veer
 
-          const runDistance = 150; // Jump distance
+          const runDistance = 50; // Jump distance
           let targetX = btnPos.x + Math.cos(angle) * runDistance;
           let targetY = btnPos.y + Math.sin(angle) * runDistance;
 
-          // Apply tether constraint (max radius from origin)
-          const maxRadius = 300;
-          const originDist = Math.sqrt(targetX * targetX + targetY * targetY);
-          if (originDist > maxRadius) {
-            targetX = (targetX / originDist) * maxRadius;
-            targetY = (targetY / originDist) * maxRadius;
-          }
+          // Apply strict 30 pixel clamp in each direction
+          const MAX_DIST = 30;
+          targetX = Math.max(-MAX_DIST, Math.min(MAX_DIST, targetX));
+          targetY = Math.max(-MAX_DIST, Math.min(MAX_DIST, targetY));
 
           setBtnPos({ x: targetX, y: targetY });
         }
