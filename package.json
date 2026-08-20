@@ -17,8 +17,10 @@
     "@supabase/supabase-js": "^2.112.3",
     "codemirror": "^6.0.2",
     "react": "^19.2.8",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.2.8",
-    "react-rnd": "^10.5.3"
+    "react-rnd": "^10.5.3",
+    "react-use": "^17.6.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",

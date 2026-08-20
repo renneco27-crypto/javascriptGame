@@ -1,1 +1,33 @@
 /* Empty */
+
+.game-ui-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.game-ui-container > * {
+  pointer-events: auto;
+}
+
+.swipe-out {
+  animation: swipeOut 0.8s forwards cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+.swipe-in {
+  animation: swipeIn 0.8s forwards cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+@keyframes swipeOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100vw); opacity: 0; }
+}
+
+@keyframes swipeIn {
+  from { transform: translateX(100vw); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
