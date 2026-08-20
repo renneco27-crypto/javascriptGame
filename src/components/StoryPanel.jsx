@@ -53,18 +53,14 @@ function TypewriterText({ text, onComplete }) {
   return <span>{displayedText}</span>;
 }
 
-export default function StoryPanel({ title, description, hints, codeHint, output, resultStatus, onNextLevel, isLastLevel, sector, learningZone }) {
+export default function StoryPanel({ title, description, hints, output, resultStatus, onNextLevel, isLastLevel, sector, learningZone }) {
   const [booted, setBooted] = useState(false);
   const [descriptionTyped, setDescriptionTyped] = useState(false);
-  const [showCodeHint, setShowCodeHint] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
 
   // Reset state when title/level changes
   useEffect(() => {
     setBooted(false);
     setDescriptionTyped(false);
-    setShowCodeHint(false);
-    setShowPopup(false);
   }, [title]);
 
   return (
@@ -142,57 +138,6 @@ export default function StoryPanel({ title, description, hints, codeHint, output
                       {hints.map((hint, i) => <li key={i} style={{ marginBottom: '6px' }}>{hint}</li>)}
                     </ul>
                     
-                    {codeHint && !showCodeHint && (
-                      <button 
-                        onClick={() => setShowPopup(true)}
-                        style={{
-                          position: 'absolute',
-                          bottom: '16px',
-                          right: '16px',
-                          background: '#f00',
-                          border: '2px solid #a00',
-                          color: '#fff',
-                          padding: '6px 12px',
-                          cursor: 'pointer',
-                          fontSize: '14px',
-                          fontWeight: 'bold',
-                          fontFamily: 'monospace',
-                          boxShadow: '0 0 10px rgba(255,0,0,0.5)'
-                        }}
-                      >
-                        HINT
-                      </button>
-                    )}
-                    
-                    {showCodeHint && (
-                      <div style={{ marginTop: '12px' }}>
-                        <pre style={{
-                          backgroundColor: '#000',
-                          padding: '10px',
-                          border: '1px dashed #00ffcc',
-                          marginTop: '8px',
-                          color: '#fff',
-                          overflowX: 'auto',
-                          fontSize: '13px'
-                        }}>
-                          {codeHint}
-                        </pre>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {showPopup && (
-                  <HintPopup 
-                    onConfirm={() => {
-                      setShowPopup(false);
-                      setShowCodeHint(true);
-                    }} 
-                    onCancel={() => setShowPopup(false)} 
-                  />
-                )}
-
-                <div style={{ marginTop: '30px', borderTop: '1px dashed #444', paddingTop: '16px' }}>
                   <h4 style={{ margin: '0 0 8px 0', color: '#fff' }}>EXECUTION_LOG:</h4>
                   
                   {output && output.length > 0 ? (

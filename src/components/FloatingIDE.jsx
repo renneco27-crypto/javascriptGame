@@ -1,19 +1,39 @@
 import { useEffect, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd';
-import { EditorView, basicSetup } from 'codemirror';
-import { javascript } from '@codemirror/lang-javascript';
 import { EditorState } from '@codemirror/state';
+import { EditorView, keymap } from '@codemirror/view';
+import { basicSetup } from 'codemirror';
+import { javascript } from '@codemirror/lang-javascript';
 import { oneDark } from '@codemirror/theme-one-dark';
-import { keymap } from '@codemirror/view';
+import HintPopup from './HintPopup';
 
-export default function FloatingIDE({ onRunCode, initialCode = '// Write your code here' }) {
+const customTheme = EditorView.theme({
+  "&": {
+    fontSize: "18px",
+    height: "100%",
+  },
+  ".cm-scroller": {
+    overflow: "auto",
+    fontFamily: "monospace"
+  }
+});
+
+export default function FloatingIDE({ onRunCode, initialCode, codeHint }) {
   const editorRef = useRef(null);
-  const [view, setView] = useState(null);
+  const viewRef = useRef(null);
   const onRunCodeRef = useRef(onRunCode);
+  const [showPopup, setShowPopup] = useState(false);
+  const [showCodeHint, setShowCodeHint] = useState(false);
 
+  // Keep ref updated so keymap closure always calls the latest
   useEffect(() => {
     onRunCodeRef.current = onRunCode;
   }, [onRunCode]);
+
+  useEffect(() => {
+    setShowCodeHint(false);
+    setShowPopup(false);
+  }, [initialCode]);
 
   useEffect(() => {
     if (!editorRef.current) return;
@@ -23,17 +43,11 @@ export default function FloatingIDE({ onRunCode, initialCode = '// Write your co
         key: "Shift-Enter",
         run: (view) => {
           onRunCodeRef.current(view.state.doc.toString());
-          return true;
+          return true; // prevent default
         },
         preventDefault: true
       }
     ]);
-
-    const customTheme = EditorView.theme({
-      "&": {
-        fontSize: "18px"
-      }
-    });
 
     const startState = EditorState.create({
       doc: initialCode,
@@ -46,30 +60,32 @@ export default function FloatingIDE({ onRunCode, initialCode = '// Write your co
       ]
     });
 
-    const editorView = new EditorView({
+    const view = new EditorView({
       state: startState,
       parent: editorRef.current
     });
 
-    setView(editorView);
+    viewRef.current = view;
 
-    return () => {
-      editorView.destroy();
-    };
-  }, []); // Initialize once
+    return () => view.destroy();
+  }, []);
 
-  // Update content when initialCode changes (e.g. level change)
+  // Update editor content when initialCode changes (e.g. level change)
   useEffect(() => {
-    if (view && initialCode) {
-      view.dispatch({
-        changes: { from: 0, to: view.state.doc.length, insert: initialCode }
+    if (viewRef.current && initialCode) {
+      viewRef.current.dispatch({
+        changes: {
+          from: 0,
+          to: viewRef.current.state.doc.length,
+          insert: initialCode
+        }
       });
     }
-  }, [initialCode, view]);
+  }, [initialCode]);
 
   const handleRun = () => {
-    if (view) {
-      const code = view.state.doc.toString();
+    if (viewRef.current) {
+      const code = viewRef.current.state.doc.toString();
       onRunCode(code);
     }
   };
@@ -77,7 +93,7 @@ export default function FloatingIDE({ onRunCode, initialCode = '// Write your co
   return (
     <Rnd
       default={{
-        x: window.innerWidth - 750,
+        x: window.innerWidth > 800 ? window.innerWidth - 750 : 50,
         y: 50,
         width: 700,
         height: 500,
@@ -123,17 +139,60 @@ export default function FloatingIDE({ onRunCode, initialCode = '// Write your co
             fontFamily: 'monospace'
           }}
         >
-          RUN CODE
+          RUN (Shift+Enter)
         </button>
       </div>
-      <div 
-        ref={editorRef} 
-        style={{ 
-          flex: 1, 
-          overflow: 'auto',
-          backgroundColor: '#1e1e1e' 
-        }} 
-      />
+      
+      <div style={{ flex: 1, position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        <div ref={editorRef} style={{ flex: 1, overflow: 'auto', backgroundColor: '#1e1e1e' }} />
+        
+        {codeHint && !showCodeHint && (
+          <button 
+            onClick={() => setShowPopup(true)}
+            style={{
+              position: 'absolute',
+              bottom: '16px',
+              right: '16px',
+              background: '#f00',
+              border: '2px solid #a00',
+              color: '#fff',
+              padding: '6px 12px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              fontFamily: 'monospace',
+              boxShadow: '0 0 10px rgba(255,0,0,0.5)',
+              zIndex: 10
+            }}
+          >
+            HINT
+          </button>
+        )}
+        
+        {showCodeHint && (
+          <div style={{ 
+            backgroundColor: '#000', 
+            borderTop: '1px solid #00ffcc',
+            padding: '10px',
+            maxHeight: '150px',
+            overflowY: 'auto'
+          }}>
+            <pre style={{ margin: 0, color: '#fff', fontFamily: 'monospace', fontSize: '13px' }}>
+              {codeHint}
+            </pre>
+          </div>
+        )}
+      </div>
+
+      {showPopup && (
+        <HintPopup 
+          onConfirm={() => {
+            setShowPopup(false);
+            setShowCodeHint(true);
+          }} 
+          onCancel={() => setShowPopup(false)} 
+        />
+      )}
     </Rnd>
   );
 }
