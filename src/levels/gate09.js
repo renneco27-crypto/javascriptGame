@@ -12,6 +12,7 @@ export const gate09 = {
 ],
   codeHint: "const rounded = (47.6892)._______(2);\nconst numSum = Number(\"99.5\") + ___;\nconst maxThreat = Math.___(44, 91, 13, 78, 55);\nconst isNexusNaN = _____(Number(\"NEXUS\"));\nreturn { rounded, numSum, maxThreat, ____ };",
   initialCode: "// Task 1: Round 47.6892 to 2 decimal places\nlet rounded;\n\n// Task 2: Convert \"99.5\" and add 0.5\nlet numSum;\n\n// Task 3: Max value in 44, 91, 13, 78, 55\nlet maxThreat;\n\n// Task 4: Check if Number(\"NEXUS\") is NaN\nlet isNexusNaN;\n\nreturn { rounded, numSum, maxThreat, isNexusNaN };\n",
+  solution: "const rounded = (47.6892).toFixed(2);\nconst numSum = Number(\"99.5\") + 0.5;\nconst maxThreat = Math.max(44, 91, 13, 78, 55);\nconst isNexusNaN = isNaN(Number(\"NEXUS\"));\n\nreturn { rounded, numSum, maxThreat, isNexusNaN };",
   validate: (code, result, logs = []) => {
     if (!result || typeof result !== 'object') return { success: false, message: 'Must return { rounded, numSum, maxThreat, isNexusNaN }.' };
     if (result.rounded !== '47.69' && result.rounded !== 47.69) return { success: false, message: 'rounded should equal 47.69.' };

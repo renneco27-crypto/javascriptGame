@@ -72,6 +72,8 @@ def main():
         hints_json = json.dumps(lvl.get('hints', []), indent=2)
         initial_code = json.dumps(lvl.get('initialCode', ''))
         
+        solution_json = json.dumps(lvl.get('solution', ''))
+        
         validate_body = lvl.get('validateCode', 'return { success: true, message: "Gate cleared!" };')
         # Indent validate code
         indented_validate = '\n    '.join(validate_body.strip().split('\n'))
@@ -85,6 +87,7 @@ def main():
   hints: {hints_json},
   codeHint: {code_hint_json},
   initialCode: {initial_code},
+  solution: {solution_json},
   validate: (code, result, logs = []) => {{
     {indented_validate}
   }}

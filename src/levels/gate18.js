@@ -12,6 +12,7 @@ export const gate18 = {
 ],
   codeHint: "const names = threatData.map(a => a._____);\nconst highThreats = threatData.______(a => a.score > 70);\nconst totalScore = threatData.______( (sum, a) => sum + a.score, _ );\nconst topAgent = threatData.____(a => a.score > 85);\nreturn { names, ____, totalScore, topAgent };",
   initialCode: "const threatData = [\n  { agent: \"Zero\", score: 88 },\n  { agent: \"Fox\", score: 45 },\n  { agent: \"Rook\", score: 91 },\n  { agent: \"Lynx\", score: 62 },\n  { agent: \"Ghost\", score: 77 }\n];\n\n// Task 1: map\n// Task 2: filter\n// Task 3: reduce\n// Task 4: find\n\n",
+  solution: "const threatData = [\n  { agent: \"Zero\", score: 88 },\n  { agent: \"Fox\", score: 45 },\n  { agent: \"Rook\", score: 91 },\n  { agent: \"Lynx\", score: 62 },\n  { agent: \"Ghost\", score: 77 }\n];\n\nconst names = threatData.map(a => a.agent);\nconst highThreats = threatData.filter(a => a.score > 70);\nconst totalScore = threatData.reduce((sum, a) => sum + a.score, 0);\nconst topAgent = threatData.find(a => a.score > 85);\n\nreturn { names, highThreats, totalScore, topAgent };",
   validate: (code, result, logs = []) => {
     if (!result) return { success: false, message: 'Must return { names, highThreats, totalScore, topAgent }.' };
     if (!Array.isArray(result.names) || result.names.length !== 5) return { success: false, message: 'names must be mapped array of 5 agent names.' };

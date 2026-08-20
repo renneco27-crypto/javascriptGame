@@ -12,6 +12,7 @@ export const gate03 = {
 ],
   codeHint: "console.___(____);\ndocument.____________(\"output\").innerHTML = \"TRANSMITTING\";\nwindow._____(____);\ndocument._____(____);",
   initialCode: "// Channel 1: Console\n// Your code here\n\n// Channel 2: HTML element\n// Your code here\n\n// Channel 3: Alert popup\n// Your code here\n\n// Channel 4: Document write (testing only)\n// Your code here\n",
+  solution: "console.log(\"TRANSMITTING\");\ndocument.getElementById(\"output\").innerHTML = \"TRANSMITTING\";\nwindow.alert(\"TRANSMITTING\");\ndocument.write(\"TRANSMITTING\");",
   validate: (code, result, logs = []) => {
     if (!code.includes('console.log')) return { success: false, message: 'Missing console.log channel.' };
     if (!code.includes('getElementById') || !code.includes('innerHTML')) return { success: false, message: 'Missing document.getElementById().innerHTML channel.' };

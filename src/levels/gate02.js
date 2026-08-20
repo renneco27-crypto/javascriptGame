@@ -11,6 +11,7 @@ export const gate02 = {
 ],
   codeHint: "const _________________ = '<script ___=\"cipher.js\"></script>';\nconst _______________ = '<body>...<script>______();</script></body>';",
   initialCode: "// Task 1: Link external JS file\nconst externalScriptTag = \"\";\n\n// Task 2: Inline script in correct position\nconst inlineScriptTag = \"\";\n",
+  solution: "const externalScriptTag = '<script src=\"cipher.js\"></script>';\nconst inlineScriptTag = '<body><h1>CIPHER</h1><script>console.log(\"READY\");</script></body>';",
   validate: (code, result, logs = []) => {
     if (!code.includes('cipher.js')) return { success: false, message: 'Task 1 incomplete: Must link external file "cipher.js".' };
     if (!code.includes('<script') || !code.includes('</script>')) return { success: false, message: 'Task 2 incomplete: Must define script tags.' };

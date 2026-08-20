@@ -12,6 +12,7 @@ export const gate07 = {
 ],
   codeHint: "function ____() {\n  const ____ = [];\n  ____ (let i = 1; i <= 10; i++) {\n    if (i === 4) ________;\n    if (i === 7) _____;\n    ____.push(i);\n  } // ____\n  return _______;\n} // ____\nreturn ____();",
   initialCode: "function scanNodes() {\n  const results = [];\n  // Write loop with continue (skip 4) and break (stop at 7)\n  \n  return results;\n}\n\nreturn scanNodes();\n",
+  solution: "function scanNodes() {\n  const results = [];\n  for (let i = 1; i <= 10; i++) {\n    if (i === 4) continue;\n    if (i === 7) break;\n    results.push(i);\n  }\n  return results;\n}\n\nreturn scanNodes();",
   validate: (code, result, logs = []) => {
     if (!Array.isArray(result)) return { success: false, message: 'Must return an array of scanned node numbers.' };
     const expected = [1, 2, 3, 5, 6];

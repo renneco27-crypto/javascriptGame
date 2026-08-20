@@ -13,6 +13,7 @@ export const gate16 = {
 ],
   codeHint: "const ____ = [101, 202, 101, 303, 202, 404, 101, 505];\nconst signalSet = new ___(rawSignals);\nsignalSet.add(___);\nsignalSet.______(202);\nconst has303 = signalSet.____(303);\nconst cleanedArray = [_______];\nreturn { size: signalSet.size, has303, ____ };",
   initialCode: "const rawSignals = [101, 202, 101, 303, 202, 404, 101, 505];\n\n// Task: Create Set, add 606, delete 202, check 303, convert to array\n\n",
+  solution: "const rawSignals = [101, 202, 101, 303, 202, 404, 101, 505];\n\nconst signalSet = new Set(rawSignals);\nsignalSet.add(606);\nsignalSet.delete(202);\nconst has303 = signalSet.has(303);\nconst cleanedArray = [...signalSet];\n\nreturn { size: signalSet.size, has303, cleanedArray };",
   validate: (code, result, logs = []) => {
     if (!result || !Array.isArray(result.cleanedArray)) return { success: false, message: 'Must return { size, has303, cleanedArray }.' };
     if (result.has303 !== true) return { success: false, message: 'has303 must be true.' };

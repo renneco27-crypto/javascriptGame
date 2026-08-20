@@ -12,6 +12,7 @@ export const gate04 = {
 ],
   codeHint: "____ _ = 10;\n____ _ = 20;\nlet ______ = x + y;\nconsole.___(______);\nreturn ______;",
   initialCode: "// BROKEN CODE \u2014 fix everything wrong here:\n// Let X = 10\n// let y = 20\n// Let Result = X + y\n// Console.Log(Result)\n\n// YOUR FIXED VERSION:\n",
+  solution: "let x = 10;\nlet y = 20;\nlet result = x + y;\nconsole.log(result);\nreturn result;",
   validate: (code, result, logs = []) => {
     if (code.includes('Let ') || code.includes('Console.Log')) return { success: false, message: 'Syntax error remaining: Remember JS keywords and console.log are lowercase!' };
     if (result !== 30 && !logs.some(l => l.includes('30'))) return { success: false, message: 'Incorrect result: x + y must evaluate to 30.' };

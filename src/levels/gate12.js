@@ -13,6 +13,7 @@ export const gate12 = {
 ],
   codeHint: "____ agent = {\n  name: \"____\",\n  rank: \"____\",\n  ____: _,\n  skills: [\"____\", \"Crypto\"],\n  ____: true,\n  ____() {\n    return `Agent ${this.____} reporting. Status: ACTIVE`;\n  } // ____\n}; // ____\nagent.____ = __;\n____ agent;",
   initialCode: "const agent = {\n  // Properties here\n};\n\n// Add missionsCompleted and report method\n\nreturn agent;\n",
+  solution: "const agent = {\n  name: \"Zero\",\n  rank: \"Commander\",\n  clearance: 5,\n  skills: [\"Infiltration\", \"Crypto\"],\n  isActive: true,\n  report() {\n    return `Agent ${this.name} reporting. Status: ACTIVE`;\n  }\n};\n\nagent.missionsCompleted = 42;\n\nreturn agent;",
   validate: (code, result, logs = []) => {
     if (!result || typeof result !== 'object') return { success: false, message: 'Must return agent object.' };
     if (result.name !== 'Zero' || result.clearance !== 5) return { success: false, message: 'Agent properties (name, clearance) mismatch.' };

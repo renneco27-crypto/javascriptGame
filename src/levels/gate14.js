@@ -12,6 +12,7 @@ export const gate14 = {
 ],
   codeHint: "const missionStart = new Date(____, _, 15, 6, 0);\nconst year = missionStart.___________();\nconst month = missionStart.________();\nconst day = missionStart._______();\nreturn { ____, year, month, day };",
   initialCode: "// Task: Create Date for Jan 15, 2047 and extract components\nconst missionStart = new Date(2047, 0, 15, 6, 0);\nlet year;\nlet month;\nlet day;\n\nreturn { missionStart, year, month, day };\n",
+  solution: "const missionStart = new Date(2047, 0, 15, 6, 0);\nconst year = missionStart.getFullYear();\nconst month = missionStart.getMonth();\nconst day = missionStart.getDate();\n\nreturn { missionStart, year, month, day };",
   validate: (code, result, logs = []) => {
     if (!result || !result.missionStart) return { success: false, message: 'Must return { missionStart, year, month, day }.' };
     if (result.year !== 2047 || result.month !== 0 || result.day !== 15) return { success: false, message: 'Ensure year=2047, month=0 (January), day=15.' };

@@ -13,6 +13,7 @@ export const gate17 = {
 ],
   codeHint: "const intelMap = new ___();\n____.set(\"Zero\", __);\n____.set(\"Fox\", 45);\n____.set(\"Rook\", 91);\nintelMap.set(1007, \"___________\");\nconst zeroScore = intelMap.get(\"____\");\nreturn { zeroScore, ____: intelMap.has(1007), mapSize: intelMap.size };",
   initialCode: "const intelMap = new Map();\n\n// Task: Store entries, numeric keys, retrieve values\n\n",
+  solution: "const intelMap = new Map();\n\nintelMap.set(\"Zero\", 88);\nintelMap.set(\"Fox\", 45);\nintelMap.set(\"Rook\", 91);\nintelMap.set(1007, \"SUPER AGENT\");\n\nconst zeroScore = intelMap.get(\"Zero\");\n\nreturn { zeroScore, hasBadge1007: intelMap.has(1007), mapSize: intelMap.size };",
   validate: (code, result, logs = []) => {
     if (!result || result.zeroScore !== 88) return { success: false, message: 'zeroScore should be 88.' };
     if (result.hasBadge1007 !== true) return { success: false, message: 'hasBadge1007 must be true.' };

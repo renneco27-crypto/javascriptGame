@@ -14,6 +14,7 @@ export const gate19 = {
 ],
   codeHint: "const floorVal = Math._____(84.4);\nconst ceilVal = Math.____(84.5);\nconst ____ = Math.__(-273);\nconst powerVal = Math.___(2, 32);\nconst sqrtVal = Math.____(1764);\nconst minVal = Math.___(33, 11, 78, 5, 92, 44);\nconst piFixed = (Math.PI)._______(4);\nreturn { ____, ceilVal, absVal, powerVal, sqrtVal, minVal, piFixed };",
   initialCode: "// Solve all calculations to unlock the kill switch:\nlet floorVal;\nlet ceilVal;\nlet absVal;\nlet powerVal;\nlet sqrtVal;\nlet minVal;\nlet piFixed;\n\nreturn { floorVal, ceilVal, absVal, powerVal, sqrtVal, minVal, piFixed };\n",
+  solution: "const floorVal = Math.floor(84.4);\nconst ceilVal = Math.ceil(84.5);\nconst absVal = Math.abs(-273);\nconst powerVal = Math.pow(2, 32);\nconst sqrtVal = Math.sqrt(1764);\nconst minVal = Math.min(33, 11, 78, 5, 92, 44);\nconst piFixed = (Math.PI).toFixed(4);\n\nreturn { floorVal, ceilVal, absVal, powerVal, sqrtVal, minVal, piFixed };",
   validate: (code, result, logs = []) => {
     if (!result) return { success: false, message: 'Must return calculations object.' };
     if (result.floorVal !== 84 || result.ceilVal !== 85) return { success: false, message: 'floorVal should be 84 and ceilVal 85.' };

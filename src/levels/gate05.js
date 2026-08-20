@@ -11,6 +11,7 @@ export const gate05 = {
 ],
   codeHint: "const _________ = 20 % 6;\nlet ____ = 100;\n____ += __;\n____ *= _;\nconst ____ = 73 > __;\nreturn { remainder: _________, score, isHighThreat };",
   initialCode: "const a = 20;\nconst b = 6;\nconst threatLevel = 73;\n\n// Task 1: Remainder of a % b\nlet remainder;\n\n// Task 2: Update score using += and *=\nlet score = 100;\n\n// Task 3: Comparison\nlet isHighThreat;\n\nreturn { remainder, score, isHighThreat };\n",
+  solution: "const a = 20;\nconst b = 6;\nconst threatLevel = 73;\n\nlet remainder = a % b;\nlet score = 100;\nscore += 50;\nscore *= 2;\nlet isHighThreat = threatLevel > 50;\n\nreturn { remainder, score, isHighThreat };",
   validate: (code, result, logs = []) => {
     if (!result || typeof result !== 'object') return { success: false, message: 'Must return an object with { remainder, score, isHighThreat }.' };
     if (result.remainder !== 2) return { success: false, message: 'Task 1: remainder of 20 % 6 should be 2.' };

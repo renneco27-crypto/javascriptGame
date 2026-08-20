@@ -12,6 +12,7 @@ export const gate11 = {
 ],
   codeHint: "function ____(callback) {\n  const timer = ____(() => {\n    callback(\"DETONATION __________\");\n    clearTimeout(_____);\n  }, ____);\n} // ____\nreturn ____;",
   initialCode: "function runCountdown(callback) {\n  // Trigger callback after delay\n}\n\nreturn runCountdown;\n",
+  solution: "function runCountdown(callback) {\n  const timer = setTimeout(() => {\n    callback(\"DETONATION DISARMED\");\n    clearTimeout(timer);\n  }, 10);\n}\n\nreturn runCountdown;",
   validate: (code, result, logs = []) => {
     if (typeof result !== 'function') return { success: false, message: 'Must return runCountdown function.' };
     if (!code.includes('setTimeout') && !code.includes('setInterval')) return { success: false, message: 'Must use setTimeout or setInterval in your timer implementation.' };

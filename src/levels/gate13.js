@@ -12,6 +12,7 @@ export const gate13 = {
 ],
   codeHint: "const globalVar = \"__________\";\nlet ____ = false;\nif (____) {\n  let blockVar = \"______\";\n  ____ = (typeof blockVar !== \"undefined\");\n} // ____\nreturn { globalVar, ____ };",
   initialCode: "const globalVar = \"CLASSIFIED\";\n\n// Show block scope with let\nlet blockScopedWorks = true;\n\nreturn { globalVar, blockScopedWorks };\n",
+  solution: "const globalVar = \"CLASSIFIED\";\n\nlet blockScopedWorks = false;\nif (true) {\n  let blockVar = \"SECURE\";\n  blockScopedWorks = (typeof blockVar !== \"undefined\");\n}\n\nreturn { globalVar, blockScopedWorks };",
   validate: (code, result, logs = []) => {
     if (!result || result.globalVar !== 'CLASSIFIED' || result.blockScopedWorks !== true) return { success: false, message: 'Return { globalVar: "CLASSIFIED", blockScopedWorks: true }' };
     return { success: true, message: 'GATE 13 CLEARED: Containment zones sealed.' };

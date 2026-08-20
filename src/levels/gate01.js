@@ -11,6 +11,7 @@ export const gate01 = {
 ],
   codeHint: "console.___(____);\ndocument.____________(\"status\")._________ = \"SYSTEMS ACTIVE\";",
   initialCode: "// Task 1: Output to console\n// Your code here\n\n// Task 2: Change HTML content\n// Your code here\n",
+  solution: "console.log(\"CIPHER ONLINE\");\ndocument.getElementById(\"status\").innerHTML = \"SYSTEMS ACTIVE\";",
   validate: (code, result, logs = []) => {
     const hasLog = logs.some(l => l.includes('CIPHER ONLINE'));
     if (!hasLog) return { success: false, message: 'Task 1 incomplete: Must output "CIPHER ONLINE" to the console.' };

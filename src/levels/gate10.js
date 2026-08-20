@@ -12,6 +12,7 @@ export const gate10 = {
 ],
   codeHint: "function greetAgent(name) { return `Welcome back, Agent ${____}`; }\nconst calcSignal = (power, distance) => _____ / ________;\nfunction setAlert(level = \"______\") { return level; }\nfunction createMultiplier(factor) { return (n) => n * ______; }\nreturn { greetAgent, calcSignal, setAlert, ____ };",
   initialCode: "// Task 1: greetAgent declaration\n\n// Task 2: calcSignal arrow function\n\n// Task 3: setAlert with default parameter \"MEDIUM\"\n\n// Task 4: createMultiplier closure\n\nreturn { greetAgent, calcSignal, setAlert, createMultiplier };\n",
+  solution: "function greetAgent(name) {\n  return `Welcome back, Agent ${name}`;\n}\n\nconst calcSignal = (power, distance) => power / distance;\n\nfunction setAlert(level = \"MEDIUM\") {\n  return level;\n}\n\nfunction createMultiplier(factor) {\n  return (n) => n * factor;\n}\n\nreturn { greetAgent, calcSignal, setAlert, createMultiplier };",
   validate: (code, result, logs = []) => {
     if (!result) return { success: false, message: 'Must return the function factory object.' };
     if (result.greetAgent('Zero') !== 'Welcome back, Agent Zero') return { success: false, message: 'greetAgent("Zero") failed.' };

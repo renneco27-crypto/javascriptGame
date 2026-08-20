@@ -13,6 +13,7 @@ export const gate08 = {
 ],
   codeHint: "const clean = transmission.______();\nconst target = clean._______(\"NEXUS\", \"TARGET\");\nconst hasFriday = clean.________(\"FRIDAY\");\nconst words = clean._____(\" \");\nreturn { clean, target, ____, words };",
   initialCode: "const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";\n\n// Task 1: Trim\nlet clean;\n\n// Task 2: Replace\nlet target;\n\n// Task 3: Includes check\nlet hasFriday;\n\n// Task 4: Split into array\nlet words;\n\nreturn { clean, target, hasFriday, words };\n",
+  solution: "const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";\n\nconst clean = transmission.trim();\nconst target = clean.replace(\"NEXUS\", \"TARGET\");\nconst hasFriday = clean.includes(\"FRIDAY\");\nconst words = clean.split(\" \");\n\nreturn { clean, target, hasFriday, words };",
   validate: (code, result, logs = []) => {
     if (!result || typeof result !== 'object') return { success: false, message: 'Must return an object with { clean, target, hasFriday, words }.' };
     if (result.clean !== 'NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY') return { success: false, message: 'clean must be trimmed of outside whitespace.' };

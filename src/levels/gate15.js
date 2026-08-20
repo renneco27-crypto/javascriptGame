@@ -13,6 +13,7 @@ export const gate15 = {
 ],
   codeHint: "const ____ = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\nagents.____(\"Viper\");\nagents._______(\"Echo\");\nconst rookIndex = agents._______(\"Rook\");\nagents.____();\nconst hasGhost = agents.________(\"Ghost\");\nreturn { agents, ____, hasGhost };",
   initialCode: "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\n\n// Perform operations\nlet rookIndex;\nlet hasGhost;\n\nreturn { agents, rookIndex, hasGhost };\n",
+  solution: "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\n\nagents.push(\"Viper\");\nagents.unshift(\"Echo\");\nconst rookIndex = agents.indexOf(\"Rook\");\nagents.sort();\nconst hasGhost = agents.includes(\"Ghost\");\n\nreturn { agents, rookIndex, hasGhost };",
   validate: (code, result, logs = []) => {
     if (!result || !Array.isArray(result.agents)) return { success: false, message: 'Must return { agents, rookIndex, hasGhost }.' };
     if (!result.agents.includes('Viper') || !result.agents.includes('Echo')) return { success: false, message: 'Must push Viper and unshift Echo.' };
