@@ -1,39 +1,41 @@
-import { level01 } from './level01.js';
-import { level02 } from './level02.js';
-import { level03 } from './level03.js';
-import { level04 } from './level04.js';
-import { level05 } from './level05.js';
-import { level06 } from './level06.js';
-import { level07 } from './level07.js';
-import { level08 } from './level08.js';
-import { level09 } from './level09.js';
-import { level10 } from './level10.js';
-import { level11 } from './level11.js';
-import { level12 } from './level12.js';
-import { level13 } from './level13.js';
-import { level14 } from './level14.js';
-import { level15 } from './level15.js';
-import { level16 } from './level16.js';
-import { level17 } from './level17.js';
-import { level18 } from './level18.js';
+import { gate01 } from './gate01.js';
+import { gate02 } from './gate02.js';
+import { gate03 } from './gate03.js';
+import { gate04 } from './gate04.js';
+import { gate05 } from './gate05.js';
+import { gate06 } from './gate06.js';
+import { gate07 } from './gate07.js';
+import { gate08 } from './gate08.js';
+import { gate09 } from './gate09.js';
+import { gate10 } from './gate10.js';
+import { gate11 } from './gate11.js';
+import { gate12 } from './gate12.js';
+import { gate13 } from './gate13.js';
+import { gate14 } from './gate14.js';
+import { gate15 } from './gate15.js';
+import { gate16 } from './gate16.js';
+import { gate17 } from './gate17.js';
+import { gate18 } from './gate18.js';
+import { gate19 } from './gate19.js';
 
 export const allLevels = [
-  level01,
-  level02,
-  level03,
-  level04,
-  level05,
-  level06,
-  level07,
-  level08,
-  level09,
-  level10,
-  level11,
-  level12,
-  level13,
-  level14,
-  level15,
-  level16,
-  level17,
-  level18,
+  gate01,
+  gate02,
+  gate03,
+  gate04,
+  gate05,
+  gate06,
+  gate07,
+  gate08,
+  gate09,
+  gate10,
+  gate11,
+  gate12,
+  gate13,
+  gate14,
+  gate15,
+  gate16,
+  gate17,
+  gate18,
+  gate19
 ];

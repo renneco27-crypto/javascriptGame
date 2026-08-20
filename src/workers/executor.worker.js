@@ -11,13 +11,42 @@ self.onmessage = function(e) {
   };
 
   try {
-    // Create a function from the code string and execute it
-    const func = new Function(`
+    // Create mock DOM & window environment for learning exercises
+    const mockDocument = {
+      getElementById: function(id) {
+        return {
+          id: id,
+          set innerHTML(val) {
+            logs.push(`[DOM #${id}] innerHTML = "${val}"`);
+            this._html = val;
+          },
+          get innerHTML() {
+            return this._html || "";
+          }
+        };
+      },
+      write: function(...args) {
+        logs.push(`[document.write] ${args.join(' ')}`);
+      }
+    };
+
+    const mockWindow = {
+      alert: function(msg) {
+        logs.push(`[ALERT] ${msg}`);
+      }
+    };
+
+    const mockAlert = function(msg) {
+      logs.push(`[ALERT] ${msg}`);
+    };
+
+    // Create a function from the code string with mock context and execute it
+    const func = new Function('document', 'window', 'alert', `
       "use strict";
       ${code}
     `);
     
-    const result = func();
+    const result = func(mockDocument, mockWindow, mockAlert);
     
     // Restore console.log
     console.log = originalLog;
