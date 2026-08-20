@@ -6,7 +6,7 @@ import { EditorState } from '@codemirror/state';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { keymap } from '@codemirror/view';
 
-export default function FloatingIDE({ onRunCode }) {
+export default function FloatingIDE({ onRunCode, initialCode = '// Write your code here' }) {
   const editorRef = useRef(null);
   const [view, setView] = useState(null);
   const onRunCodeRef = useRef(onRunCode);
@@ -36,7 +36,7 @@ export default function FloatingIDE({ onRunCode }) {
     });
 
     const startState = EditorState.create({
-      doc: '// Write your javascript here\n// Press Shift + Enter to run\n\nconsole.log("Hello, World!");\n',
+      doc: initialCode,
       extensions: [
         basicSetup,
         javascript(),
@@ -46,17 +46,26 @@ export default function FloatingIDE({ onRunCode }) {
       ]
     });
 
-    const view = new EditorView({
+    const editorView = new EditorView({
       state: startState,
       parent: editorRef.current
     });
 
-    setView(view);
+    setView(editorView);
 
     return () => {
-      view.destroy();
+      editorView.destroy();
     };
-  }, []);
+  }, []); // Initialize once
+
+  // Update content when initialCode changes (e.g. level change)
+  useEffect(() => {
+    if (view && initialCode) {
+      view.dispatch({
+        changes: { from: 0, to: view.state.doc.length, insert: initialCode }
+      });
+    }
+  }, [initialCode, view]);
 
   const handleRun = () => {
     if (view) {

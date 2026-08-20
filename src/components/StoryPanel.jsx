@@ -52,7 +52,7 @@ function TypewriterText({ text, onComplete }) {
   return <span>{displayedText}</span>;
 }
 
-export default function StoryPanel({ title, description, hints, output, resultStatus, onNextLevel, isLastLevel }) {
+export default function StoryPanel({ title, description, hints, output, resultStatus, onNextLevel, isLastLevel, sector, learningZone }) {
   const [booted, setBooted] = useState(false);
   const [descriptionTyped, setDescriptionTyped] = useState(false);
 
@@ -110,6 +110,12 @@ export default function StoryPanel({ title, description, hints, output, resultSt
           <BootSequence onComplete={() => setBooted(true)} />
         ) : (
           <>
+            {(sector || learningZone) && (
+              <div style={{ marginBottom: '12px', fontSize: '12px', color: '#ff00ff', borderBottom: '1px dashed #333', paddingBottom: '8px' }}>
+                {sector && <div>{sector}</div>}
+                {learningZone && <div>Learning Zone: {learningZone}</div>}
+              </div>
+            )}
             <h2 style={{ marginTop: 0, color: '#00ffcc', borderBottom: '1px solid #333', paddingBottom: '8px' }}>
               {title}
             </h2>

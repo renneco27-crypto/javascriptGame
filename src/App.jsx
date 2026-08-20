@@ -76,8 +76,10 @@ function App() {
         resultStatus={resultStatus}
         onNextLevel={handleNextLevel}
         isLastLevel={currentLevelIndex === levels.length - 1}
+        sector={currentLevel.sector}
+        learningZone={currentLevel.learningZone}
       />
-      <FloatingIDE onRunCode={handleRunCode} />
+      <FloatingIDE onRunCode={handleRunCode} initialCode={currentLevel.initialCode} />
     </>
   )
 }
