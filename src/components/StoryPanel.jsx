@@ -52,14 +52,16 @@ function TypewriterText({ text, onComplete }) {
   return <span>{displayedText}</span>;
 }
 
-export default function StoryPanel({ title, description, hints, output, resultStatus, onNextLevel, isLastLevel, sector, learningZone }) {
+export default function StoryPanel({ title, description, hints, codeHint, output, resultStatus, onNextLevel, isLastLevel, sector, learningZone }) {
   const [booted, setBooted] = useState(false);
   const [descriptionTyped, setDescriptionTyped] = useState(false);
+  const [showCodeHint, setShowCodeHint] = useState(false);
 
   // Reset state when title/level changes
   useEffect(() => {
     setBooted(false);
     setDescriptionTyped(false);
+    setShowCodeHint(false);
   }, [title]);
 
   return (
@@ -136,6 +138,39 @@ export default function StoryPanel({ title, description, hints, output, resultSt
                     <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: '#bbb' }}>
                       {hints.map((hint, i) => <li key={i} style={{ marginBottom: '6px' }}>{hint}</li>)}
                     </ul>
+                    
+                    {codeHint && (
+                      <div style={{ marginTop: '12px' }}>
+                        <button 
+                          onClick={() => setShowCodeHint(!showCodeHint)}
+                          style={{
+                            background: 'none',
+                            border: '1px solid #00ffcc',
+                            color: '#00ffcc',
+                            padding: '4px 8px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            fontFamily: 'monospace'
+                          }}
+                        >
+                          {showCodeHint ? 'HIDE CODE TEMPLATE' : 'SHOW CODE TEMPLATE'}
+                        </button>
+                        
+                        {showCodeHint && (
+                          <pre style={{
+                            backgroundColor: '#000',
+                            padding: '10px',
+                            border: '1px dashed #00ffcc',
+                            marginTop: '8px',
+                            color: '#fff',
+                            overflowX: 'auto',
+                            fontSize: '13px'
+                          }}>
+                            {codeHint}
+                          </pre>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
 

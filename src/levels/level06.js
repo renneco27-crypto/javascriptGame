@@ -9,6 +9,7 @@ export const level06 = {
   "The third item is at index 2",
   "myArray[2] accesses the third element"
 ],
+  codeHint: `let stolenItems = ["laptop", "badge", "gun", "key", "radio"];\nreturn stolenItems[___];`,
   initialCode: "// Your code here\n",
   validate: (code, result) => {
       if (!code.includes('[')) return { success: false, message: "Error: You must create an array." };

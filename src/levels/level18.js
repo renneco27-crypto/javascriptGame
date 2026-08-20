@@ -10,6 +10,7 @@ export const level18 = {
   "Use try / catch to handle the error gracefully",
   "return 'CAUGHT' in the catch block"
 ],
+  codeHint: `function testScope() {\n  let secretData = 'classified';\n}\n___ {\n  console.log(secretData);\n} _____ (error) {\n  return "CAUGHT";\n}`,
   initialCode: "function testScope() {\n  let secretData = 'classified';\n}\n\n// Your try/catch code here\n",
   validate: (code, result) => {
       if (!code.includes('try') || !code.includes('catch')) return { success: false, message: "Error: Use a try/catch block." };

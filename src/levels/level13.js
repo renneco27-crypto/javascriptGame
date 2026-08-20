@@ -9,6 +9,7 @@ export const level13 = {
   "Display position as i + 1 to start from 1",
   "Use a template literal: `${i + 1}. ${roster[i]}`"
 ],
+  codeHint: `for (let i = 0; i < roster.______; i++) {\n  console.log(\`\${_ + 1}. \${roster[_]}\`);\n}`,
   initialCode: "const roster = ['Agent Zero', 'Agent Fox', 'Agent Rook', 'Agent Vex', 'Agent Lynx'];\n\n// Your code here\n",
   validate: (code, result, logs) => {
       if (logs.length < 5) return { success: false, message: "Error: You must log all 5 agents." };

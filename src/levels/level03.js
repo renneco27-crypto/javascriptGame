@@ -10,6 +10,7 @@ export const level03 = {
   "Use typeof to check: typeof myVar",
   "Notice that typeof null returns 'object' — this is a famous JS bug, remember it"
 ],
+  codeHint: `let ghost = ______;\nlet unassigned;\nconsole.log(typeof ghost);\nconsole.log(typeof __________);`,
   initialCode: "// Your code here\n\n// Use console.log(typeof ...)",
   validate: (code, result, logs) => {
       const hasObject = logs.some(l => l.includes('object'));

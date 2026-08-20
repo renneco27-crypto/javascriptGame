@@ -9,6 +9,7 @@ export const level15 = {
   "Check with if (system === 'LIFE_SUPPORT')",
   "Use break to stop the loop immediately"
 ],
+  codeHint: `for (let system of systems) {\n  console.log("Shutting down: " + system);\n  if (system === "____________") {\n    console.log("ABORT: Cannot shut down LIFE_SUPPORT");\n    _____;\n  }\n}`,
   initialCode: "const systems = ['RADAR', 'COMMS', 'WEAPONS', 'LIFE_SUPPORT', 'NAVIGATION', 'POWER'];\n\n// Your code here\n",
   validate: (code, result, logs) => {
       if (!code.includes('break')) return { success: false, message: "Error: You must use the break keyword." };

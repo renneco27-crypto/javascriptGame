@@ -10,6 +10,7 @@ export const level02 = {
   "Booleans are either true or false",
   "Return all three variables in an array: return [agentName, badgeNumber, isCleared];"
 ],
+  codeHint: `const agentName = "Agent Zero";\nconst ___________ = 4821;\nconst isCleared = ______;\nreturn [agentName, badgeNumber, isCleared];`,
   initialCode: "// Your code here\n\n// Return them as an array so the system can verify\n// return [agentName, badgeNumber, isCleared];",
   validate: (code, result) => {
       if (!code.includes('agentName') || !code.includes('badgeNumber') || !code.includes('isCleared')) return { success: false, message: "Error: Make sure you declared all 3 variables." };
