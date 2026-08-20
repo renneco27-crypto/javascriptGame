@@ -27,7 +27,11 @@ function App() {
     workerRef.current.onmessage = (e) => {
       const { success, result, logs, error, code } = e.data
       
-      setOutput(logs)
+      const finalLogs = [...logs];
+      if (result !== undefined) {
+        finalLogs.push(`Return: ${typeof result === 'object' ? JSON.stringify(result) : String(result)}`);
+      }
+      setOutput(finalLogs);
       
       if (success) {
         const validation = currentLevel.validate(code, result);
