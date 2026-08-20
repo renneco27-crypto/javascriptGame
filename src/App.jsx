@@ -4,6 +4,7 @@ import { useWindowSize } from 'react-use'
 import FloatingIDE from './components/FloatingIDE'
 import StoryPanel from './components/StoryPanel'
 import GameWorld from './components/GameWorld'
+import FlyingBackgroundVideo from './components/FlyingBackgroundVideo'
 import LevelMenu from './components/LevelMenu'
 import ExecutorWorker from './workers/executor.worker.js?worker'
 import { allLevels as levels } from './levels/index.js'
@@ -147,6 +148,7 @@ function App() {
     <>
       <LevelMenu currentLevelIndex={currentLevelIndex} onSelectLevel={handleJumpLevel} />
       <GameWorld />
+      <FlyingBackgroundVideo />
       
       {resultStatus?.success && currentLevelIndex < levels.length - 1 && (
         <Confetti
