@@ -175,9 +175,27 @@ export default function FloatingIDE({ onRunCode, initialCode, codeHint }) {
             borderTop: '1px solid #00ffcc',
             padding: '10px',
             maxHeight: '150px',
-            overflowY: 'auto'
+            overflowY: 'auto',
+            position: 'relative'
           }}>
-            <pre style={{ margin: 0, color: '#fff', fontFamily: 'monospace', fontSize: '13px' }}>
+            <button 
+              onClick={() => setShowCodeHint(false)}
+              style={{
+                position: 'absolute',
+                top: '5px',
+                right: '10px',
+                background: 'none',
+                border: 'none',
+                color: '#f00',
+                cursor: 'pointer',
+                fontFamily: 'monospace',
+                fontWeight: 'bold',
+                fontSize: '12px'
+              }}
+            >
+              [X] HIDE
+            </button>
+            <pre style={{ margin: 0, marginTop: '15px', color: '#fff', fontFamily: 'monospace', fontSize: '13px' }}>
               {codeHint}
             </pre>
           </div>
