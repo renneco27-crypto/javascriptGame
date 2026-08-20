@@ -53,9 +53,22 @@ export default function GameWorld() {
         const px = (Math.sin(time + i) * canvas.width * 0.5) + canvas.width * 0.5;
         const py = ((time * 50 + i * 100) % canvas.height);
         
-        ctx.fillStyle = 'rgba(255, 0, 255, 0.5)';
+        if (i % 5 === 0) {
+          // 1 in 5 boxes is a yellow glowing box
+          ctx.fillStyle = 'rgba(255, 255, 0, 0.8)';
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = 'rgba(255, 255, 0, 1)';
+        } else {
+          // The rest are purple
+          ctx.fillStyle = 'rgba(255, 0, 255, 0.5)';
+          ctx.shadowBlur = 0;
+        }
+        
         ctx.fillRect(px, canvas.height - py, 10, 10);
       }
+      
+      // Reset shadow for the next frame
+      ctx.shadowBlur = 0;
 
       animationFrameId = requestAnimationFrame(render);
     };
