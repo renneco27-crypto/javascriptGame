@@ -52,7 +52,7 @@ function TypewriterText({ text, onComplete }) {
   return <span>{displayedText}</span>;
 }
 
-export default function StoryPanel({ title, description, hints, output, resultStatus }) {
+export default function StoryPanel({ title, description, hints, output, resultStatus, onNextLevel, isLastLevel }) {
   const [booted, setBooted] = useState(false);
   const [descriptionTyped, setDescriptionTyped] = useState(false);
 
@@ -163,6 +163,26 @@ export default function StoryPanel({ title, description, hints, output, resultSt
                       border: `1px solid ${resultStatus.success ? '#0f0' : '#f00'}`
                     }}>
                       {resultStatus.message}
+                      
+                      {resultStatus.success && !isLastLevel && (
+                        <button 
+                          onClick={onNextLevel}
+                          style={{
+                            display: 'block',
+                            width: '100%',
+                            marginTop: '10px',
+                            padding: '8px',
+                            backgroundColor: '#0f0',
+                            color: '#000',
+                            border: 'none',
+                            fontWeight: 'bold',
+                            fontFamily: 'monospace',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          PROCEED TO NEXT NODE &gt;&gt;
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>

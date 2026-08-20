@@ -3,35 +3,22 @@ import FloatingIDE from './components/FloatingIDE'
 import StoryPanel from './components/StoryPanel'
 import GameWorld from './components/GameWorld'
 import ExecutorWorker from './workers/executor.worker.js?worker'
+import { levels } from './levels.js'
 import './App.css'
 
 function App() {
+  const [currentLevelIndex, setCurrentLevelIndex] = useState(() => {
+    return parseInt(localStorage.getItem('hackerGameProgress')) || 0;
+  });
   const [output, setOutput] = useState([])
   const [resultStatus, setResultStatus] = useState(null)
   const workerRef = useRef(null)
 
-  // Mock level data
-  const currentLevel = {
-    title: "LEVEL 01: TEMPERATURE ANOMALY",
-    description: "The mainframe servers are overheating. We need to convert the raw Fahrenheit sensor data into Celsius to calibrate the cooling systems. Can you create a variable named 'celsius' that converts 100 degrees Fahrenheit to Celsius? (Formula: (F - 32) * 5/9)",
-    hints: [
-      "Use 'let' or 'const' to declare a variable.",
-      "The formula is (100 - 32) * 5 / 9.",
-      "Return the variable at the end so the system can verify it, e.g., 'return celsius;'"
-    ],
-    validate: (code, result) => {
-      if (!code.includes('celsius')) {
-        return { success: false, message: "Error: You need to declare a variable named 'celsius'." };
-      }
-      
-      const expected = (100 - 32) * 5 / 9;
-      if (result !== expected) {
-        return { success: false, message: "Error: The calculation is incorrect, or you forgot to 'return celsius;' at the end." };
-      }
+  const currentLevel = levels[currentLevelIndex] || levels[0];
 
-      return { success: true, message: "MISSION ACCOMPLISHED: Temperature anomaly resolved." };
-    }
-  }
+  useEffect(() => {
+    localStorage.setItem('hackerGameProgress', currentLevelIndex);
+  }, [currentLevelIndex]);
 
   useEffect(() => {
     // Initialize Web Worker for code execution
@@ -56,12 +43,22 @@ function App() {
     return () => {
       workerRef.current.terminate()
     }
-  }, [])
+  }, [currentLevelIndex]) // Re-bind onmessage when level changes so currentLevel is updated in closure
 
   const handleRunCode = (code) => {
     setOutput([])
     setResultStatus({ success: true, message: 'Executing...' })
     workerRef.current.postMessage(code)
+  }
+
+  const handleNextLevel = () => {
+    if (currentLevelIndex < levels.length - 1) {
+      setCurrentLevelIndex(prev => prev + 1);
+      setOutput([]);
+      setResultStatus(null);
+    } else {
+      setResultStatus({ success: true, message: 'ALL LEVELS COMPLETED!' });
+    }
   }
 
   return (
@@ -73,6 +70,8 @@ function App() {
         hints={currentLevel.hints}
         output={output}
         resultStatus={resultStatus}
+        onNextLevel={handleNextLevel}
+        isLastLevel={currentLevelIndex === levels.length - 1}
       />
       <FloatingIDE onRunCode={handleRunCode} />
     </>
