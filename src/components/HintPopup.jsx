@@ -113,13 +113,30 @@ export default function HintPopup({ onConfirm, onCancel }) {
           
           <button
             ref={btnRef}
-            onMouseEnter={() => {
-              if (isRunningAway) {
-                // If mouse actually touches the button, immediately escape to opposite corner
-                setBtnPos(prev => ({
-                  x: prev.x >= 0 ? -200 : 200,
-                  y: prev.y >= 0 ? -200 : 200
-                }));
+            onMouseEnter={(e) => {
+              if (isRunningAway && btnRef.current) {
+                const rect = btnRef.current.getBoundingClientRect();
+                const btnCenterX = rect.left + rect.width / 2;
+                const btnCenterY = rect.top + rect.height / 2;
+                
+                let dx = btnCenterX - e.clientX;
+                let dy = btnCenterY - e.clientY;
+                if (dx === 0 && dy === 0) { dx = 1; dy = 1; } // prevent 0,0
+                
+                let angle = Math.atan2(dy, dx);
+                let targetX = btnPos.x + Math.cos(angle) * 160;
+                let targetY = btnPos.y + Math.sin(angle) * 160;
+
+                const MAX_DIST = 200;
+                
+                // If jumping pushes it out of bounds, bounce it inward instead
+                if (targetX > MAX_DIST) targetX = MAX_DIST - 160;
+                if (targetX < -MAX_DIST) targetX = -MAX_DIST + 160;
+                if (targetY > MAX_DIST) targetY = MAX_DIST - 160;
+                if (targetY < -MAX_DIST) targetY = -MAX_DIST + 160;
+
+                lastRunTime.current = Date.now();
+                setBtnPos({ x: targetX, y: targetY });
               }
             }}
             onClick={() => {
