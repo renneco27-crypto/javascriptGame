@@ -67,7 +67,7 @@
     "codeHint": "___ name = \"agent zero\";\n___ score = 100;\nconsole.___(name + score);",
     "initialCode": "// Fix all mistakes in this broken code and rewrite it cleanly:\n\n// BROKEN:\n// Let Name = \"agent zero\"\n// let Score = 100\n// Console.Log(name + score)\n\n// YOUR FIXED VERSION:\n// Your code here\n",
     "solution": "let name = \"agent zero\";\nlet score = 100;\nconsole.log(name + score);",
-    "validateCode": "const hasLetLower = code.includes('let name') || code.includes('let name');\nif (code.includes('Let ') || code.includes('Console.Log')) return { success: false, message: 'JavaScript is case-sensitive — fix the capitalisation errors' };\nconst hasLog = logs.some(l => l.length > 0);\nif (!hasLog) return { success: false, message: 'Must log the result using console.log' };\nreturn { success: true, message: 'GATE 04 CLEARED — Code structure is clean.' };"
+    "validateCode": "const cleanCode = code.replace(/\\/\\/.*$/gm, '').replace(/\\/\\*[\\s\\S]*?\\*\\//g, '');\nif (cleanCode.includes('Let ') || cleanCode.includes('Console.Log') || cleanCode.includes('let Name') || cleanCode.includes('let Score')) return { success: false, message: 'JavaScript is case-sensitive — fix the capitalisation errors' };\nconst hasLog = logs.some(l => l.includes('agent zero') || l.includes('100') || l.length > 0);\nif (!hasLog) return { success: false, message: 'Must log the result using console.log' };\nreturn { success: true, message: 'GATE 04 CLEARED — Code structure is clean.' };"
   },
   {
     "id": "05",

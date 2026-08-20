@@ -14,9 +14,9 @@ export const gate04 = {
   initialCode: "// Fix all mistakes in this broken code and rewrite it cleanly:\n\n// BROKEN:\n// Let Name = \"agent zero\"\n// let Score = 100\n// Console.Log(name + score)\n\n// YOUR FIXED VERSION:\n// Your code here\n",
   solution: "let name = \"agent zero\";\nlet score = 100;\nconsole.log(name + score);",
   validate: (code, result, logs = []) => {
-    const hasLetLower = code.includes('let name') || code.includes('let name');
-    if (code.includes('Let ') || code.includes('Console.Log')) return { success: false, message: 'JavaScript is case-sensitive — fix the capitalisation errors' };
-    const hasLog = logs.some(l => l.length > 0);
+    const cleanCode = code.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+    if (cleanCode.includes('Let ') || cleanCode.includes('Console.Log') || cleanCode.includes('let Name') || cleanCode.includes('let Score')) return { success: false, message: 'JavaScript is case-sensitive — fix the capitalisation errors' };
+    const hasLog = logs.some(l => l.includes('agent zero') || l.includes('100') || l.length > 0);
     if (!hasLog) return { success: false, message: 'Must log the result using console.log' };
     return { success: true, message: 'GATE 04 CLEARED — Code structure is clean.' };
   }
