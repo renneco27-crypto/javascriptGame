@@ -4,20 +4,45 @@ import { EditorView, basicSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { EditorState } from '@codemirror/state';
 import { oneDark } from '@codemirror/theme-one-dark';
+import { keymap } from '@codemirror/view';
 
 export default function FloatingIDE({ onRunCode }) {
   const editorRef = useRef(null);
   const [view, setView] = useState(null);
+  const onRunCodeRef = useRef(onRunCode);
+
+  useEffect(() => {
+    onRunCodeRef.current = onRunCode;
+  }, [onRunCode]);
 
   useEffect(() => {
     if (!editorRef.current) return;
 
+    const runCodeKeymap = keymap.of([
+      {
+        key: "Shift-Enter",
+        run: (view) => {
+          onRunCodeRef.current(view.state.doc.toString());
+          return true;
+        },
+        preventDefault: true
+      }
+    ]);
+
+    const customTheme = EditorView.theme({
+      "&": {
+        fontSize: "18px"
+      }
+    });
+
     const startState = EditorState.create({
-      doc: '// Write your javascript here\n\nconsole.log("Hello, World!");\n',
+      doc: '// Write your javascript here\n// Press Shift + Enter to run\n\nconsole.log("Hello, World!");\n',
       extensions: [
         basicSetup,
         javascript(),
-        oneDark
+        oneDark,
+        runCodeKeymap,
+        customTheme
       ]
     });
 
@@ -43,13 +68,13 @@ export default function FloatingIDE({ onRunCode }) {
   return (
     <Rnd
       default={{
-        x: window.innerWidth - 550,
+        x: window.innerWidth - 750,
         y: 50,
-        width: 500,
-        height: 400,
+        width: 700,
+        height: 500,
       }}
-      minWidth={300}
-      minHeight={200}
+      minWidth={400}
+      minHeight={300}
       bounds="window"
       style={{
         zIndex: 100,
