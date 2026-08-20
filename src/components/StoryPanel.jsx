@@ -137,7 +137,10 @@ export default function StoryPanel({ title, description, hints, output, resultSt
                     <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: '#bbb' }}>
                       {hints.map((hint, i) => <li key={i} style={{ marginBottom: '6px' }}>{hint}</li>)}
                     </ul>
+                  </div>
+                )}
                     
+                <div style={{ marginTop: '30px', borderTop: '1px dashed #444', paddingTop: '16px' }}>
                   <h4 style={{ margin: '0 0 8px 0', color: '#fff' }}>EXECUTION_LOG:</h4>
                   
                   {output && output.length > 0 ? (
