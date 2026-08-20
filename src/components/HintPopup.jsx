@@ -26,19 +26,28 @@ export default function HintPopup({ onConfirm, onCancel }) {
         const btnCenterX = rect.left + rect.width / 2;
         const btnCenterY = rect.top + rect.height / 2;
         
-        // Calculate distance from mouse to button center
-        const dist = Math.sqrt(
-          Math.pow(e.clientX - btnCenterX, 2) + Math.pow(e.clientY - btnCenterY, 2)
-        );
+        const dx = btnCenterX - e.clientX;
+        const dy = btnCenterY - e.clientY;
+        const distToMouse = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 100) { // If mouse gets within 100px
-          // Move button to a random position within a 300px radius
-          const angle = Math.random() * Math.PI * 2;
-          const distance = 100 + Math.random() * 150;
-          setBtnPos(prev => ({
-            x: prev.x + Math.cos(angle) * distance,
-            y: prev.y + Math.sin(angle) * distance
-          }));
+        if (distToMouse < 150) { // If mouse gets within 150px
+          // Calculate angle away from mouse, plus a random deflection to avoid getting trapped
+          let angle = Math.atan2(dy, dx);
+          angle += (Math.random() - 0.5) * (Math.PI / 1.5); // Random veer
+
+          const runDistance = 150; // Jump distance
+          let targetX = btnPos.x + Math.cos(angle) * runDistance;
+          let targetY = btnPos.y + Math.sin(angle) * runDistance;
+
+          // Apply tether constraint (max radius from origin)
+          const maxRadius = 300;
+          const originDist = Math.sqrt(targetX * targetX + targetY * targetY);
+          if (originDist > maxRadius) {
+            targetX = (targetX / originDist) * maxRadius;
+            targetY = (targetY / originDist) * maxRadius;
+          }
+
+          setBtnPos({ x: targetX, y: targetY });
         }
       }
     };
@@ -55,7 +64,7 @@ export default function HintPopup({ onConfirm, onCancel }) {
       window.removeEventListener('mousemove', handleMouseMove);
       if (movementTimerRef.current) clearTimeout(movementTimerRef.current);
     };
-  }, [isRunningAway]);
+  }, [isRunningAway, btnPos]);
 
   return createPortal(
     <div style={{
