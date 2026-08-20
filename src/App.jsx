@@ -170,9 +170,12 @@ function App() {
           isLastLevel={currentLevelIndex === levels.length - 1}
           sector={currentLevel.sector}
           learningZone={currentLevel.learningZone}
-          codeHint={currentLevel.codeHint}
         />
-        <FloatingIDE onRunCode={handleRunCode} initialCode={currentLevel.initialCode} />
+        <FloatingIDE 
+          onRunCode={handleRunCode} 
+          initialCode={currentLevel.initialCode} 
+          codeHint={currentLevel.codeHint} 
+        />
       </div>
     </>
   )
