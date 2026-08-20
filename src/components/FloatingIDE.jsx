@@ -3,6 +3,7 @@ import { Rnd } from 'react-rnd';
 import { EditorView, basicSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { EditorState } from '@codemirror/state';
+import { oneDark } from '@codemirror/theme-one-dark';
 
 export default function FloatingIDE({ onRunCode }) {
   const editorRef = useRef(null);
@@ -15,7 +16,8 @@ export default function FloatingIDE({ onRunCode }) {
       doc: '// Write your javascript here\n\nconsole.log("Hello, World!");\n',
       extensions: [
         basicSetup,
-        javascript()
+        javascript(),
+        oneDark
       ]
     });
 
