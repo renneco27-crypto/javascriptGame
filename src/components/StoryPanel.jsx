@@ -1,5 +1,5 @@
 import { Rnd } from 'react-rnd';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import HintPopup from './HintPopup';
 
 function BootSequence({ onComplete }) {
@@ -56,12 +56,24 @@ function TypewriterText({ text, onComplete }) {
 export default function StoryPanel({ title, description, hints, output, resultStatus, onNextLevel, isLastLevel, sector, learningZone }) {
   const [booted, setBooted] = useState(false);
   const [descriptionTyped, setDescriptionTyped] = useState(false);
+  const executionLogRef = useRef(null);
 
   // Reset state when title/level changes
   useEffect(() => {
     setBooted(false);
     setDescriptionTyped(false);
   }, [title]);
+
+  // Automatically scroll down to EXECUTION_LOG when code runs or returns output
+  useEffect(() => {
+    if ((output && output.length > 0) || resultStatus) {
+      setBooted(true);
+      setDescriptionTyped(true);
+      setTimeout(() => {
+        executionLogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    }
+  }, [output, resultStatus]);
 
   return (
     <Rnd
@@ -140,7 +152,7 @@ export default function StoryPanel({ title, description, hints, output, resultSt
                   </div>
                 )}
                     
-                <div style={{ marginTop: '30px', borderTop: '1px dashed #444', paddingTop: '16px' }}>
+                <div ref={executionLogRef} style={{ marginTop: '30px', borderTop: '1px dashed #444', paddingTop: '16px' }}>
                   <h4 style={{ margin: '0 0 8px 0', color: '#fff' }}>EXECUTION_LOG:</h4>
                   
                   {output && output.length > 0 ? (
