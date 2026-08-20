@@ -90,7 +90,7 @@ export default function GameWorld() {
         left: 0,
         width: '100vw',
         height: '100vh',
-        zIndex: -1, // Behind everything
+        zIndex: 0, // Base layer
         display: 'block'
       }}
     />
