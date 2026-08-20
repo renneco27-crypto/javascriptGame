@@ -1,25 +1,25 @@
 export const gate08 = {
   id: "08",
-  sector: "SECTOR 08 \u2014 CIPHER DECRYPTION",
-  learningZone: "JS Strings",
-  title: "GATE 08 \u2014 DECRYPTION STRINGS",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nEvery intercepted NEXUS transmission is a string. To decode them you need to slice them, search them, replace words, change case, and extract characters. The decryption unit is offline. Rebuild it using JavaScript string methods.\n\nMISSION OBJECTIVE:\nGiven `const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";`:\n1. `clean`: remove whitespace from both ends using `trim()`\n2. `target`: replace \"NEXUS\" with \"TARGET\"\n3. `hasFriday`: check if the string includes \"FRIDAY\"\n4. `words`: split the trimmed message into an array of words\nReturn `{ clean, target, hasFriday, words }`.",
+  sector: "SECTOR 02 \u2014 LOGIC ENGINE",
+  learningZone: "JS Booleans",
+  title: "GATE 08 \u2014 BOOLEANS",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nEvery decision CIPHER makes comes down to true or false. Booleans are the foundation of all logic.",
   hints: [
-  "trim() removes leading and trailing whitespace",
-  "toLowerCase() / toUpperCase() change case",
-  "replace(\"old\", \"new\") swaps text",
-  "includes(\"word\") returns true or false",
-  "split(\" \") breaks a string into an array by the separator"
+  "Boolean values are true or false \u2014 no quotes",
+  "Falsy values: false, 0, \"\", null, undefined, NaN",
+  "Everything else is truthy, including [] and {}",
+  "Boolean() converts any value to its boolean equivalent"
 ],
-  codeHint: "const clean = transmission.______();\nconst target = clean._______(\"NEXUS\", \"TARGET\");\nconst hasFriday = clean.________(\"FRIDAY\");\nconst words = clean._____(\" \");\nreturn { clean, target, ____, words };",
-  initialCode: "const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";\n\n// Task 1: Trim\nlet clean;\n\n// Task 2: Replace\nlet target;\n\n// Task 3: Includes check\nlet hasFriday;\n\n// Task 4: Split into array\nlet words;\n\nreturn { clean, target, hasFriday, words };\n",
-  solution: "const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";\n\nconst clean = transmission.trim();\nconst target = clean.replace(\"NEXUS\", \"TARGET\");\nconst hasFriday = clean.includes(\"FRIDAY\");\nconst words = clean.split(\" \");\n\nreturn { clean, target, hasFriday, words };",
+  codeHint: "let ____ = 85;\nlet isAbove70 = threatLevel ___ 70;\nlet isBelow100 = threatLevel ___ 100;\nlet isExactly85 = threatLevel ___ 85;\nconsole.log(____, typeof isAbove70);",
+  initialCode: "// Declare threatLevel = 85\n// Write boolean expressions:\n// 1. Is it above 70?\n// 2. Is it below 100?\n// 3. Is it exactly 85?\n// Log each result and its type\n\n// Your code here\n",
+  solution: "let threatLevel = 85;\nlet isAbove70 = threatLevel > 70;\nlet isBelow100 = threatLevel < 100;\nlet isExactly85 = threatLevel === 85;\nconsole.log(isAbove70, typeof isAbove70);\nconsole.log(isBelow100, typeof isBelow100);\nconsole.log(isExactly85, typeof isExactly85);",
   validate: (code, result, logs = []) => {
-    if (!result || typeof result !== 'object') return { success: false, message: 'Must return an object with { clean, target, hasFriday, words }.' };
-    if (result.clean !== 'NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY') return { success: false, message: 'clean must be trimmed of outside whitespace.' };
-    if (!result.target.includes('TARGET')) return { success: false, message: 'target must have replaced NEXUS with TARGET.' };
-    if (result.hasFriday !== true) return { success: false, message: 'hasFriday must be true.' };
-    if (!Array.isArray(result.words) || result.words.length !== 7) return { success: false, message: 'words must be an array of 7 individual words.' };
-    return { success: true, message: 'GATE 08 CLEARED: Transmission decrypted.' };
+    const hasTrue = logs.some(l => l.includes('true'));
+    if (!hasTrue) return { success: false, message: 'At least one boolean result should be true' };
+    const hasTypeOf = code.includes('typeof');
+    if (!hasTypeOf) return { success: false, message: 'Must log the type using typeof' };
+    const hasComparisons = code.includes('>') || code.includes('<') || code.includes('===');
+    if (!hasComparisons) return { success: false, message: 'Must use comparison operators to create booleans' };
+    return { success: true, message: 'GATE 08 CLEARED — Boolean logic confirmed.' };
   }
 };

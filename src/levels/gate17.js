@@ -1,23 +1,29 @@
 export const gate17 = {
   id: "17",
-  sector: "SECTOR 17 \u2014 THREAT INDEX",
-  learningZone: "JS Maps",
-  title: "GATE 17 \u2014 INTELLIGENCE MAP",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe intelligence database needs to store key-value pairs where the keys are not simple strings \u2014 sometimes they are objects, sometimes numbers, sometimes other complex data. A regular JS object cannot handle this. A Map can. Build the intelligence Map that stores and retrieves agent data with any key type.\n\nMISSION OBJECTIVE:\n1. Create a `new Map()`\n2. Set string keys `\"Zero\" -> 88`, `\"Fox\" -> 45`, `\"Rook\" -> 91`\n3. Set numeric badge key `1007 -> \"SUPER AGENT\"`\n4. Get score for `\"Zero\"` into `zeroScore`\n5. Check if badge `1007` exists using `.has(1007)`\nReturn `{ zeroScore, hasBadge1007: intelMap.has(1007), mapSize: intelMap.size }`.",
+  sector: "SECTOR 03 \u2014 DATA STRUCTURES",
+  learningZone: "JS Sets",
+  title: "GATE 17 \u2014 SET SYNTAX",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nA Set only stores unique values. Duplicates are automatically rejected.",
   hints: [
-  "new Map() \u2014 creates an empty Map",
-  "map.set(key, value) \u2014 adds or updates an entry",
-  "map.get(key) \u2014 retrieves value by key",
-  "map.has(key) \u2014 returns true or false",
-  "map.size \u2014 total number of entries (not .length)"
+  "new Set([array]) creates a Set and removes duplicates automatically",
+  ".add() adds a value, .has() checks existence, .delete() removes",
+  ".size (not .length) returns the number of unique values",
+  "[...mySet] or Array.from(mySet) converts a Set back to an array"
 ],
-  codeHint: "const intelMap = new ___();\n____.set(\"Zero\", __);\n____.set(\"Fox\", 45);\n____.set(\"Rook\", 91);\nintelMap.set(1007, \"___________\");\nconst zeroScore = intelMap.get(\"____\");\nreturn { zeroScore, ____: intelMap.has(1007), mapSize: intelMap.size };",
-  initialCode: "const intelMap = new Map();\n\n// Task: Store entries, numeric keys, retrieve values\n\n",
-  solution: "const intelMap = new Map();\n\nintelMap.set(\"Zero\", 88);\nintelMap.set(\"Fox\", 45);\nintelMap.set(\"Rook\", 91);\nintelMap.set(1007, \"SUPER AGENT\");\n\nconst zeroScore = intelMap.get(\"Zero\");\n\nreturn { zeroScore, hasBadge1007: intelMap.has(1007), mapSize: intelMap.size };",
+  codeHint: "let ____ = new Set([5, 3, 5, 8, 3, 9, 8, 1]);\nconsole.log(signals.______);\nsignals.___(___);\nconsole.log(signals.___(3));\nsignals.______(___);\nlet arr = [...____];",
+  initialCode: "// Create a Set from: [5, 3, 5, 8, 3, 9, 8, 1]\n// 1. Log its size\n// 2. Add a new value\n// 3. Check if 3 exists\n// 4. Delete 8\n// 5. Convert it back to an array and log it\n\n// Your code here\n",
+  solution: "let signals = new Set([5, 3, 5, 8, 3, 9, 8, 1]);\nconsole.log(signals.size);\nsignals.add(100);\nconsole.log(signals.has(3));\nsignals.delete(8);\nlet arr = [...signals];\nconsole.log(arr);",
   validate: (code, result, logs = []) => {
-    if (!result || result.zeroScore !== 88) return { success: false, message: 'zeroScore should be 88.' };
-    if (result.hasBadge1007 !== true) return { success: false, message: 'hasBadge1007 must be true.' };
-    if (result.mapSize !== 4) return { success: false, message: 'Map should contain exactly 4 entries.' };
-    return { success: true, message: 'GATE 17 CLEARED: Intelligence Map online.' };
+    const hasSet = code.includes('new Set(');
+    if (!hasSet) return { success: false, message: 'Must create a Set using new Set()' };
+    const hasSize = code.includes('.size');
+    if (!hasSize) return { success: false, message: 'Must log the size using .size' };
+    const hasAdd = code.includes('.add(');
+    if (!hasAdd) return { success: false, message: 'Must add a value using .add()' };
+    const hasHas = code.includes('.has(');
+    if (!hasHas) return { success: false, message: 'Must check existence using .has()' };
+    const hasDelete = code.includes('.delete(');
+    if (!hasDelete) return { success: false, message: 'Must remove a value using .delete()' };
+    return { success: true, message: 'GATE 17 CLEARED — Duplicate signals eliminated.' };
   }
 };

@@ -1,24 +1,25 @@
 export const gate12 = {
   id: "12",
-  sector: "SECTOR 12 \u2014 ARCHIVE DATABASE",
-  learningZone: "JS Objects",
-  title: "GATE 12 \u2014 OBJECT RECONSTRUCTION",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nNEXUS shredded the agent object database. Every agent profile \u2014 their name, rank, skills, status \u2014 exists as raw scattered data. You need to reconstruct the object structure from scratch, access the data correctly, loop through its properties, and add methods that make the object do work.\n\nMISSION OBJECTIVE:\nCreate an `agent` object with:\n- `name`: \"Zero\"\n- `rank`: \"Commander\"\n- `clearance`: 5\n- `skills`: [\"Infiltration\", \"Crypto\"]\n- `isActive`: true\n- Add `missionsCompleted`: 42\n- Add method `report()` returning `\"Agent \" + this.name + \" reporting. Status: ACTIVE\"`\nReturn `agent`.",
+  sector: "SECTOR 02 \u2014 LOGIC ENGINE",
+  learningZone: "JS Loops",
+  title: "GATE 12 \u2014 SWEEP PROTOCOL",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nLoops repeat an action. Know every loop type and when to use each.",
   hints: [
-  "object.property \u2014 dot notation",
-  "object[\"property\"] \u2014 bracket notation (useful with variables)",
-  "Add after: agent.newProp = value",
-  "Method: a function stored as a property, use this.name inside",
-  "for (let key in object) loops through all enumerable properties"
+  "for loop: for (let i = 0; i < 10; i++) \u2014 good when you know the count",
+  "while loop: while (condition) \u2014 runs as long as condition is true",
+  "for...of \u2014 iterates over array values directly",
+  "break exits a loop; continue skips to the next iteration"
 ],
-  codeHint: "____ agent = {\n  name: \"____\",\n  rank: \"____\",\n  ____: _,\n  skills: [\"____\", \"Crypto\"],\n  ____: true,\n  ____() {\n    return `Agent ${this.____} reporting. Status: ACTIVE`;\n  } // ____\n}; // ____\nagent.____ = __;\n____ agent;",
-  initialCode: "const agent = {\n  // Properties here\n};\n\n// Add missionsCompleted and report method\n\nreturn agent;\n",
-  solution: "const agent = {\n  name: \"Zero\",\n  rank: \"Commander\",\n  clearance: 5,\n  skills: [\"Infiltration\", \"Crypto\"],\n  isActive: true,\n  report() {\n    return `Agent ${this.name} reporting. Status: ACTIVE`;\n  }\n};\n\nagent.missionsCompleted = 42;\n\nreturn agent;",
+  codeHint: "for (let i = ___; i <= ___; i++) {\n  ____.log(i);\n} // ____\nlet count = ___;\nwhile (count >= ___) {\n  ____.log(count);\n  count___;\n} // ____\nconst cities = [___, ___, ___, ___];\nfor (let city ___ cities) {\n  ____.log(city);\n} // ____",
+  initialCode: "// Task 1: for loop logging numbers 1 to 10\n// Your code here\n\n// Task 2: while loop counting down from 5 to 0\n// Your code here\n\n// Task 3: for...of loop over an array of 4 city names\n// Your code here\n",
+  solution: "for (let i = 1; i <= 10; i++) {\n  console.log(i);\n}\n\nlet count = 5;\nwhile (count >= 0) {\n  console.log(count);\n  count--;\n}\n\nconst cities = [\"London\", \"Tokyo\", \"Berlin\", \"Cairo\"];\nfor (let city of cities) {\n  console.log(city);\n}",
   validate: (code, result, logs = []) => {
-    if (!result || typeof result !== 'object') return { success: false, message: 'Must return agent object.' };
-    if (result.name !== 'Zero' || result.clearance !== 5) return { success: false, message: 'Agent properties (name, clearance) mismatch.' };
-    if (result.missionsCompleted !== 42) return { success: false, message: 'missionsCompleted property missing or incorrect.' };
-    if (typeof result.report !== 'function' || !result.report().includes('Zero')) return { success: false, message: 'agent.report() method missing or invalid.' };
-    return { success: true, message: 'GATE 12 CLEARED: Agent database record reconstructed.' };
+    const hasFor = code.includes('for (') || code.includes('for(');
+    if (!hasFor) return { success: false, message: 'Must include a for loop' };
+    const hasWhile = code.includes('while (') || code.includes('while(');
+    if (!hasWhile) return { success: false, message: 'Must include a while loop' };
+    const hasForOf = code.includes('of ');
+    if (!hasForOf) return { success: false, message: 'Must include a for...of loop' };
+    return { success: true, message: 'GATE 12 CLEARED — Sweep protocol complete.' };
   }
 };

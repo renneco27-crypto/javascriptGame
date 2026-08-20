@@ -1,23 +1,29 @@
 export const gate15 = {
   id: "15",
-  sector: "SECTOR 15 \u2014 DATA MATRICES",
+  sector: "SECTOR 03 \u2014 DATA STRUCTURES",
   learningZone: "JS Arrays",
-  title: "GATE 15 \u2014 ARRAY ARSENAL",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe agent roster, the target list, the equipment inventory, the intercepted coordinates \u2014 everything in CIPHER is stored in arrays. Arrays are ordered lists that let you add, remove, find, sort, and transform collections of data. Master the array arsenal and you control the data.\n\nMISSION OBJECTIVE:\nGiven `let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];`:\n1. Push `\"Viper\"` to the end, unshift `\"Echo\"` to the beginning\n2. Find the index of `\"Rook\"`\n3. Sort the array alphabetically\n4. Check if `\"Ghost\"` is included\nReturn `{ agents, rookIndex, hasGhost }`.",
+  title: "GATE 15 \u2014 ARRAY SYNTAX",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nArrays store ordered lists. Every roster, every target list, every coordinate set is an array.",
   hints: [
-  "push() adds to end, unshift() adds to beginning",
-  "pop() removes from end, shift() removes from beginning",
-  "indexOf(\"Rook\") returns the position",
-  "sort() sorts array elements in place",
-  "includes(\"Ghost\") returns true or false"
+  "Array index starts at 0: agents[0] is the first item",
+  "agents[agents.length - 1] gets the last item",
+  ".push() adds to the end, .unshift() adds to the beginning",
+  ".pop() removes from the end, .indexOf() finds the index of an item"
 ],
-  codeHint: "const ____ = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\nagents.____(\"Viper\");\nagents._______(\"Echo\");\nconst rookIndex = agents._______(\"Rook\");\nagents.____();\nconst hasGhost = agents.________(\"Ghost\");\nreturn { agents, ____, hasGhost };",
-  initialCode: "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\n\n// Perform operations\nlet rookIndex;\nlet hasGhost;\n\nreturn { agents, rookIndex, hasGhost };\n",
-  solution: "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\n\nagents.push(\"Viper\");\nagents.unshift(\"Echo\");\nconst rookIndex = agents.indexOf(\"Rook\");\nagents.sort();\nconst hasGhost = agents.includes(\"Ghost\");\n\nreturn { agents, rookIndex, hasGhost };",
+  codeHint: "let agents = [___, ___, ___, ___, ___];\n____.log(agents[0]);\n____.log(agents[agents.length - 1]);\nagents.______(\"NewAgent\");\nagents._______(\"FirstAgent\");\nagents.___();\nconsole.log(agents._______(\"ThirdName\"));\nconsole.log(agents.______(1, 4));",
+  initialCode: "// Create an array of 5 agent names\n// 1. Access the first and last\n// 2. Add one to the end and one to the beginning\n// 3. Remove the last one\n// 4. Find the index of the third name\n// 5. Slice out the middle 3\n\n// Your code here\n",
+  solution: "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Echo\"];\nconsole.log(agents[0]);\nconsole.log(agents[agents.length - 1]);\nagents.push(\"Wolf\");\nagents.unshift(\"Kite\");\nagents.pop();\nconsole.log(agents.indexOf(\"Rook\"));\nconsole.log(agents.slice(1, 4));",
   validate: (code, result, logs = []) => {
-    if (!result || !Array.isArray(result.agents)) return { success: false, message: 'Must return { agents, rookIndex, hasGhost }.' };
-    if (!result.agents.includes('Viper') || !result.agents.includes('Echo')) return { success: false, message: 'Must push Viper and unshift Echo.' };
-    if (result.hasGhost !== true) return { success: false, message: 'hasGhost must be true.' };
-    return { success: true, message: 'GATE 15 CLEARED: Array arsenal equipped.' };
+    const hasPush = code.includes('.push(');
+    if (!hasPush) return { success: false, message: 'Must use .push() to add to the end of the array' };
+    const hasUnshift = code.includes('.unshift(');
+    if (!hasUnshift) return { success: false, message: 'Must use .unshift() to add to the beginning' };
+    const hasPop = code.includes('.pop()');
+    if (!hasPop) return { success: false, message: 'Must use .pop() to remove the last item' };
+    const hasIndexOf = code.includes('.indexOf(');
+    if (!hasIndexOf) return { success: false, message: 'Must use .indexOf() to find an item' };
+    const hasSlice = code.includes('.slice(');
+    if (!hasSlice) return { success: false, message: 'Must use .slice() to extract a portion of the array' };
+    return { success: true, message: 'GATE 15 CLEARED — All roster data retrieved.' };
   }
 };

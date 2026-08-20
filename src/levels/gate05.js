@@ -1,22 +1,25 @@
 export const gate05 = {
   id: "05",
-  sector: "SECTOR 05 \u2014 TARGETING COMPUTER",
-  learningZone: "JS Operators",
-  title: "GATE 05 \u2014 CALCULATION ENGINE",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe CIPHER targeting system runs on math. Distance calculations, threat scoring, signal strength \u2014 all of it uses operators. NEXUS corrupted the operator logic causing every calculation to return wrong results. Rebuild the calculation engine using arithmetic, assignment, and comparison operators correctly.\n\nMISSION OBJECTIVE:\n1. Calculate the remainder of `20 % 6` and store in `remainder`.\n2. Start with `let score = 100`, then use `+= 50` and `*= 2` to update it.\n3. Check if `threatLevel === 73` and `threatLevel > 50`, returning `isHighThreat` boolean.",
+  sector: "SECTOR 01 \u2014 CIPHER GATEWAY",
+  learningZone: "JS Variables",
+  title: "GATE 05 \u2014 STORAGE UNITS",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nVariables store data. Three ways to declare them. Each behaves differently.",
   hints: [
-  "% is modulo \u2014 gives the remainder: 20 % 6 returns 2",
-  "** is exponentiation: 2 ** 8 returns 256",
-  "=== is strict equality \u2014 checks value AND type, always prefer over =="
+  "const cannot be reassigned after declaration",
+  "let can be reassigned and is block-scoped",
+  "var is function-scoped and is the old way \u2014 prefer let in modern code",
+  "Variable names cannot start with a number or contain hyphens"
 ],
-  codeHint: "const _________ = 20 % 6;\nlet ____ = 100;\n____ += __;\n____ *= _;\nconst ____ = 73 > __;\nreturn { remainder: _________, score, isHighThreat };",
-  initialCode: "const a = 20;\nconst b = 6;\nconst threatLevel = 73;\n\n// Task 1: Remainder of a % b\nlet remainder;\n\n// Task 2: Update score using += and *=\nlet score = 100;\n\n// Task 3: Comparison\nlet isHighThreat;\n\nreturn { remainder, score, isHighThreat };\n",
-  solution: "const a = 20;\nconst b = 6;\nconst threatLevel = 73;\n\nlet remainder = a % b;\nlet score = 100;\nscore += 50;\nscore *= 2;\nlet isHighThreat = threatLevel > 50;\n\nreturn { remainder, score, isHighThreat };",
+  codeHint: "_____ MISSION_CODE = \"ALPHA\";\n___ score = 0;\n____ = 100;\n___ legacyVar = \"avoid this\";",
+  initialCode: "// Task 1: Declare a mission code using const\n// Your code here\n\n// Task 2: Declare a score using let and then reassign it\n// Your code here\n\n// Task 3: Declare a variable using var and explain why let is better (in a comment)\n// Your code here\n",
+  solution: "const MISSION_CODE = \"ALPHA-7\";\nlet score = 0;\nscore = 100;\nvar legacyVar = \"old style\"; // let is better because var ignores block scope",
   validate: (code, result, logs = []) => {
-    if (!result || typeof result !== 'object') return { success: false, message: 'Must return an object with { remainder, score, isHighThreat }.' };
-    if (result.remainder !== 2) return { success: false, message: 'Task 1: remainder of 20 % 6 should be 2.' };
-    if (result.score !== 300) return { success: false, message: 'Task 2: score (100 += 50 -> 150 *= 2) should equal 300.' };
-    if (result.isHighThreat !== true) return { success: false, message: 'Task 3: isHighThreat should be true.' };
-    return { success: true, message: 'GATE 05 CLEARED: Calculation engine recalibrated.' };
+    const hasConst = code.includes('const ');
+    if (!hasConst) return { success: false, message: 'Must use const for at least one variable' };
+    const hasLet = code.includes('let ');
+    if (!hasLet) return { success: false, message: 'Must use let for at least one variable' };
+    const hasVar = code.includes('var ');
+    if (!hasVar) return { success: false, message: 'Must demonstrate var as well' };
+    return { success: true, message: 'GATE 05 CLEARED — All three storage units operational.' };
   }
 };

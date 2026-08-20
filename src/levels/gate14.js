@@ -1,21 +1,29 @@
 export const gate14 = {
   id: "14",
-  sector: "SECTOR 14 \u2014 CHRONOS LOG",
-  learningZone: "JS Dates",
-  title: "GATE 14 \u2014 MISSION TIMESTAMPS",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nEvery mission is logged with timestamps \u2014 when it started, when it ended, how long it lasted. The timestamp system is down. NEXUS is exploiting the gap in logs to hide its activity. Restore the date system so every operation is timestamped and traceable.\n\nMISSION OBJECTIVE:\n1. `missionStart`: Create a Date object for `January 15, 2047 06:00:00`\n2. `year`: Get the full year from missionStart\n3. `month`: Get the month index (0-based) from missionStart\n4. `day`: Get the day date from missionStart\nReturn `{ missionStart, year, month, day }`.",
+  sector: "SECTOR 03 \u2014 DATA STRUCTURES",
+  learningZone: "JS Numbers",
+  title: "GATE 14 \u2014 NUMBER SYNTAX",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nAll numbers in JavaScript are the same type. But they behave in ways that will surprise you.",
   hints: [
-  "new Date() \u2014 current date and time",
-  "new Date(2047, 0, 15, 6, 0) \u2014 month is 0-indexed (Jan = 0)",
-  "getFullYear(), getMonth(), getDate(), getHours(), getMinutes()",
-  "toDateString() gives a readable format"
+  "Math.round() rounds to nearest, Math.floor() always down, Math.ceil() always up",
+  "Math.floor(Math.random() * max) + 1 generates a random integer",
+  "isNaN() checks if a value is Not a Number",
+  "NaN is returned when a math operation fails, like Number(\"NEXUS\")"
 ],
-  codeHint: "const missionStart = new Date(____, _, 15, 6, 0);\nconst year = missionStart.___________();\nconst month = missionStart.________();\nconst day = missionStart._______();\nreturn { ____, year, month, day };",
-  initialCode: "// Task: Create Date for Jan 15, 2047 and extract components\nconst missionStart = new Date(2047, 0, 15, 6, 0);\nlet year;\nlet month;\nlet day;\n\nreturn { missionStart, year, month, day };\n",
-  solution: "const missionStart = new Date(2047, 0, 15, 6, 0);\nconst year = missionStart.getFullYear();\nconst month = missionStart.getMonth();\nconst day = missionStart.getDate();\n\nreturn { missionStart, year, month, day };",
+  codeHint: "let n = 3.____;\nconsole.log(Math.______(n));\nconsole.log(Math.______(n));\nconsole.log(Math.______(n));\nlet rand = Math._____(Math.______() * 50) + 1;\n____.log(isNaN(Number(\"NEXUS\")));",
+  initialCode: "// Task 1: Declare 3.99821 and round it, floor it, and ceil it\n// Your code here\n\n// Task 2: Generate a random integer between 1 and 50\n// Your code here\n\n// Task 3: Check if \"NEXUS\" converted to a number is NaN\n// Your code here\n",
+  solution: "let n = 3.99821;\nconsole.log(Math.round(n));\nconsole.log(Math.floor(n));\nconsole.log(Math.ceil(n));\nlet rand = Math.floor(Math.random() * 50) + 1;\nconsole.log(rand);\nconsole.log(isNaN(Number(\"NEXUS\")));",
   validate: (code, result, logs = []) => {
-    if (!result || !result.missionStart) return { success: false, message: 'Must return { missionStart, year, month, day }.' };
-    if (result.year !== 2047 || result.month !== 0 || result.day !== 15) return { success: false, message: 'Ensure year=2047, month=0 (January), day=15.' };
-    return { success: true, message: 'GATE 14 CLEARED: Mission timestamps verified.' };
+    const hasRound = code.includes('Math.round(');
+    if (!hasRound) return { success: false, message: 'Must use Math.round()' };
+    const hasFloor = code.includes('Math.floor(');
+    if (!hasFloor) return { success: false, message: 'Must use Math.floor()' };
+    const hasCeil = code.includes('Math.ceil(');
+    if (!hasCeil) return { success: false, message: 'Must use Math.ceil()' };
+    const hasRandom = code.includes('Math.random()');
+    if (!hasRandom) return { success: false, message: 'Must generate a random number using Math.random()' };
+    const hasIsNaN = code.includes('isNaN(');
+    if (!hasIsNaN) return { success: false, message: 'Must check for NaN using isNaN()' };
+    return { success: true, message: 'GATE 14 CLEARED — Number systems restored.' };
   }
 };

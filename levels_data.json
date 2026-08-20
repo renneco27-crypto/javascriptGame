@@ -1,351 +1,540 @@
-{
-  "curriculum": "OPERATION: CODEBREAKER \u2014 W3SCHOOLS EDITION",
-  "levels": [
-    {
-      "id": "01",
-      "gate": 1,
-      "sector": "SECTOR 01 \u2014 CIPHER GATEWAY",
-      "learningZone": "JS Introduction",
-      "title": "GATE 01 \u2014 FIRST CONTACT",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nWelcome, recruit. Before you can fight NEXUS, you need to understand your weapon. JavaScript runs in every browser on the planet \u2014 it is the only language that needs no installation, no compiler, and no setup. It just runs. NEXUS knows this. So do we. Prove you understand what JavaScript is and what it can do.\n\nMISSION OBJECTIVE:\n1. Write a JavaScript statement that displays the message \"CIPHER ONLINE\" in the browser console.\n2. Write one that changes the text of an HTML element with the id \"status\" to \"SYSTEMS ACTIVE\".",
-      "hints": [
-        "console.log(\"message\") outputs to the browser console",
-        "document.getElementById(\"id\").innerHTML = \"text\" changes page content",
-        "JavaScript is case sensitive \u2014 Console.log will not work"
-      ],
-      "codeHint": "console.___(____);\ndocument.____________(\"status\")._________ = \"SYSTEMS ACTIVE\";",
-      "initialCode": "// Task 1: Output to console\n// Your code here\n\n// Task 2: Change HTML content\n// Your code here\n",
-      "validateCode": "const hasLog = logs.some(l => l.includes('CIPHER ONLINE'));\nif (!hasLog) return { success: false, message: 'Task 1 incomplete: Must output \"CIPHER ONLINE\" to the console.' };\nconst hasDom = logs.some(l => l.includes('#status') && l.includes('SYSTEMS ACTIVE')) || (code.includes('getElementById') && code.includes('status') && code.includes('SYSTEMS ACTIVE'));\nif (!hasDom) return { success: false, message: 'Task 2 incomplete: Must set document.getElementById(\"status\").innerHTML = \"SYSTEMS ACTIVE\"' };\nreturn { success: true, message: 'GATE 01 CLEARED: Connection established. Welcome to CIPHER.' };",
-      "solution": "console.log(\"CIPHER ONLINE\");\ndocument.getElementById(\"status\").innerHTML = \"SYSTEMS ACTIVE\";"
-    },
-    {
-      "id": "02",
-      "gate": 2,
-      "sector": "SECTOR 02 \u2014 DEPLOYMENT ZONE",
-      "learningZone": "JS Where To",
-      "title": "GATE 02 \u2014 DEPLOYMENT POINT",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nYour code needs to be deployed correctly or it will never execute. NEXUS is counting on you placing your script in the wrong location so it runs before the page loads \u2014 crashing on empty elements. There are three places JavaScript can live: inside a <script> tag in the head, inside a <script> tag at the bottom of body, or in an external .js file. Know the difference. Deploy correctly.\n\nMISSION OBJECTIVE:\n1. Create a variable `externalScriptTag` containing the HTML string that links an external JavaScript file called \"cipher.js\".\n2. Create a variable `inlineScriptTag` containing a script tag placed at the bottom of a body element.",
-      "hints": [
-        "External file: <script src=\"cipher.js\"></script>",
-        "Place scripts at the bottom of <body> so HTML loads first",
-        "External files keep your HTML clean and the JS reusable"
-      ],
-      "codeHint": "const _________________ = '<script ___=\"cipher.js\"></script>';\nconst _______________ = '<body>...<script>______();</script></body>';",
-      "initialCode": "// Task 1: Link external JS file\nconst externalScriptTag = \"\";\n\n// Task 2: Inline script in correct position\nconst inlineScriptTag = \"\";\n",
-      "validateCode": "if (!code.includes('cipher.js')) return { success: false, message: 'Task 1 incomplete: Must link external file \"cipher.js\".' };\nif (!code.includes('<script') || !code.includes('</script>')) return { success: false, message: 'Task 2 incomplete: Must define script tags.' };\nreturn { success: true, message: 'GATE 02 CLEARED: Deployment architecture verified.' };",
-      "solution": "const externalScriptTag = '<script src=\"cipher.js\"></script>';\nconst inlineScriptTag = '<body><h1>CIPHER</h1><script>console.log(\"READY\");</script></body>';"
-    },
-    {
-      "id": "03",
-      "gate": 3,
-      "sector": "SECTOR 03 \u2014 BROADCAST ARRAY",
-      "learningZone": "JS Output",
-      "title": "GATE 03 \u2014 SIGNAL BROADCAST",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nCIPHER needs to broadcast data to four different output channels simultaneously \u2014 the console, the page, a popup alert, and directly written into the document. NEXUS has jammed three of the four. Your job is to demonstrate all four output methods so the backup systems know which channel is still alive.\n\nMISSION OBJECTIVE: Write JavaScript that uses all four output methods:\n1. console.log(\"TRANSMITTING\")\n2. document.getElementById(\"output\").innerHTML = \"TRANSMITTING\"\n3. window.alert(\"TRANSMITTING\")\n4. document.write(\"TRANSMITTING\")",
-      "hints": [
-        "console.log() \u2014 developer console only",
-        "document.getElementById(\"demo\").innerHTML = \"text\" \u2014 updates the page",
-        "window.alert(\"text\") \u2014 popup box (use sparingly)",
-        "document.write() \u2014 overwrites the whole page if called after load, testing only"
-      ],
-      "codeHint": "console.___(____);\ndocument.____________(\"output\").innerHTML = \"TRANSMITTING\";\nwindow._____(____);\ndocument._____(____);",
-      "initialCode": "// Channel 1: Console\n// Your code here\n\n// Channel 2: HTML element\n// Your code here\n\n// Channel 3: Alert popup\n// Your code here\n\n// Channel 4: Document write (testing only)\n// Your code here\n",
-      "validateCode": "if (!code.includes('console.log')) return { success: false, message: 'Missing console.log channel.' };\nif (!code.includes('getElementById') || !code.includes('innerHTML')) return { success: false, message: 'Missing document.getElementById().innerHTML channel.' };\nif (!code.includes('alert')) return { success: false, message: 'Missing window.alert channel.' };\nif (!code.includes('document.write')) return { success: false, message: 'Missing document.write channel.' };\nreturn { success: true, message: 'GATE 03 CLEARED: All 4 broadcast channels operational.' };",
-      "solution": "console.log(\"TRANSMITTING\");\ndocument.getElementById(\"output\").innerHTML = \"TRANSMITTING\";\nwindow.alert(\"TRANSMITTING\");\ndocument.write(\"TRANSMITTING\");"
-    },
-    {
-      "id": "04",
-      "gate": 4,
-      "sector": "SECTOR 04 \u2014 SYNTAX PARSER",
-      "learningZone": "JS Syntax",
-      "title": "GATE 04 \u2014 CODE STRUCTURE",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nNEXUS injected syntax errors into the training codebase. Recruits who do not understand JS syntax fundamentals are writing broken code that silently fails. Statements end with semicolons. Code blocks use curly braces. Variables are declared before use. Identifiers are case sensitive. Master the rules before the rules master you.\n\nMISSION OBJECTIVE: Fix the broken code below. Declare two variables `x = 10` and `y = 20`, add them together into `result`, and return or log the result.",
-      "hints": [
-        "Keywords are lowercase: let not Let",
-        "Statements end with ;",
-        "console.log not Console.Log",
-        "Variable names are case sensitive: x and X are different variables"
-      ],
-      "codeHint": "let _ = 10;\nlet _ = 20;\nlet ______ = x + y;\nconsole.___(______);\nreturn ______;",
-      "initialCode": "// BROKEN CODE \u2014 fix everything wrong here:\n// Let X = 10\n// let y = 20\n// Let Result = X + y\n// Console.Log(Result)\n\n// YOUR FIXED VERSION:\n",
-      "validateCode": "if (code.includes('Let ') || code.includes('Console.Log')) return { success: false, message: 'Syntax error remaining: Remember JS keywords and console.log are lowercase!' };\nif (result !== 30 && !logs.some(l => l.includes('30'))) return { success: false, message: 'Incorrect result: x + y must evaluate to 30.' };\nreturn { success: true, message: 'GATE 04 CLEARED: Syntax corrected. Execution clean.' };",
-      "solution": "let x = 10;\nlet y = 20;\nlet result = x + y;\nconsole.log(result);\nreturn result;"
-    },
-    {
-      "id": "05",
-      "gate": 5,
-      "sector": "SECTOR 05 \u2014 TARGETING COMPUTER",
-      "learningZone": "JS Operators",
-      "title": "GATE 05 \u2014 CALCULATION ENGINE",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe CIPHER targeting system runs on math. Distance calculations, threat scoring, signal strength \u2014 all of it uses operators. NEXUS corrupted the operator logic causing every calculation to return wrong results. Rebuild the calculation engine using arithmetic, assignment, and comparison operators correctly.\n\nMISSION OBJECTIVE:\n1. Calculate the remainder of `20 % 6` and store in `remainder`.\n2. Start with `let score = 100`, then use `+= 50` and `*= 2` to update it.\n3. Check if `threatLevel === 73` and `threatLevel > 50`, returning `isHighThreat` boolean.",
-      "hints": [
-        "% is modulo \u2014 gives the remainder: 20 % 6 returns 2",
-        "** is exponentiation: 2 ** 8 returns 256",
-        "=== is strict equality \u2014 checks value AND type, always prefer over =="
-      ],
-      "codeHint": "const _________ = 20 % 6;\nlet score = 100;\nscore += __;\nscore *= _;\nconst isHighThreat = 73 > __;\nreturn { remainder: _________, score, isHighThreat };",
-      "initialCode": "const a = 20;\nconst b = 6;\nconst threatLevel = 73;\n\n// Task 1: Remainder of a % b\nlet remainder;\n\n// Task 2: Update score using += and *=\nlet score = 100;\n\n// Task 3: Comparison\nlet isHighThreat;\n\nreturn { remainder, score, isHighThreat };\n",
-      "validateCode": "if (!result || typeof result !== 'object') return { success: false, message: 'Must return an object with { remainder, score, isHighThreat }.' };\nif (result.remainder !== 2) return { success: false, message: 'Task 1: remainder of 20 % 6 should be 2.' };\nif (result.score !== 300) return { success: false, message: 'Task 2: score (100 += 50 -> 150 *= 2) should equal 300.' };\nif (result.isHighThreat !== true) return { success: false, message: 'Task 3: isHighThreat should be true.' };\nreturn { success: true, message: 'GATE 05 CLEARED: Calculation engine recalibrated.' };",
-      "solution": "const a = 20;\nconst b = 6;\nconst threatLevel = 73;\n\nlet remainder = a % b;\nlet score = 100;\nscore += 50;\nscore *= 2;\nlet isHighThreat = threatLevel > 50;\n\nreturn { remainder, score, isHighThreat };"
-    },
-    {
-      "id": "06",
-      "gate": 6,
-      "sector": "SECTOR 06 \u2014 CLEARANCE CHECK",
-      "learningZone": "JS If Conditions",
-      "title": "GATE 06 \u2014 DECISION MATRIX",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nEvery agent decision in the field runs through a decision matrix \u2014 a branching logic tree that evaluates conditions and picks a path. NEXUS has no decision logic \u2014 it brute forces everything. You are smarter. Build the clearance check system that routes agents to the correct access level based on their threat score.\n\nMISSION OBJECTIVE:\n1. Write a function `evaluate(score)` that returns:\n   - \"CRITICAL THREAT\" if score is 90 or above\n   - \"HIGH THREAT\" if score is 70 or above\n   - \"MODERATE THREAT\" if score is 50 or above\n   - \"LOW THREAT\" for anything below 50\n2. Write a function `missionBriefing(code)` using a switch statement that returns:\n   - \"OPERATION OVERLORD\" for \"ALPHA\"\n   - \"OPERATION NIGHTFALL\" for \"BETA\"\n   - \"OPERATION OMEGA PROTOCOL\" for \"OMEGA\"\n   - \"UNKNOWN MISSION\" for default.",
-      "hints": [
-        "Chain conditions with else if",
-        "Order matters \u2014 check the highest value first",
-        "switch uses case \"ALPHA\": with break after each block",
-        "Use default: as the fallback in switch"
-      ],
-      "codeHint": "function evaluate(score) {\n  if (score >= 90) return \"________________\";\n  else if (score >= 70) return \"___________\";\n  else if (score >= 50) return \"_______________\";\n  else return \"__________\";\n}\nfunction missionBriefing(code) {\n  switch (code) {\n    case \"ALPHA\": return \"__________________\";\n    case \"BETA\": return \"___________________\";\n    case \"OMEGA\": return \"________________________\";\n    default: return \"_______________\";\n  }\n}",
-      "initialCode": "function evaluate(score) {\n  // Your code here\n}\n\nfunction missionBriefing(code) {\n  // Your code here\n}\n\nreturn { evaluate, missionBriefing };\n",
-      "validateCode": "if (!result || typeof result.evaluate !== 'function' || typeof result.missionBriefing !== 'function') return { success: false, message: 'Must return { evaluate, missionBriefing } functions.' };\nif (result.evaluate(95) !== 'CRITICAL THREAT') return { success: false, message: 'evaluate(95) should return \"CRITICAL THREAT\"' };\nif (result.evaluate(75) !== 'HIGH THREAT') return { success: false, message: 'evaluate(75) should return \"HIGH THREAT\"' };\nif (result.evaluate(55) !== 'MODERATE THREAT') return { success: false, message: 'evaluate(55) should return \"MODERATE THREAT\"' };\nif (result.evaluate(30) !== 'LOW THREAT') return { success: false, message: 'evaluate(30) should return \"LOW THREAT\"' };\nif (!result.missionBriefing('ALPHA').includes('OVERLORD')) return { success: false, message: 'missionBriefing(\"ALPHA\") failed.' };\nif (!result.missionBriefing('UNKNOWN').includes('UNKNOWN')) return { success: false, message: 'missionBriefing default case failed.' };\nreturn { success: true, message: 'GATE 06 CLEARED: Decision matrix activated.' };",
-      "solution": "function evaluate(score) {\n  if (score >= 90) return \"CRITICAL THREAT\";\n  else if (score >= 70) return \"HIGH THREAT\";\n  else if (score >= 50) return \"MODERATE THREAT\";\n  else return \"LOW THREAT\";\n}\n\nfunction missionBriefing(code) {\n  switch (code) {\n    case \"ALPHA\": return \"OPERATION OVERLORD\";\n    case \"BETA\": return \"OPERATION NIGHTFALL\";\n    case \"OMEGA\": return \"OPERATION OMEGA PROTOCOL\";\n    default: return \"UNKNOWN MISSION\";\n  }\n}\n\nreturn { evaluate, missionBriefing };"
-    },
-    {
-      "id": "07",
-      "gate": 7,
-      "sector": "SECTOR 07 \u2014 PERIMETER SCAN",
-      "learningZone": "JS Loops",
-      "title": "GATE 07 \u2014 SWEEP PROTOCOL",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe perimeter sweep scans every node in the network one by one. Without loops, you would have to write a line of code for every single node \u2014 NEXUS has 10,000 of them. Loops let you write the logic once and repeat it as many times as needed. Automate the sweep.\n\nMISSION OBJECTIVE:\n1. Write a function `scanNodes()` that loops through numbers 1 to 10.\n2. It should skip node 4 using `continue`.\n3. It should stop completely when it reaches node 7 using `break`.\n4. Return the scanned nodes as an array: `[1, 2, 3, 5, 6]`.",
-      "hints": [
-        "for (let i = 1; i <= 10; i++) \u2014 classic counter loop",
-        "while (i <= 10) \u2014 runs as long as condition is true, increment manually",
-        "for...of iterates array values directly",
-        "break exits the loop, continue skips to the next iteration"
-      ],
-      "codeHint": "function scanNodes() {\n  const results = [];\n  for (let i = 1; i <= 10; i++) {\n    if (i === 4) ________;\n    if (i === 7) _____;\n    results.push(i);\n  }\n  return _______;\n}\nreturn scanNodes();",
-      "initialCode": "function scanNodes() {\n  const results = [];\n  // Write loop with continue (skip 4) and break (stop at 7)\n  \n  return results;\n}\n\nreturn scanNodes();\n",
-      "validateCode": "if (!Array.isArray(result)) return { success: false, message: 'Must return an array of scanned node numbers.' };\nconst expected = [1, 2, 3, 5, 6];\nif (JSON.stringify(result) !== JSON.stringify(expected)) return { success: false, message: `Expected [1, 2, 3, 5, 6] (skipping 4, breaking at 7) but received ${JSON.stringify(result)}.` };\nreturn { success: true, message: 'GATE 07 CLEARED: Sweep protocol completed.' };",
-      "solution": "function scanNodes() {\n  const results = [];\n  for (let i = 1; i <= 10; i++) {\n    if (i === 4) continue;\n    if (i === 7) break;\n    results.push(i);\n  }\n  return results;\n}\n\nreturn scanNodes();"
-    },
-    {
-      "id": "08",
-      "gate": 8,
-      "sector": "SECTOR 08 \u2014 CIPHER DECRYPTION",
-      "learningZone": "JS Strings",
-      "title": "GATE 08 \u2014 DECRYPTION STRINGS",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nEvery intercepted NEXUS transmission is a string. To decode them you need to slice them, search them, replace words, change case, and extract characters. The decryption unit is offline. Rebuild it using JavaScript string methods.\n\nMISSION OBJECTIVE:\nGiven `const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";`:\n1. `clean`: remove whitespace from both ends using `trim()`\n2. `target`: replace \"NEXUS\" with \"TARGET\"\n3. `hasFriday`: check if the string includes \"FRIDAY\"\n4. `words`: split the trimmed message into an array of words\nReturn `{ clean, target, hasFriday, words }`.",
-      "hints": [
-        "trim() removes leading and trailing whitespace",
-        "toLowerCase() / toUpperCase() change case",
-        "replace(\"old\", \"new\") swaps text",
-        "includes(\"word\") returns true or false",
-        "split(\" \") breaks a string into an array by the separator"
-      ],
-      "codeHint": "const clean = transmission.______();\nconst target = clean._______(\"NEXUS\", \"TARGET\");\nconst hasFriday = clean.________(\"FRIDAY\");\nconst words = clean._____(\" \");\nreturn { clean, target, hasFriday, words };",
-      "initialCode": "const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";\n\n// Task 1: Trim\nlet clean;\n\n// Task 2: Replace\nlet target;\n\n// Task 3: Includes check\nlet hasFriday;\n\n// Task 4: Split into array\nlet words;\n\nreturn { clean, target, hasFriday, words };\n",
-      "validateCode": "if (!result || typeof result !== 'object') return { success: false, message: 'Must return an object with { clean, target, hasFriday, words }.' };\nif (result.clean !== 'NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY') return { success: false, message: 'clean must be trimmed of outside whitespace.' };\nif (!result.target.includes('TARGET')) return { success: false, message: 'target must have replaced NEXUS with TARGET.' };\nif (result.hasFriday !== true) return { success: false, message: 'hasFriday must be true.' };\nif (!Array.isArray(result.words) || result.words.length !== 7) return { success: false, message: 'words must be an array of 7 individual words.' };\nreturn { success: true, message: 'GATE 08 CLEARED: Transmission decrypted.' };",
-      "solution": "const transmission = \"  NEXUS WILL STRIKE AT MIDNIGHT ON FRIDAY  \";\n\nconst clean = transmission.trim();\nconst target = clean.replace(\"NEXUS\", \"TARGET\");\nconst hasFriday = clean.includes(\"FRIDAY\");\nconst words = clean.split(\" \");\n\nreturn { clean, target, hasFriday, words };"
-    },
-    {
-      "id": "09",
-      "gate": 9,
-      "sector": "SECTOR 09 \u2014 SENSOR CALIBRATION",
-      "learningZone": "JS Numbers",
-      "title": "GATE 09 \u2014 THREAT CALCULATION",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe threat scoring system runs entirely on numbers. But numbers in JavaScript are tricky \u2014 they are all floating point, they have precision limits, and operations can produce Infinity or NaN without warning. The calculation unit needs to handle edge cases or the threat scores will be wrong and agents will be sent into danger.\n\nMISSION OBJECTIVE:\n1. `rounded`: Round `47.6892` to 2 decimal places (as string or number)\n2. `numSum`: Convert the string `\"99.5\"` to a number and add `0.5`\n3. `maxThreat`: Find the maximum value in `44, 91, 13, 78, 55`\n4. `isNexusNaN`: Check if `Number(\"NEXUS\")` is NaN using `isNaN()`\nReturn `{ rounded, numSum, maxThreat, isNexusNaN }`.",
-      "hints": [
-        "toFixed(2) rounds to 2 decimal places \u2014 returns a string",
-        "Number(\"99.5\") or parseFloat(\"99.5\") converts strings to numbers",
-        "Math.max(44, 91, 13, 78, 55) returns the highest",
-        "isNaN(Number(\"NEXUS\")) returns true"
-      ],
-      "codeHint": "const rounded = (47.6892)._______(2);\nconst numSum = Number(\"99.5\") + ___;\nconst maxThreat = Math.___(44, 91, 13, 78, 55);\nconst isNexusNaN = _____(Number(\"NEXUS\"));\nreturn { rounded, numSum, maxThreat, isNexusNaN };",
-      "initialCode": "// Task 1: Round 47.6892 to 2 decimal places\nlet rounded;\n\n// Task 2: Convert \"99.5\" and add 0.5\nlet numSum;\n\n// Task 3: Max value in 44, 91, 13, 78, 55\nlet maxThreat;\n\n// Task 4: Check if Number(\"NEXUS\") is NaN\nlet isNexusNaN;\n\nreturn { rounded, numSum, maxThreat, isNexusNaN };\n",
-      "validateCode": "if (!result || typeof result !== 'object') return { success: false, message: 'Must return { rounded, numSum, maxThreat, isNexusNaN }.' };\nif (result.rounded !== '47.69' && result.rounded !== 47.69) return { success: false, message: 'rounded should equal 47.69.' };\nif (result.numSum !== 100) return { success: false, message: 'numSum should equal 100 (99.5 + 0.5).' };\nif (result.maxThreat !== 91) return { success: false, message: 'maxThreat should be 91.' };\nif (result.isNexusNaN !== true) return { success: false, message: 'isNexusNaN should be true.' };\nreturn { success: true, message: 'GATE 09 CLEARED: Precision numbers verified.' };",
-      "solution": "const rounded = (47.6892).toFixed(2);\nconst numSum = Number(\"99.5\") + 0.5;\nconst maxThreat = Math.max(44, 91, 13, 78, 55);\nconst isNexusNaN = isNaN(Number(\"NEXUS\"));\n\nreturn { rounded, numSum, maxThreat, isNexusNaN };"
-    },
-    {
-      "id": "10",
-      "gate": 10,
-      "sector": "SECTOR 10 \u2014 MODULAR LOGIC",
-      "learningZone": "JS Functions",
-      "title": "GATE 10 \u2014 FUNCTION FACTORY",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nCIPHER's entire operation runs on reusable functions. Without them, every agent would have to reinvent the wheel on every mission. Functions take input, process it, and return output. They are the backbone of every program ever written. Build the function factory that powers the field team.\n\nMISSION OBJECTIVE:\n1. `greetAgent(name)`: Function returning `\"Welcome back, Agent \" + name`\n2. `calcSignal(power, distance)`: Arrow function returning `power / distance`\n3. `setAlert(level = \"MEDIUM\")`: Function with default parameter returning level\n4. `createMultiplier(factor)`: Closure returning a function `(n) => n * factor`\nReturn `{ greetAgent, calcSignal, setAlert, createMultiplier }`.",
-      "hints": [
-        "Declaration: function name(params) { return value; }",
-        "Arrow: const fn = (a, b) => a / b",
-        "Default param: function alert(level = \"MEDIUM\") {}",
-        "Closure: outer function returns (x) => x * multiplier"
-      ],
-      "codeHint": "function greetAgent(name) { return `Welcome back, Agent ${____}`; }\nconst calcSignal = (power, distance) => _____ / ________;\nfunction setAlert(level = \"______\") { return level; }\nfunction createMultiplier(factor) { return (n) => n * ______; }\nreturn { greetAgent, calcSignal, setAlert, createMultiplier };",
-      "initialCode": "// Task 1: greetAgent declaration\n\n// Task 2: calcSignal arrow function\n\n// Task 3: setAlert with default parameter \"MEDIUM\"\n\n// Task 4: createMultiplier closure\n\nreturn { greetAgent, calcSignal, setAlert, createMultiplier };\n",
-      "validateCode": "if (!result) return { success: false, message: 'Must return the function factory object.' };\nif (result.greetAgent('Zero') !== 'Welcome back, Agent Zero') return { success: false, message: 'greetAgent(\"Zero\") failed.' };\nif (result.calcSignal(100, 20) !== 5) return { success: false, message: 'calcSignal(100, 20) should return 5.' };\nif (result.setAlert() !== 'MEDIUM') return { success: false, message: 'setAlert() should default to \"MEDIUM\".' };\nconst times3 = result.createMultiplier(3);\nif (typeof times3 !== 'function' || times3(10) !== 30) return { success: false, message: 'createMultiplier(3)(10) should return 30.' };\nreturn { success: true, message: 'GATE 10 CLEARED: Function factory online.' };",
-      "solution": "function greetAgent(name) {\n  return `Welcome back, Agent ${name}`;\n}\n\nconst calcSignal = (power, distance) => power / distance;\n\nfunction setAlert(level = \"MEDIUM\") {\n  return level;\n}\n\nfunction createMultiplier(factor) {\n  return (n) => n * factor;\n}\n\nreturn { greetAgent, calcSignal, setAlert, createMultiplier };"
-    },
-    {
-      "id": "11",
-      "gate": 11,
-      "sector": "SECTOR 11 \u2014 TIME DISTORTION",
-      "learningZone": "JS Timers",
-      "title": "GATE 11 \u2014 TIMED OPERATIONS",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nField operations run on precise timing. The detonator countdown, the repeated status ping to HQ, the auto-logout after inactivity \u2014 all of it runs on JavaScript timers. NEXUS disrupted the timing system and now everything fires at the wrong moment. Restore the timers.\n\nMISSION OBJECTIVE:\nWrite a function `runCountdown(callback)` that simulates an emergency timer: it should call `setTimeout` or `setInterval` and invoke `callback(\"DETONATION DISARMED\")`.",
-      "hints": [
-        "setTimeout(fn, ms) runs once after delay",
-        "setInterval(fn, ms) runs repeatedly",
-        "Store the interval: const timer = setInterval(...)",
-        "Stop it: clearInterval(timer)"
-      ],
-      "codeHint": "function runCountdown(callback) {\n  const timer = setTimeout(() => {\n    callback(\"DETONATION __________\");\n    clearTimeout(_____);\n  }, 50);\n}\nreturn runCountdown;",
-      "initialCode": "function runCountdown(callback) {\n  // Trigger callback after delay\n}\n\nreturn runCountdown;\n",
-      "validateCode": "if (typeof result !== 'function') return { success: false, message: 'Must return runCountdown function.' };\nif (!code.includes('setTimeout') && !code.includes('setInterval')) return { success: false, message: 'Must use setTimeout or setInterval in your timer implementation.' };\nreturn { success: true, message: 'GATE 11 CLEARED: Precision timers synchronized.' };",
-      "solution": "function runCountdown(callback) {\n  const timer = setTimeout(() => {\n    callback(\"DETONATION DISARMED\");\n    clearTimeout(timer);\n  }, 10);\n}\n\nreturn runCountdown;"
-    },
-    {
-      "id": "12",
-      "gate": 12,
-      "sector": "SECTOR 12 \u2014 ARCHIVE DATABASE",
-      "learningZone": "JS Objects",
-      "title": "GATE 12 \u2014 OBJECT RECONSTRUCTION",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nNEXUS shredded the agent object database. Every agent profile \u2014 their name, rank, skills, status \u2014 exists as raw scattered data. You need to reconstruct the object structure from scratch, access the data correctly, loop through its properties, and add methods that make the object do work.\n\nMISSION OBJECTIVE:\nCreate an `agent` object with:\n- `name`: \"Zero\"\n- `rank`: \"Commander\"\n- `clearance`: 5\n- `skills`: [\"Infiltration\", \"Crypto\"]\n- `isActive`: true\n- Add `missionsCompleted`: 42\n- Add method `report()` returning `\"Agent \" + this.name + \" reporting. Status: ACTIVE\"`\nReturn `agent`.",
-      "hints": [
-        "object.property \u2014 dot notation",
-        "object[\"property\"] \u2014 bracket notation (useful with variables)",
-        "Add after: agent.newProp = value",
-        "Method: a function stored as a property, use this.name inside",
-        "for (let key in object) loops through all enumerable properties"
-      ],
-      "codeHint": "const agent = {\n  name: \"____\",\n  rank: \"Commander\",\n  clearance: _,\n  skills: [\"Infiltration\", \"Crypto\"],\n  isActive: true,\n  report() {\n    return `Agent ${this.____} reporting. Status: ACTIVE`;\n  }\n};\nagent.missionsCompleted = __;\nreturn agent;",
-      "initialCode": "const agent = {\n  // Properties here\n};\n\n// Add missionsCompleted and report method\n\nreturn agent;\n",
-      "validateCode": "if (!result || typeof result !== 'object') return { success: false, message: 'Must return agent object.' };\nif (result.name !== 'Zero' || result.clearance !== 5) return { success: false, message: 'Agent properties (name, clearance) mismatch.' };\nif (result.missionsCompleted !== 42) return { success: false, message: 'missionsCompleted property missing or incorrect.' };\nif (typeof result.report !== 'function' || !result.report().includes('Zero')) return { success: false, message: 'agent.report() method missing or invalid.' };\nreturn { success: true, message: 'GATE 12 CLEARED: Agent database record reconstructed.' };",
-      "solution": "const agent = {\n  name: \"Zero\",\n  rank: \"Commander\",\n  clearance: 5,\n  skills: [\"Infiltration\", \"Crypto\"],\n  isActive: true,\n  report() {\n    return `Agent ${this.name} reporting. Status: ACTIVE`;\n  }\n};\n\nagent.missionsCompleted = 42;\n\nreturn agent;"
-    },
-    {
-      "id": "13",
-      "gate": 13,
-      "sector": "SECTOR 13 \u2014 MEMORY ENCLAVE",
-      "learningZone": "JS Scope",
-      "title": "GATE 13 \u2014 CONTAINMENT ZONES",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nData leaks are a critical security vulnerability. A variable that leaks out of its intended scope can expose classified information to the entire program \u2014 or to NEXUS. Understand the difference between global scope, function scope, and block scope. Contain your variables. Contain your data.\n\nMISSION OBJECTIVE:\nDemonstrate scope containment. Return an object `{ globalVar, blockScopedWorks }` where:\n- `globalVar` is defined outside\n- In an `if (true)` block, `let blockVar = \"SECURE\"` cannot be leaked\n- Return `{ globalVar: \"CLASSIFIED\", blockScopedWorks: true }`.",
-      "hints": [
-        "var is function-scoped \u2014 it leaks out of if, for, etc.",
-        "let and const are block-scoped \u2014 safe inside {}",
-        "Global variables are accessible from anywhere \u2014 avoid when possible",
-        "Accessing a let variable outside its block throws ReferenceError"
-      ],
-      "codeHint": "const globalVar = \"__________\";\nlet blockScopedWorks = false;\nif (true) {\n  let blockVar = \"______\";\n  blockScopedWorks = (typeof blockVar !== \"undefined\");\n}\nreturn { globalVar, blockScopedWorks };",
-      "initialCode": "const globalVar = \"CLASSIFIED\";\n\n// Show block scope with let\nlet blockScopedWorks = true;\n\nreturn { globalVar, blockScopedWorks };\n",
-      "validateCode": "if (!result || result.globalVar !== 'CLASSIFIED' || result.blockScopedWorks !== true) return { success: false, message: 'Return { globalVar: \"CLASSIFIED\", blockScopedWorks: true }' };\nreturn { success: true, message: 'GATE 13 CLEARED: Containment zones sealed.' };",
-      "solution": "const globalVar = \"CLASSIFIED\";\n\nlet blockScopedWorks = false;\nif (true) {\n  let blockVar = \"SECURE\";\n  blockScopedWorks = (typeof blockVar !== \"undefined\");\n}\n\nreturn { globalVar, blockScopedWorks };"
-    },
-    {
-      "id": "14",
-      "gate": 14,
-      "sector": "SECTOR 14 \u2014 CHRONOS LOG",
-      "learningZone": "JS Dates",
-      "title": "GATE 14 \u2014 MISSION TIMESTAMPS",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nEvery mission is logged with timestamps \u2014 when it started, when it ended, how long it lasted. The timestamp system is down. NEXUS is exploiting the gap in logs to hide its activity. Restore the date system so every operation is timestamped and traceable.\n\nMISSION OBJECTIVE:\n1. `missionStart`: Create a Date object for `January 15, 2047 06:00:00`\n2. `year`: Get the full year from missionStart\n3. `month`: Get the month index (0-based) from missionStart\n4. `day`: Get the day date from missionStart\nReturn `{ missionStart, year, month, day }`.",
-      "hints": [
-        "new Date() \u2014 current date and time",
-        "new Date(2047, 0, 15, 6, 0) \u2014 month is 0-indexed (Jan = 0)",
-        "getFullYear(), getMonth(), getDate(), getHours(), getMinutes()",
-        "toDateString() gives a readable format"
-      ],
-      "codeHint": "const missionStart = new Date(____, _, 15, 6, 0);\nconst year = missionStart.___________();\nconst month = missionStart.________();\nconst day = missionStart._______();\nreturn { missionStart, year, month, day };",
-      "initialCode": "// Task: Create Date for Jan 15, 2047 and extract components\nconst missionStart = new Date(2047, 0, 15, 6, 0);\nlet year;\nlet month;\nlet day;\n\nreturn { missionStart, year, month, day };\n",
-      "validateCode": "if (!result || !result.missionStart) return { success: false, message: 'Must return { missionStart, year, month, day }.' };\nif (result.year !== 2047 || result.month !== 0 || result.day !== 15) return { success: false, message: 'Ensure year=2047, month=0 (January), day=15.' };\nreturn { success: true, message: 'GATE 14 CLEARED: Mission timestamps verified.' };",
-      "solution": "const missionStart = new Date(2047, 0, 15, 6, 0);\nconst year = missionStart.getFullYear();\nconst month = missionStart.getMonth();\nconst day = missionStart.getDate();\n\nreturn { missionStart, year, month, day };"
-    },
-    {
-      "id": "15",
-      "gate": 15,
-      "sector": "SECTOR 15 \u2014 DATA MATRICES",
-      "learningZone": "JS Arrays",
-      "title": "GATE 15 \u2014 ARRAY ARSENAL",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe agent roster, the target list, the equipment inventory, the intercepted coordinates \u2014 everything in CIPHER is stored in arrays. Arrays are ordered lists that let you add, remove, find, sort, and transform collections of data. Master the array arsenal and you control the data.\n\nMISSION OBJECTIVE:\nGiven `let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];`:\n1. Push `\"Viper\"` to the end, unshift `\"Echo\"` to the beginning\n2. Find the index of `\"Rook\"`\n3. Sort the array alphabetically\n4. Check if `\"Ghost\"` is included\nReturn `{ agents, rookIndex, hasGhost }`.",
-      "hints": [
-        "push() adds to end, unshift() adds to beginning",
-        "pop() removes from end, shift() removes from beginning",
-        "indexOf(\"Rook\") returns the position",
-        "sort() sorts array elements in place",
-        "includes(\"Ghost\") returns true or false"
-      ],
-      "codeHint": "const agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\nagents.____(\"Viper\");\nagents._______(\"Echo\");\nconst rookIndex = agents._______(\"Rook\");\nagents.____();\nconst hasGhost = agents.________(\"Ghost\");\nreturn { agents, rookIndex, hasGhost };",
-      "initialCode": "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\n\n// Perform operations\nlet rookIndex;\nlet hasGhost;\n\nreturn { agents, rookIndex, hasGhost };\n",
-      "validateCode": "if (!result || !Array.isArray(result.agents)) return { success: false, message: 'Must return { agents, rookIndex, hasGhost }.' };\nif (!result.agents.includes('Viper') || !result.agents.includes('Echo')) return { success: false, message: 'Must push Viper and unshift Echo.' };\nif (result.hasGhost !== true) return { success: false, message: 'hasGhost must be true.' };\nreturn { success: true, message: 'GATE 15 CLEARED: Array arsenal equipped.' };",
-      "solution": "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Ghost\"];\n\nagents.push(\"Viper\");\nagents.unshift(\"Echo\");\nconst rookIndex = agents.indexOf(\"Rook\");\nagents.sort();\nconst hasGhost = agents.includes(\"Ghost\");\n\nreturn { agents, rookIndex, hasGhost };"
-    },
-    {
-      "id": "16",
-      "gate": 16,
-      "sector": "SECTOR 16 \u2014 SIGNAL FILTER",
-      "learningZone": "JS Sets",
-      "title": "GATE 16 \u2014 UNIQUE SIGNATURES",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nNEXUS is flooding the system with duplicate signals \u2014 the same data repeated thousands of times to overwhelm the processors. A Set is a collection that only stores unique values. It automatically rejects duplicates. Use it to clean the signal stream and eliminate the noise.\n\nMISSION OBJECTIVE:\n1. Create a Set from `[101, 202, 101, 303, 202, 404, 101, 505]`\n2. Add `606` to the Set\n3. Delete `202` from the Set\n4. Check if `303` exists using `.has()`\n5. Convert the cleaned Set back to an array named `cleanedArray`\nReturn `{ size: signalSet.size, has303, cleanedArray }`.",
-      "hints": [
-        "new Set(array) \u2014 creates a Set and removes duplicates instantly",
-        "set.add(value) \u2014 adds a value (ignored if already exists)",
-        "set.has(value) \u2014 returns true or false",
-        "set.delete(value) \u2014 removes a specific value",
-        "[...set] or Array.from(set) \u2014 converts back to array"
-      ],
-      "codeHint": "const rawSignals = [101, 202, 101, 303, 202, 404, 101, 505];\nconst signalSet = new ___(rawSignals);\nsignalSet.add(___);\nsignalSet.______(202);\nconst has303 = signalSet.____(303);\nconst cleanedArray = [_______];\nreturn { size: signalSet.size, has303, cleanedArray };",
-      "initialCode": "const rawSignals = [101, 202, 101, 303, 202, 404, 101, 505];\n\n// Task: Create Set, add 606, delete 202, check 303, convert to array\n\n",
-      "validateCode": "if (!result || !Array.isArray(result.cleanedArray)) return { success: false, message: 'Must return { size, has303, cleanedArray }.' };\nif (result.has303 !== true) return { success: false, message: 'has303 must be true.' };\nif (result.cleanedArray.includes(202)) return { success: false, message: '202 should have been deleted.' };\nif (!result.cleanedArray.includes(606)) return { success: false, message: '606 should have been added.' };\nreturn { success: true, message: 'GATE 16 CLEARED: Duplicate signals purged.' };",
-      "solution": "const rawSignals = [101, 202, 101, 303, 202, 404, 101, 505];\n\nconst signalSet = new Set(rawSignals);\nsignalSet.add(606);\nsignalSet.delete(202);\nconst has303 = signalSet.has(303);\nconst cleanedArray = [...signalSet];\n\nreturn { size: signalSet.size, has303, cleanedArray };"
-    },
-    {
-      "id": "17",
-      "gate": 17,
-      "sector": "SECTOR 17 \u2014 THREAT INDEX",
-      "learningZone": "JS Maps",
-      "title": "GATE 17 \u2014 INTELLIGENCE MAP",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThe intelligence database needs to store key-value pairs where the keys are not simple strings \u2014 sometimes they are objects, sometimes numbers, sometimes other complex data. A regular JS object cannot handle this. A Map can. Build the intelligence Map that stores and retrieves agent data with any key type.\n\nMISSION OBJECTIVE:\n1. Create a `new Map()`\n2. Set string keys `\"Zero\" -> 88`, `\"Fox\" -> 45`, `\"Rook\" -> 91`\n3. Set numeric badge key `1007 -> \"SUPER AGENT\"`\n4. Get score for `\"Zero\"` into `zeroScore`\n5. Check if badge `1007` exists using `.has(1007)`\nReturn `{ zeroScore, hasBadge1007: intelMap.has(1007), mapSize: intelMap.size }`.",
-      "hints": [
-        "new Map() \u2014 creates an empty Map",
-        "map.set(key, value) \u2014 adds or updates an entry",
-        "map.get(key) \u2014 retrieves value by key",
-        "map.has(key) \u2014 returns true or false",
-        "map.size \u2014 total number of entries (not .length)"
-      ],
-      "codeHint": "const intelMap = new ___();\nintelMap.set(\"Zero\", __);\nintelMap.set(\"Fox\", 45);\nintelMap.set(\"Rook\", 91);\nintelMap.set(1007, \"___________\");\nconst zeroScore = intelMap.get(\"____\");\nreturn { zeroScore, hasBadge1007: intelMap.has(1007), mapSize: intelMap.size };",
-      "initialCode": "const intelMap = new Map();\n\n// Task: Store entries, numeric keys, retrieve values\n\n",
-      "validateCode": "if (!result || result.zeroScore !== 88) return { success: false, message: 'zeroScore should be 88.' };\nif (result.hasBadge1007 !== true) return { success: false, message: 'hasBadge1007 must be true.' };\nif (result.mapSize !== 4) return { success: false, message: 'Map should contain exactly 4 entries.' };\nreturn { success: true, message: 'GATE 17 CLEARED: Intelligence Map online.' };",
-      "solution": "const intelMap = new Map();\n\nintelMap.set(\"Zero\", 88);\nintelMap.set(\"Fox\", 45);\nintelMap.set(\"Rook\", 91);\nintelMap.set(1007, \"SUPER AGENT\");\n\nconst zeroScore = intelMap.get(\"Zero\");\n\nreturn { zeroScore, hasBadge1007: intelMap.has(1007), mapSize: intelMap.size };"
-    },
-    {
-      "id": "18",
-      "gate": 18,
-      "sector": "SECTOR 18 \u2014 STREAM PROCESSOR",
-      "learningZone": "JS Iterations",
-      "title": "GATE 18 \u2014 ITERATION PROTOCOLS",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nData never sits still in CIPHER. It gets looped, transformed, filtered, and reduced constantly. The iteration protocols are the engine that processes everything \u2014 from scanning the network to building reports. NEXUS cannot keep up with a developer who knows every iteration tool in the arsenal.\n\nMISSION OBJECTIVE:\nGiven:\n`const threatData = [{ agent: \"Zero\", score: 88 }, { agent: \"Fox\", score: 45 }, { agent: \"Rook\", score: 91 }, { agent: \"Lynx\", score: 62 }, { agent: \"Ghost\", score: 77 }];`\n1. `names`: use `map()` to extract an array of just the agent names\n2. `highThreats`: use `filter()` for agents with `score > 70`\n3. `totalScore`: use `reduce()` to sum all agent scores\n4. `topAgent`: use `find()` for the first agent with `score > 85`\nReturn `{ names, highThreats, totalScore, topAgent }`.",
-      "hints": [
-        "map \u2014 transforms, returns new array same length",
-        "filter \u2014 returns new array with only passing elements",
-        "reduce \u2014 collapses to single value: (acc, curr) => acc + curr.score",
-        "find \u2014 returns the first matching element (not an array)"
-      ],
-      "codeHint": "const names = threatData.map(a => a._____);\nconst highThreats = threatData.______(a => a.score > 70);\nconst totalScore = threatData.______( (sum, a) => sum + a.score, _ );\nconst topAgent = threatData.____(a => a.score > 85);\nreturn { names, highThreats, totalScore, topAgent };",
-      "initialCode": "const threatData = [\n  { agent: \"Zero\", score: 88 },\n  { agent: \"Fox\", score: 45 },\n  { agent: \"Rook\", score: 91 },\n  { agent: \"Lynx\", score: 62 },\n  { agent: \"Ghost\", score: 77 }\n];\n\n// Task 1: map\n// Task 2: filter\n// Task 3: reduce\n// Task 4: find\n\n",
-      "validateCode": "if (!result) return { success: false, message: 'Must return { names, highThreats, totalScore, topAgent }.' };\nif (!Array.isArray(result.names) || result.names.length !== 5) return { success: false, message: 'names must be mapped array of 5 agent names.' };\nif (!Array.isArray(result.highThreats) || result.highThreats.length !== 3) return { success: false, message: 'highThreats should contain 3 agents with score > 70.' };\nif (result.totalScore !== 363) return { success: false, message: 'totalScore should sum to 363 (88+45+91+62+77).' };\nif (!result.topAgent || result.topAgent.agent !== 'Zero') return { success: false, message: 'topAgent should find Zero (first with score > 85).' };\nreturn { success: true, message: 'GATE 18 CLEARED: Iteration protocols mastered.' };",
-      "solution": "const threatData = [\n  { agent: \"Zero\", score: 88 },\n  { agent: \"Fox\", score: 45 },\n  { agent: \"Rook\", score: 91 },\n  { agent: \"Lynx\", score: 62 },\n  { agent: \"Ghost\", score: 77 }\n];\n\nconst names = threatData.map(a => a.agent);\nconst highThreats = threatData.filter(a => a.score > 70);\nconst totalScore = threatData.reduce((sum, a) => sum + a.score, 0);\nconst topAgent = threatData.find(a => a.score > 85);\n\nreturn { names, highThreats, totalScore, topAgent };"
-    },
-    {
-      "id": "19",
-      "gate": 19,
-      "sector": "SECTOR 19 \u2014 THE CORE MAINFRAME",
-      "learningZone": "JS Math",
-      "title": "GATE 19 \u2014 FINAL CALCULATION",
-      "story": "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nThis is the final gate. NEXUS runs a mathematical defense system \u2014 a series of calculations that determines whether to open the kill switch port. You need to solve each calculation correctly using the JavaScript Math object. Get one wrong and the port locks forever. There is no margin for error. This is what you trained for.\n\nMISSION OBJECTIVE:\n1. `floorVal`: Math.floor(84.4)\n2. `ceilVal`: Math.ceil(84.5)\n3. `absVal`: Math.abs(-273)\n4. `powerVal`: Math.pow(2, 32)\n5. `sqrtVal`: Math.sqrt(1764)\n6. `minVal`: Math.min(33, 11, 78, 5, 92, 44)\n7. `piFixed`: (Math.PI).toFixed(4)\nReturn `{ floorVal, ceilVal, absVal, powerVal, sqrtVal, minVal, piFixed }`.",
-      "hints": [
-        "Math.floor() rounds down, Math.ceil() rounds up, Math.round() rounds to nearest",
-        "Math.abs(-273) returns 273",
-        "Math.pow(2, 32) or 2 ** 32",
-        "Math.sqrt(1764) returns 42",
-        "Math.PI is the constant 3.14159...",
-        "(Math.PI).toFixed(4) returns \"3.1416\""
-      ],
-      "codeHint": "const floorVal = Math._____(84.4);\nconst ceilVal = Math.____(84.5);\nconst absVal = Math.__(-273);\nconst powerVal = Math.___(2, 32);\nconst sqrtVal = Math.____(1764);\nconst minVal = Math.___(33, 11, 78, 5, 92, 44);\nconst piFixed = (Math.PI)._______(4);\nreturn { floorVal, ceilVal, absVal, powerVal, sqrtVal, minVal, piFixed };",
-      "initialCode": "// Solve all calculations to unlock the kill switch:\nlet floorVal;\nlet ceilVal;\nlet absVal;\nlet powerVal;\nlet sqrtVal;\nlet minVal;\nlet piFixed;\n\nreturn { floorVal, ceilVal, absVal, powerVal, sqrtVal, minVal, piFixed };\n",
-      "validateCode": "if (!result) return { success: false, message: 'Must return calculations object.' };\nif (result.floorVal !== 84 || result.ceilVal !== 85) return { success: false, message: 'floorVal should be 84 and ceilVal 85.' };\nif (result.absVal !== 273) return { success: false, message: 'absVal should be 273.' };\nif (result.powerVal !== 4294967296) return { success: false, message: 'powerVal should be 2^32 (4294967296).' };\nif (result.sqrtVal !== 42) return { success: false, message: 'sqrtVal should be 42.' };\nif (result.minVal !== 5) return { success: false, message: 'minVal should be 5.' };\nif (result.piFixed !== '3.1416') return { success: false, message: 'piFixed should be \"3.1416\".' };\nreturn { success: true, message: '\ud83c\udfc6 ALL GATES CLEARED! NEXUS AI neutralized. World saved!' };",
-      "solution": "const floorVal = Math.floor(84.4);\nconst ceilVal = Math.ceil(84.5);\nconst absVal = Math.abs(-273);\nconst powerVal = Math.pow(2, 32);\nconst sqrtVal = Math.sqrt(1764);\nconst minVal = Math.min(33, 11, 78, 5, 92, 44);\nconst piFixed = (Math.PI).toFixed(4);\n\nreturn { floorVal, ceilVal, absVal, powerVal, sqrtVal, minVal, piFixed };"
-    }
-  ]
-}
+[
+  {
+    "id": "01",
+    "gate": 1,
+    "sector": "SECTOR 01 — CIPHER GATEWAY",
+    "learningZone": "JS Introduction",
+    "title": "GATE 01 — FIRST CONTACT",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nNEXUS is running in every browser on the planet. So is JavaScript. Before you fight it, understand what JavaScript is and where it lives.",
+    "hints": [
+      "JavaScript runs in the browser — no installation needed",
+      "console.log(\"message\") outputs to the browser console",
+      "document.getElementById(\"id\").innerHTML = \"text\" changes page content"
+    ],
+    "codeHint": "console.___(____);\ndocument.____________(\"status\")._________ = \"SYSTEMS ACTIVE\";",
+    "initialCode": "// Task 1: Output \"CIPHER ONLINE\" to the console\n// Your code here\n\n// Task 2: Change HTML element with id \"status\" to \"SYSTEMS ACTIVE\"\n// Your code here\n",
+    "solution": "console.log(\"CIPHER ONLINE\");\ndocument.getElementById(\"status\").innerHTML = \"SYSTEMS ACTIVE\";",
+    "validateCode": "const hasLog = logs.some(l => l.includes('CIPHER ONLINE'));\nif (!hasLog) return { success: false, message: 'Must log \"CIPHER ONLINE\" to the console' };\nconst el = document.getElementById('status');\nif (!el || el.innerHTML !== 'SYSTEMS ACTIVE') return { success: false, message: 'Element #status must say \"SYSTEMS ACTIVE\"' };\nreturn { success: true, message: 'GATE 01 CLEARED — First contact established.' };"
+  },
+  {
+    "id": "02",
+    "gate": 2,
+    "sector": "SECTOR 01 — CIPHER GATEWAY",
+    "learningZone": "JS Where To",
+    "title": "GATE 02 — DEPLOYMENT",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nCode placed in the wrong location runs before the page loads and crashes. Know where to put your scripts.",
+    "hints": [
+      "Place <script src=\"file.js\"></script> at the bottom of <body> so HTML loads first",
+      "An external script uses the src attribute: <script src=\"mission.js\"></script>",
+      "An inline <script> block can run code directly in the HTML"
+    ],
+    "codeHint": "<script ___ = \"mission.js\"></script>\n<script>\n  // inline code here\n</script>",
+    "initialCode": "<!-- Task 1: Link external file mission.js -->\n<!-- Your code here -->\n\n<!-- Task 2: Write an inline <script> block -->\n<!-- Your code here -->\n",
+    "solution": "<script src=\"mission.js\"></script>\n<script>\n  console.log(\"INLINE SCRIPT ACTIVE\");\n</script>",
+    "validateCode": "const hasSrc = code.includes('src') && code.includes('mission.js');\nif (!hasSrc) return { success: false, message: 'Must link an external file called mission.js using the src attribute' };\nconst hasInline = code.includes('<script>') && code.includes('</script>');\nif (!hasInline) return { success: false, message: 'Must include an inline <script> block' };\nreturn { success: true, message: 'GATE 02 CLEARED — Scripts deployed correctly.' };"
+  },
+  {
+    "id": "03",
+    "gate": 3,
+    "sector": "SECTOR 01 — CIPHER GATEWAY",
+    "learningZone": "JS Output",
+    "title": "GATE 03 — BROADCAST",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nNEXUS jammed three of our four output channels. Prove all four still work.",
+    "hints": [
+      "console.log(\"message\") outputs to the developer console",
+      "document.getElementById(\"id\").innerHTML = \"text\" updates HTML content",
+      "alert(\"message\") shows a browser popup dialog",
+      "document.write(\"message\") writes directly to the page (testing only)"
+    ],
+    "codeHint": "console.___(____);\ndocument.____________(\"demo\")._________ = \"message\";\n________(\"message\");\ndocument._____(\"message\");",
+    "initialCode": "// Task: Use all four output methods, each with a different message\n// 1. console.log\n// Your code here\n\n// 2. document.getElementById innerHTML\n// Your code here\n\n// 3. alert\n// Your code here\n\n// 4. document.write\n// Your code here\n",
+    "solution": "console.log(\"CHANNEL 1 ACTIVE\");\ndocument.getElementById(\"demo\").innerHTML = \"CHANNEL 2 ACTIVE\";\nalert(\"CHANNEL 3 ACTIVE\");\ndocument.write(\"CHANNEL 4 ACTIVE\");",
+    "validateCode": "const hasConsole = logs.some(l => l.length > 0);\nif (!hasConsole) return { success: false, message: 'Must use console.log with a message' };\nconst hasInnerHTML = code.includes('.innerHTML');\nif (!hasInnerHTML) return { success: false, message: 'Must use innerHTML to update an HTML element' };\nconst hasAlert = code.includes('alert(');\nif (!hasAlert) return { success: false, message: 'Must use alert()' };\nconst hasWrite = code.includes('document.write(');\nif (!hasWrite) return { success: false, message: 'Must use document.write()' };\nreturn { success: true, message: 'GATE 03 CLEARED — All four output channels restored.' };"
+  },
+  {
+    "id": "04",
+    "gate": 4,
+    "sector": "SECTOR 01 — CIPHER GATEWAY",
+    "learningZone": "JS Syntax",
+    "title": "GATE 04 — CODE STRUCTURE",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nBroken syntax means broken code. Know the rules exactly.",
+    "hints": [
+      "JavaScript is case-sensitive: let agentName and let AgentName are different variables",
+      "let and const must be lowercase — Let is not valid",
+      "console.log is lowercase — Console.Log will throw an error",
+      "Variable names should follow camelCase convention"
+    ],
+    "codeHint": "___ name = \"agent zero\";\n___ score = 100;\nconsole.___(name + score);",
+    "initialCode": "// Fix all mistakes in this broken code and rewrite it cleanly:\n\n// BROKEN:\n// Let Name = \"agent zero\"\n// let Score = 100\n// Console.Log(name + score)\n\n// YOUR FIXED VERSION:\n// Your code here\n",
+    "solution": "let name = \"agent zero\";\nlet score = 100;\nconsole.log(name + score);",
+    "validateCode": "const hasLetLower = code.includes('let name') || code.includes('let name');\nif (code.includes('Let ') || code.includes('Console.Log')) return { success: false, message: 'JavaScript is case-sensitive — fix the capitalisation errors' };\nconst hasLog = logs.some(l => l.length > 0);\nif (!hasLog) return { success: false, message: 'Must log the result using console.log' };\nreturn { success: true, message: 'GATE 04 CLEARED — Code structure is clean.' };"
+  },
+  {
+    "id": "05",
+    "gate": 5,
+    "sector": "SECTOR 01 — CIPHER GATEWAY",
+    "learningZone": "JS Variables",
+    "title": "GATE 05 — STORAGE UNITS",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nVariables store data. Three ways to declare them. Each behaves differently.",
+    "hints": [
+      "const cannot be reassigned after declaration",
+      "let can be reassigned and is block-scoped",
+      "var is function-scoped and is the old way — prefer let in modern code",
+      "Variable names cannot start with a number or contain hyphens"
+    ],
+    "codeHint": "_____ MISSION_CODE = \"ALPHA\";\n___ score = 0;\nscore = 100;\n___ legacyVar = \"avoid this\";",
+    "initialCode": "// Task 1: Declare a mission code using const\n// Your code here\n\n// Task 2: Declare a score using let and then reassign it\n// Your code here\n\n// Task 3: Declare a variable using var and explain why let is better (in a comment)\n// Your code here\n",
+    "solution": "const MISSION_CODE = \"ALPHA-7\";\nlet score = 0;\nscore = 100;\nvar legacyVar = \"old style\"; // let is better because var ignores block scope",
+    "validateCode": "const hasConst = code.includes('const ');\nif (!hasConst) return { success: false, message: 'Must use const for at least one variable' };\nconst hasLet = code.includes('let ');\nif (!hasLet) return { success: false, message: 'Must use let for at least one variable' };\nconst hasVar = code.includes('var ');\nif (!hasVar) return { success: false, message: 'Must demonstrate var as well' };\nreturn { success: true, message: 'GATE 05 CLEARED — All three storage units operational.' };"
+  },
+  {
+    "id": "06",
+    "gate": 6,
+    "sector": "SECTOR 01 — CIPHER GATEWAY",
+    "learningZone": "JS Data Types",
+    "title": "GATE 06 — DATA TYPES",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nJavaScript has 8 data types. Know each one and how to write it.",
+    "hints": [
+      "typeof checks the type of a value: typeof \"hello\" returns \"string\"",
+      "null returns \"object\" from typeof — this is a famous JavaScript bug",
+      "BigInt is written with an n suffix: 9007199254740991n",
+      "undefined means declared but not assigned a value"
+    ],
+    "codeHint": "let str = ___;\nlet num = ___;\nlet bool = ___;\nlet undef;\nlet nothing = ___;\nlet obj = { ___ };\nconsole.log(typeof str);",
+    "initialCode": "// Declare one variable of each type and use typeof to log each\n// string\n// Your code here\n\n// number\n// Your code here\n\n// boolean\n// Your code here\n\n// undefined\n// Your code here\n\n// null\n// Your code here\n\n// object\n// Your code here\n",
+    "solution": "let str = \"Agent Zero\";\nlet num = 100;\nlet bool = true;\nlet undef;\nlet nothing = null;\nlet obj = { name: \"Zero\" };\nconsole.log(typeof str);\nconsole.log(typeof num);\nconsole.log(typeof bool);\nconsole.log(typeof undef);\nconsole.log(typeof nothing);\nconsole.log(typeof obj);",
+    "validateCode": "const hasString = code.includes('typeof');\nif (!hasString) return { success: false, message: 'Must use typeof to check at least one type' };\nconst hasNull = code.includes('null');\nif (!hasNull) return { success: false, message: 'Must declare a null variable' };\nconst hasUndef = code.match(/let \\w+;/) || code.includes('undefined');\nif (!hasUndef) return { success: false, message: 'Must demonstrate undefined (declare without assigning)' };\nreturn { success: true, message: 'GATE 06 CLEARED — All data types identified.' };"
+  },
+  {
+    "id": "07",
+    "gate": 7,
+    "sector": "SECTOR 01 — CIPHER GATEWAY",
+    "learningZone": "JS Comments",
+    "title": "GATE 07 — ANNOTATION PROTOCOL",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nComments are notes inside code that JavaScript ignores. Use them to explain your logic.",
+    "hints": [
+      "Single line comment: // this is ignored by JavaScript",
+      "Multi-line comment: /* this spans multiple lines */",
+      "Comments can appear at the end of a line of code too",
+      "Use comments to document mission headers and explain each step"
+    ],
+    "codeHint": "/*\n  ___: ___\n  ___: ___\n*/\n// single line comment\nlet x = 5; // end of line comment",
+    "initialCode": "// Task: Add a multi-line mission header comment at the top,\n// then write 3 variables each with a single-line comment above explaining it.\n// Also add a console.log with an end-of-line comment.\n\n// Your code here\n",
+    "solution": "/*\n  MISSION: Secure the perimeter\n  AUTHOR: Agent Zero\n  DATE: 2047-01-15\n*/\n\n// Agent codename\nlet codename = \"Zero\";\n\n// Current threat level (0-100)\nlet threatLevel = 75;\n\n// Mission status flag\nlet isActive = true;\n\nconsole.log(codename + \" - threat: \" + threatLevel); // output mission summary",
+    "validateCode": "const hasMultiLine = code.includes('/*') && code.includes('*/');\nif (!hasMultiLine) return { success: false, message: 'Must include a multi-line comment /* ... */' };\nconst hasSingleLine = (code.match(/\\/\\//g) || []).length >= 2;\nif (!hasSingleLine) return { success: false, message: 'Must include at least two single-line comments //' };\nconst hasLog = logs.some(l => l.length > 0);\nif (!hasLog) return { success: false, message: 'Must include a console.log statement' };\nreturn { success: true, message: 'GATE 07 CLEARED — Annotation protocol established.' };"
+  },
+  {
+    "id": "08",
+    "gate": 8,
+    "sector": "SECTOR 02 — LOGIC ENGINE",
+    "learningZone": "JS Booleans",
+    "title": "GATE 08 — BOOLEANS",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nEvery decision CIPHER makes comes down to true or false. Booleans are the foundation of all logic.",
+    "hints": [
+      "Boolean values are true or false — no quotes",
+      "Falsy values: false, 0, \"\", null, undefined, NaN",
+      "Everything else is truthy, including [] and {}",
+      "Boolean() converts any value to its boolean equivalent"
+    ],
+    "codeHint": "let threatLevel = 85;\nlet isAbove70 = threatLevel ___ 70;\nlet isBelow100 = threatLevel ___ 100;\nlet isExactly85 = threatLevel ___ 85;\nconsole.log(isAbove70, typeof isAbove70);",
+    "initialCode": "// Declare threatLevel = 85\n// Write boolean expressions:\n// 1. Is it above 70?\n// 2. Is it below 100?\n// 3. Is it exactly 85?\n// Log each result and its type\n\n// Your code here\n",
+    "solution": "let threatLevel = 85;\nlet isAbove70 = threatLevel > 70;\nlet isBelow100 = threatLevel < 100;\nlet isExactly85 = threatLevel === 85;\nconsole.log(isAbove70, typeof isAbove70);\nconsole.log(isBelow100, typeof isBelow100);\nconsole.log(isExactly85, typeof isExactly85);",
+    "validateCode": "const hasTrue = logs.some(l => l.includes('true'));\nif (!hasTrue) return { success: false, message: 'At least one boolean result should be true' };\nconst hasTypeOf = code.includes('typeof');\nif (!hasTypeOf) return { success: false, message: 'Must log the type using typeof' };\nconst hasComparisons = code.includes('>') || code.includes('<') || code.includes('===');\nif (!hasComparisons) return { success: false, message: 'Must use comparison operators to create booleans' };\nreturn { success: true, message: 'GATE 08 CLEARED — Boolean logic confirmed.' };"
+  },
+  {
+    "id": "09",
+    "gate": 9,
+    "sector": "SECTOR 02 — LOGIC ENGINE",
+    "learningZone": "JS Operators",
+    "title": "GATE 09 — CALCULATIONS",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nThe targeting system runs on operators. Master all types.",
+    "hints": [
+      "Arithmetic: + - * / % ** (modulo is remainder, exponentiation is **)",
+      "Assignment shortcuts: x += 5 is the same as x = x + 5",
+      "Strict equality === checks both value and type",
+      "% gives the remainder: 20 % 6 = 2"
+    ],
+    "codeHint": "let a = 15, b = 4;\nconsole.log(a + b);\nconsole.log(a ___ b); // subtraction\nconsole.log(a ___ b); // multiplication\nconsole.log(a ___ b); // division\nconsole.log(a ___ b); // modulo\nconsole.log(a ___ b); // exponentiation",
+    "initialCode": "// Use a = 15 and b = 4\n// Write one example of every arithmetic operator\n// Then use three assignment operators to update a score starting at 100\n\nlet a = 15, b = 4;\n// Your arithmetic code here\n\nlet score = 100;\n// Your assignment operator code here\n",
+    "solution": "let a = 15, b = 4;\nconsole.log(a + b);  // 19\nconsole.log(a - b);  // 11\nconsole.log(a * b);  // 60\nconsole.log(a / b);  // 3.75\nconsole.log(a % b);  // 3\nconsole.log(a ** b); // 50625\n\nlet score = 100;\nscore += 50;\nconsole.log(score); // 150\nscore -= 20;\nconsole.log(score); // 130\nscore *= 2;\nconsole.log(score); // 260",
+    "validateCode": "const hasArithmetic = code.includes('+') && code.includes('-') && code.includes('*') && code.includes('/');\nif (!hasArithmetic) return { success: false, message: 'Must use + - * / arithmetic operators' };\nconst hasModulo = code.includes('%');\nif (!hasModulo) return { success: false, message: 'Must use the modulo operator %' };\nconst hasAssignment = code.includes('+=') || code.includes('-=') || code.includes('*=');\nif (!hasAssignment) return { success: false, message: 'Must use at least one assignment operator like += -= *=' };\nreturn { success: true, message: 'GATE 09 CLEARED — Targeting system calibrated.' };"
+  },
+  {
+    "id": "10",
+    "gate": 10,
+    "sector": "SECTOR 02 — LOGIC ENGINE",
+    "learningZone": "JS Type Conversion",
+    "title": "GATE 10 — TYPE CONVERSION",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nNEXUS smuggles corrupted data disguised as the wrong type. Convert everything correctly.",
+    "hints": [
+      "Number(\"99\") converts the string \"99\" to the number 99",
+      "String(42) converts the number 42 to the string \"42\"",
+      "Boolean(0) returns false — 0 is a falsy value",
+      "Use typeof after conversion to confirm the new type"
+    ],
+    "codeHint": "let asNumber = _______(\"99\");\nlet asString = _______(42);\nlet asBool = _______(0);\nconsole.log(asNumber, typeof asNumber);\nconsole.log(asString, typeof asString);\nconsole.log(asBool, typeof asBool);",
+    "initialCode": "// Task: Convert \"99\" to a number, 42 to a string, and 0 to a boolean\n// Use typeof to confirm each conversion worked\n\n// Your code here\n",
+    "solution": "let asNumber = Number(\"99\");\nlet asString = String(42);\nlet asBool = Boolean(0);\nconsole.log(asNumber, typeof asNumber);\nconsole.log(asString, typeof asString);\nconsole.log(asBool, typeof asBool);",
+    "validateCode": "const hasNumber = code.includes('Number(') || code.includes('parseInt(') || code.includes('parseFloat(');\nif (!hasNumber) return { success: false, message: 'Must convert a string to a number using Number(), parseInt(), or parseFloat()' };\nconst hasString = code.includes('String(') || code.includes('.toString()');\nif (!hasString) return { success: false, message: 'Must convert a number to a string using String() or .toString()' };\nconst hasBoolean = code.includes('Boolean(');\nif (!hasBoolean) return { success: false, message: 'Must convert a value to boolean using Boolean()' };\nconst hasTypeOf = code.includes('typeof');\nif (!hasTypeOf) return { success: false, message: 'Must confirm types using typeof' };\nreturn { success: true, message: 'GATE 10 CLEARED — All data types verified.' };"
+  },
+  {
+    "id": "11",
+    "gate": 11,
+    "sector": "SECTOR 02 — LOGIC ENGINE",
+    "learningZone": "JS If Conditions",
+    "title": "GATE 11 — DECISION POINT",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nEvery field decision runs through a condition check. Write every form of conditional correctly.",
+    "hints": [
+      "if / else if / else checks conditions in order and runs the first match",
+      "Ternary: condition ? valueIfTrue : valueIfFalse",
+      "switch uses case labels and requires break to avoid fall-through",
+      "You can nest ternaries but keep it readable"
+    ],
+    "codeHint": "if (threatLevel >= 90) {\n  ___\n} else if (threatLevel >= 70) {\n  ___\n} else {\n  ___\n}\nlet label = threatLevel > 70 ___ \"HIGH\" ___ \"LOW\";",
+    "initialCode": "// Use threatLevel = 75\n// Task 1: Write if/else if/else classifying into CRITICAL / HIGH / MODERATE / LOW\n// Task 2: Rewrite as a ternary for just HIGH or LOW\n\nlet threatLevel = 75;\n// Your if/else if/else here\n\n// Your ternary here\n",
+    "solution": "let threatLevel = 75;\n\nif (threatLevel >= 90) {\n  console.log(\"CRITICAL\");\n} else if (threatLevel >= 70) {\n  console.log(\"HIGH\");\n} else if (threatLevel >= 50) {\n  console.log(\"MODERATE\");\n} else {\n  console.log(\"LOW\");\n}\n\nlet label = threatLevel > 70 ? \"HIGH\" : \"LOW\";\nconsole.log(label);",
+    "validateCode": "const hasIfElse = code.includes('if') && code.includes('else');\nif (!hasIfElse) return { success: false, message: 'Must use if / else if / else structure' };\nconst hasTernary = code.includes('?') && code.includes(':');\nif (!hasTernary) return { success: false, message: 'Must include a ternary operator (condition ? a : b)' };\nconst hasLog = logs.some(l => l.length > 0);\nif (!hasLog) return { success: false, message: 'Must log at least one result' };\nreturn { success: true, message: 'GATE 11 CLEARED — Decision logic is live.' };"
+  },
+  {
+    "id": "12",
+    "gate": 12,
+    "sector": "SECTOR 02 — LOGIC ENGINE",
+    "learningZone": "JS Loops",
+    "title": "GATE 12 — SWEEP PROTOCOL",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nLoops repeat an action. Know every loop type and when to use each.",
+    "hints": [
+      "for loop: for (let i = 0; i < 10; i++) — good when you know the count",
+      "while loop: while (condition) — runs as long as condition is true",
+      "for...of — iterates over array values directly",
+      "break exits a loop; continue skips to the next iteration"
+    ],
+    "codeHint": "for (let i = ___; i <= ___; i++) {\n  console.log(i);\n}\n\nlet count = ___;\nwhile (count >= ___) {\n  console.log(count);\n  count___;\n}\n\nconst cities = [___, ___, ___, ___];\nfor (let city ___ cities) {\n  console.log(city);\n}",
+    "initialCode": "// Task 1: for loop logging numbers 1 to 10\n// Your code here\n\n// Task 2: while loop counting down from 5 to 0\n// Your code here\n\n// Task 3: for...of loop over an array of 4 city names\n// Your code here\n",
+    "solution": "for (let i = 1; i <= 10; i++) {\n  console.log(i);\n}\n\nlet count = 5;\nwhile (count >= 0) {\n  console.log(count);\n  count--;\n}\n\nconst cities = [\"London\", \"Tokyo\", \"Berlin\", \"Cairo\"];\nfor (let city of cities) {\n  console.log(city);\n}",
+    "validateCode": "const hasFor = code.includes('for (') || code.includes('for(');\nif (!hasFor) return { success: false, message: 'Must include a for loop' };\nconst hasWhile = code.includes('while (') || code.includes('while(');\nif (!hasWhile) return { success: false, message: 'Must include a while loop' };\nconst hasForOf = code.includes('of ');\nif (!hasForOf) return { success: false, message: 'Must include a for...of loop' };\nreturn { success: true, message: 'GATE 12 CLEARED — Sweep protocol complete.' };"
+  },
+  {
+    "id": "13",
+    "gate": 13,
+    "sector": "SECTOR 03 — DATA STRUCTURES",
+    "learningZone": "JS Strings",
+    "title": "GATE 13 — STRING SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nEvery intercepted message is a string. Know how to write and work with them.",
+    "hints": [
+      "Template literals use backticks and ${variable} for embedding values",
+      ".length returns the number of characters in a string",
+      ".toUpperCase() converts all characters to uppercase",
+      ".includes(\"word\") returns true if the string contains that word"
+    ],
+    "codeHint": "let name = \"___\";\nlet rank = \"___\";\nlet sentence = `Agent ${___} holds the rank of ${___}.`;\nconsole.log(sentence.______);\nconsole.log(sentence._____________());\nconsole.log(sentence.________(\"holds\"));",
+    "initialCode": "// Declare an agent name and rank\n// Use a template literal to build: \"Agent [name] holds the rank of [rank].\"\n// Then: get its length, convert to uppercase, check if it includes \"holds\"\n\n// Your code here\n",
+    "solution": "let name = \"Zero\";\nlet rank = \"Commander\";\nlet sentence = `Agent ${name} holds the rank of ${rank}.`;\nconsole.log(sentence.length);\nconsole.log(sentence.toUpperCase());\nconsole.log(sentence.includes(\"holds\"));",
+    "validateCode": "const hasTemplate = code.includes('`') && code.includes('${');\nif (!hasTemplate) return { success: false, message: 'Must use a template literal with ${variable} syntax' };\nconst hasLength = code.includes('.length');\nif (!hasLength) return { success: false, message: 'Must get the string length using .length' };\nconst hasUpper = code.includes('.toUpperCase()');\nif (!hasUpper) return { success: false, message: 'Must convert to uppercase using .toUpperCase()' };\nconst hasIncludes = code.includes('.includes(');\nif (!hasIncludes) return { success: false, message: 'Must check for a substring using .includes()' };\nreturn { success: true, message: 'GATE 13 CLEARED — All string channels decoded.' };"
+  },
+  {
+    "id": "14",
+    "gate": 14,
+    "sector": "SECTOR 03 — DATA STRUCTURES",
+    "learningZone": "JS Numbers",
+    "title": "GATE 14 — NUMBER SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nAll numbers in JavaScript are the same type. But they behave in ways that will surprise you.",
+    "hints": [
+      "Math.round() rounds to nearest, Math.floor() always down, Math.ceil() always up",
+      "Math.floor(Math.random() * max) + 1 generates a random integer",
+      "isNaN() checks if a value is Not a Number",
+      "NaN is returned when a math operation fails, like Number(\"NEXUS\")"
+    ],
+    "codeHint": "let n = 3.99821;\nconsole.log(Math.______(n));\nconsole.log(Math.______(n));\nconsole.log(Math.______(n));\nlet rand = Math._____(Math.______() * 50) + 1;\nconsole.log(isNaN(Number(\"NEXUS\")));",
+    "initialCode": "// Task 1: Declare 3.99821 and round it, floor it, and ceil it\n// Your code here\n\n// Task 2: Generate a random integer between 1 and 50\n// Your code here\n\n// Task 3: Check if \"NEXUS\" converted to a number is NaN\n// Your code here\n",
+    "solution": "let n = 3.99821;\nconsole.log(Math.round(n));\nconsole.log(Math.floor(n));\nconsole.log(Math.ceil(n));\nlet rand = Math.floor(Math.random() * 50) + 1;\nconsole.log(rand);\nconsole.log(isNaN(Number(\"NEXUS\")));",
+    "validateCode": "const hasRound = code.includes('Math.round(');\nif (!hasRound) return { success: false, message: 'Must use Math.round()' };\nconst hasFloor = code.includes('Math.floor(');\nif (!hasFloor) return { success: false, message: 'Must use Math.floor()' };\nconst hasCeil = code.includes('Math.ceil(');\nif (!hasCeil) return { success: false, message: 'Must use Math.ceil()' };\nconst hasRandom = code.includes('Math.random()');\nif (!hasRandom) return { success: false, message: 'Must generate a random number using Math.random()' };\nconst hasIsNaN = code.includes('isNaN(');\nif (!hasIsNaN) return { success: false, message: 'Must check for NaN using isNaN()' };\nreturn { success: true, message: 'GATE 14 CLEARED — Number systems restored.' };"
+  },
+  {
+    "id": "15",
+    "gate": 15,
+    "sector": "SECTOR 03 — DATA STRUCTURES",
+    "learningZone": "JS Arrays",
+    "title": "GATE 15 — ARRAY SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nArrays store ordered lists. Every roster, every target list, every coordinate set is an array.",
+    "hints": [
+      "Array index starts at 0: agents[0] is the first item",
+      "agents[agents.length - 1] gets the last item",
+      ".push() adds to the end, .unshift() adds to the beginning",
+      ".pop() removes from the end, .indexOf() finds the index of an item"
+    ],
+    "codeHint": "let agents = [___, ___, ___, ___, ___];\nconsole.log(agents[0]);\nconsole.log(agents[agents.length - 1]);\nagents.______(\"NewAgent\");\nagents._______(\"FirstAgent\");\nagents.___();\nconsole.log(agents._______(\"ThirdName\"));\nconsole.log(agents.______(1, 4));",
+    "initialCode": "// Create an array of 5 agent names\n// 1. Access the first and last\n// 2. Add one to the end and one to the beginning\n// 3. Remove the last one\n// 4. Find the index of the third name\n// 5. Slice out the middle 3\n\n// Your code here\n",
+    "solution": "let agents = [\"Zero\", \"Fox\", \"Rook\", \"Lynx\", \"Echo\"];\nconsole.log(agents[0]);\nconsole.log(agents[agents.length - 1]);\nagents.push(\"Wolf\");\nagents.unshift(\"Kite\");\nagents.pop();\nconsole.log(agents.indexOf(\"Rook\"));\nconsole.log(agents.slice(1, 4));",
+    "validateCode": "const hasPush = code.includes('.push(');\nif (!hasPush) return { success: false, message: 'Must use .push() to add to the end of the array' };\nconst hasUnshift = code.includes('.unshift(');\nif (!hasUnshift) return { success: false, message: 'Must use .unshift() to add to the beginning' };\nconst hasPop = code.includes('.pop()');\nif (!hasPop) return { success: false, message: 'Must use .pop() to remove the last item' };\nconst hasIndexOf = code.includes('.indexOf(');\nif (!hasIndexOf) return { success: false, message: 'Must use .indexOf() to find an item' };\nconst hasSlice = code.includes('.slice(');\nif (!hasSlice) return { success: false, message: 'Must use .slice() to extract a portion of the array' };\nreturn { success: true, message: 'GATE 15 CLEARED — All roster data retrieved.' };"
+  },
+  {
+    "id": "16",
+    "gate": 16,
+    "sector": "SECTOR 03 — DATA STRUCTURES",
+    "learningZone": "JS Objects",
+    "title": "GATE 16 — OBJECT SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nObjects store structured data as key-value pairs. Every agent profile is an object.",
+    "hints": [
+      "Dot notation: agent.name — Bracket notation: agent[\"name\"]",
+      "Nested access: profile.agent.base.city",
+      "Object methods are functions stored as property values",
+      "for...in loops through all keys of an object"
+    ],
+    "codeHint": "let agent = {\n  name: \"___\",\n  rank: \"___\",\n  base: { city: \"___\", floor: ___ },\n  report() {\n    return `${this.___} at ${this.base.___}`;\n  }\n};\nconsole.log(agent.base.city);\nfor (let key ___ agent) { console.log(key); }",
+    "initialCode": "// Create an agent object with 5 properties including nested base object (city + floor)\n// Add a report() method\n// Access the city using chained dot notation\n// Loop through all keys and log them\n\n// Your code here\n",
+    "solution": "let agent = {\n  name: \"Zero\",\n  rank: \"Commander\",\n  age: 34,\n  isActive: true,\n  base: { city: \"London\", floor: 7 },\n  report() {\n    return `${this.name} stationed at ${this.base.city}`;\n  }\n};\nconsole.log(agent.base.city);\nconsole.log(agent.report());\nfor (let key in agent) {\n  console.log(key);\n}",
+    "validateCode": "const hasNested = code.includes('base') && (code.includes('city') || code.includes('floor'));\nif (!hasNested) return { success: false, message: 'Must include a nested object for base with city and floor' };\nconst hasMethod = code.includes('report') && code.includes('this.');\nif (!hasMethod) return { success: false, message: 'Must add a report() method that uses this' };\nconst hasChained = code.match(/\\.\\w+\\.\\w+/);\nif (!hasChained) return { success: false, message: 'Must access nested property using chained dot notation' };\nconst hasForIn = code.includes('for') && code.includes('in ');\nif (!hasForIn) return { success: false, message: 'Must use for...in to loop through object keys' };\nreturn { success: true, message: 'GATE 16 CLEARED — Agent profile fully loaded.' };"
+  },
+  {
+    "id": "17",
+    "gate": 17,
+    "sector": "SECTOR 03 — DATA STRUCTURES",
+    "learningZone": "JS Sets",
+    "title": "GATE 17 — SET SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nA Set only stores unique values. Duplicates are automatically rejected.",
+    "hints": [
+      "new Set([array]) creates a Set and removes duplicates automatically",
+      ".add() adds a value, .has() checks existence, .delete() removes",
+      ".size (not .length) returns the number of unique values",
+      "[...mySet] or Array.from(mySet) converts a Set back to an array"
+    ],
+    "codeHint": "let signals = new Set([5, 3, 5, 8, 3, 9, 8, 1]);\nconsole.log(signals.______);\nsignals.___(___);\nconsole.log(signals.___(3));\nsignals.______(___);\nlet arr = [...signals];",
+    "initialCode": "// Create a Set from: [5, 3, 5, 8, 3, 9, 8, 1]\n// 1. Log its size\n// 2. Add a new value\n// 3. Check if 3 exists\n// 4. Delete 8\n// 5. Convert it back to an array and log it\n\n// Your code here\n",
+    "solution": "let signals = new Set([5, 3, 5, 8, 3, 9, 8, 1]);\nconsole.log(signals.size);\nsignals.add(100);\nconsole.log(signals.has(3));\nsignals.delete(8);\nlet arr = [...signals];\nconsole.log(arr);",
+    "validateCode": "const hasSet = code.includes('new Set(');\nif (!hasSet) return { success: false, message: 'Must create a Set using new Set()' };\nconst hasSize = code.includes('.size');\nif (!hasSize) return { success: false, message: 'Must log the size using .size' };\nconst hasAdd = code.includes('.add(');\nif (!hasAdd) return { success: false, message: 'Must add a value using .add()' };\nconst hasHas = code.includes('.has(');\nif (!hasHas) return { success: false, message: 'Must check existence using .has()' };\nconst hasDelete = code.includes('.delete(');\nif (!hasDelete) return { success: false, message: 'Must remove a value using .delete()' };\nreturn { success: true, message: 'GATE 17 CLEARED — Duplicate signals eliminated.' };"
+  },
+  {
+    "id": "18",
+    "gate": 18,
+    "sector": "SECTOR 03 — DATA STRUCTURES",
+    "learningZone": "JS Maps",
+    "title": "GATE 18 — MAP SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nMaps store key-value pairs like objects but keys can be any type — not just strings.",
+    "hints": [
+      "new Map() creates a Map — use .set(key, value) to add entries",
+      ".get(key) retrieves a value, .has(key) checks if a key exists",
+      ".delete(key) removes an entry, .size returns the count",
+      "for...of with destructuring: for (let [key, value] of map)"
+    ],
+    "codeHint": "let scores = new Map();\nscores.___(\"Zero\", 88);\nscores.___(\"Fox\", 72);\nscores.___(\"Rook\", 95);\nconsole.log(scores.___(___ ));\nconsole.log(scores.___(___ ));\nscores.______(___ );\nfor (let [key, value] ___ scores) {\n  console.log(`${key} → ${value}`);\n}",
+    "initialCode": "// Create a Map of 3 agents and their threat scores\n// 1. Retrieve one score\n// 2. Check if an agent exists\n// 3. Delete one entry\n// 4. Loop and log all as \"name → score\"\n\n// Your code here\n",
+    "solution": "let scores = new Map();\nscores.set(\"Zero\", 88);\nscores.set(\"Fox\", 72);\nscores.set(\"Rook\", 95);\nconsole.log(scores.get(\"Zero\"));\nconsole.log(scores.has(\"Fox\"));\nscores.delete(\"Fox\");\nfor (let [key, value] of scores) {\n  console.log(`${key} \u2192 ${value}`);\n}",
+    "validateCode": "const hasMap = code.includes('new Map(');\nif (!hasMap) return { success: false, message: 'Must create a Map using new Map()' };\nconst hasSet = code.includes('.set(');\nif (!hasSet) return { success: false, message: 'Must add entries using .set(key, value)' };\nconst hasGet = code.includes('.get(');\nif (!hasGet) return { success: false, message: 'Must retrieve a value using .get()' };\nconst hasHas = code.includes('.has(');\nif (!hasHas) return { success: false, message: 'Must check existence using .has()' };\nconst hasLoop = code.includes('of scores') || code.includes('of intel');\nif (!hasLoop) return { success: false, message: 'Must loop through the Map with for...of' };\nreturn { success: true, message: 'GATE 18 CLEARED — Intel map fully restored.' };"
+  },
+  {
+    "id": "19",
+    "gate": 19,
+    "sector": "SECTOR 04 — FUNCTIONS",
+    "learningZone": "JS Functions",
+    "title": "GATE 19 — FUNCTION SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nFunctions are reusable blocks of code. Know every way to write one.",
+    "hints": [
+      "Function declaration: function name(params) { return value; }",
+      "Arrow function: const name = (params) => value;",
+      "Default parameter: function greet(name = \"Agent\") — used if no argument passed",
+      "Rest parameters: function sum(...nums) collects all extra args into an array"
+    ],
+    "codeHint": "function add(a, b) { return ___; }\nconst addArrow = (a, b) => ___;\nfunction greet(name = \"___\") { return \"Hello, \" + ___; }\nfunction totalScores(...scores) { return scores.______((a, b) => a + b, 0); }",
+    "initialCode": "// Task 1: Function declaration — sum of two numbers\n// Your code here\n\n// Task 2: Same as arrow function\n// Your code here\n\n// Task 3: Function with a default parameter\n// Your code here\n\n// Task 4: Function using rest parameters that returns the total of any number of scores\n// Your code here\n\n// Test your functions\nconsole.log(add(5, 3));\n",
+    "solution": "function add(a, b) {\n  return a + b;\n}\n\nconst addArrow = (a, b) => a + b;\n\nfunction greet(name = \"Agent\") {\n  return \"Hello, \" + name;\n}\n\nfunction totalScores(...scores) {\n  return scores.reduce((a, b) => a + b, 0);\n}\n\nconsole.log(add(5, 3));\nconsole.log(addArrow(5, 3));\nconsole.log(greet());\nconsole.log(greet(\"Zero\"));\nconsole.log(totalScores(80, 90, 75, 100));",
+    "validateCode": "const hasDeclaration = code.includes('function ') && code.includes('return');\nif (!hasDeclaration) return { success: false, message: 'Must write a function declaration with a return statement' };\nconst hasArrow = code.includes('=>');\nif (!hasArrow) return { success: false, message: 'Must write an arrow function using =>' };\nconst hasDefault = code.match(/function \\w+\\(\\w+ = /);\nif (!hasDefault) return { success: false, message: 'Must use a default parameter (e.g., name = \"Agent\")' };\nconst hasRest = code.includes('...');\nif (!hasRest) return { success: false, message: 'Must use rest parameters (...args)' };\nreturn { success: true, message: 'GATE 19 CLEARED — All function types operational.' };"
+  },
+  {
+    "id": "20",
+    "gate": 20,
+    "sector": "SECTOR 04 — FUNCTIONS",
+    "learningZone": "JS Scope",
+    "title": "GATE 20 — SCOPE",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nScope determines where a variable can be accessed. Understand it or your data will leak.",
+    "hints": [
+      "Global variables are accessible everywhere in the file",
+      "let and const are block-scoped — they only exist inside the {} they were declared in",
+      "var ignores block scope and leaks out of if/for blocks",
+      "Inner functions can access outer variables (scope chain)"
+    ],
+    "codeHint": "let globalAgent = \"Zero\";\nfunction mission() {\n  let secretCode = \"___\";\n  console.log(globalAgent); // accessible\n  console.log(secretCode); // accessible\n}\nif (true) {\n  var leaked = \"I escape\";\n  let blocked = \"I stay\";\n}\nconsole.log(leaked);  // works\n// console.log(blocked); // ERROR",
+    "initialCode": "// Demonstrate:\n// 1. A global variable accessible inside a function\n// 2. A function-scoped variable (not accessible outside)\n// 3. A block-scoped let variable (not accessible outside if block)\n// 4. A var variable that leaks out of an if block\n\n// Your code here\n",
+    "solution": "let globalAgent = \"Zero\";\n\nfunction mission() {\n  let secretCode = \"OMEGA7\";\n  console.log(globalAgent); // works — global is accessible\n  console.log(secretCode);  // works — inside the function\n}\n\nmission();\n// console.log(secretCode); // ERROR — secretCode not accessible here\n\nif (true) {\n  var leaked = \"I escape blocks\";\n  let blocked = \"I stay inside\";\n}\n\nconsole.log(leaked);  // works — var leaks out\n// console.log(blocked); // ERROR — let does not leak",
+    "validateCode": "const hasGlobal = code.match(/^let \\w+/m) || code.match(/^const \\w+/m);\nif (!hasGlobal) return { success: false, message: 'Must declare a global variable outside all functions' };\nconst hasFunction = code.includes('function ');\nif (!hasFunction) return { success: false, message: 'Must declare a function to demonstrate function scope' };\nconst hasVar = code.includes('var ');\nif (!hasVar) return { success: false, message: 'Must demonstrate var leaking out of a block' };\nconst hasBlock = code.includes('if (') && code.includes('let ');\nif (!hasBlock) return { success: false, message: 'Must demonstrate let inside an if block' };\nreturn { success: true, message: 'GATE 20 CLEARED — Scope boundaries secured.' };"
+  },
+  {
+    "id": "21",
+    "gate": 21,
+    "sector": "SECTOR 05 — TIME AND MATH",
+    "learningZone": "JS Timers",
+    "title": "GATE 21 — TIMERS",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nField operations run on timing. Detonators, pings, auto-logouts — all timers.",
+    "hints": [
+      "setTimeout(fn, ms) runs ONCE after a delay in milliseconds",
+      "setInterval(fn, ms) runs REPEATEDLY every ms milliseconds",
+      "clearInterval(id) stops a running interval",
+      "1000 milliseconds = 1 second"
+    ],
+    "codeHint": "setTimeout(() => {\n  console.log(\"___\");\n}, ___);\n\nlet count = 0;\nconst ping = setInterval(() => {\n  count++;\n  console.log(\"___\");\n  if (count === ___) clearInterval(ping);\n}, 1000);",
+    "initialCode": "// Task 1: setTimeout that logs \"MISSION START\" after 3 seconds\n// Your code here\n\n// Task 2: setInterval that logs \"STATUS CHECK\" every second, stops after 5 checks\n// Your code here\n",
+    "solution": "setTimeout(() => {\n  console.log(\"MISSION START\");\n}, 3000);\n\nlet count = 0;\nconst ping = setInterval(() => {\n  count++;\n  console.log(\"STATUS CHECK\");\n  if (count === 5) clearInterval(ping);\n}, 1000);",
+    "validateCode": "const hasTimeout = code.includes('setTimeout(');\nif (!hasTimeout) return { success: false, message: 'Must use setTimeout()' };\nconst hasInterval = code.includes('setInterval(');\nif (!hasInterval) return { success: false, message: 'Must use setInterval()' };\nconst hasClear = code.includes('clearInterval(');\nif (!hasClear) return { success: false, message: 'Must stop the interval using clearInterval()' };\nreturn { success: true, message: 'GATE 21 CLEARED — Timer systems online.' };"
+  },
+  {
+    "id": "22",
+    "gate": 22,
+    "sector": "SECTOR 05 — TIME AND MATH",
+    "learningZone": "JS Dates",
+    "title": "GATE 22 — DATES",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nEvery mission needs a timestamp. Restore the date system.",
+    "hints": [
+      "new Date() creates the current date and time",
+      ".getFullYear() returns the year, .getMonth() returns 0–11 (January = 0)",
+      ".getDate() returns the day of the month (1–31)",
+      "Date difference in days: (end - start) / (1000 * 60 * 60 * 24)"
+    ],
+    "codeHint": "let today = new Date();\nconsole.log(today.___________);\nconsole.log(today.________());\nconsole.log(today.______());\nlet mission = new Date(2047, ___, ___, ___, ___);\nlet start = new Date(2047, 0, 1);\nlet diff = (mission - start) / (1000 * 60 * 60 * 24);\nconsole.log(diff);",
+    "initialCode": "// Task 1: Create today's date, extract and log year, month, day\n// Your code here\n\n// Task 2: Create a mission date: March 10, 2047 at 08:00\n// Your code here\n\n// Task 3: Calculate days between Jan 1, 2047 and March 10, 2047\n// Your code here\n",
+    "solution": "let today = new Date();\nconsole.log(today.getFullYear());\nconsole.log(today.getMonth());\nconsole.log(today.getDate());\n\nlet mission = new Date(2047, 2, 10, 8, 0);\nconsole.log(mission.toDateString());\n\nlet start = new Date(2047, 0, 1);\nlet diffMs = mission - start;\nlet diffDays = diffMs / (1000 * 60 * 60 * 24);\nconsole.log(diffDays);",
+    "validateCode": "const hasNewDate = code.includes('new Date()');\nif (!hasNewDate) return { success: false, message: 'Must create today\\'s date using new Date()' };\nconst hasGetYear = code.includes('.getFullYear()');\nif (!hasGetYear) return { success: false, message: 'Must extract the year using .getFullYear()' };\nconst hasMission = code.includes('new Date(2047');\nif (!hasMission) return { success: false, message: 'Must create a specific mission date for 2047' };\nconst hasDiff = code.includes('1000 * 60 * 60 * 24') || code.includes('86400000');\nif (!hasDiff) return { success: false, message: 'Must calculate the difference in days' };\nreturn { success: true, message: 'GATE 22 CLEARED — Mission timestamp confirmed.' };"
+  },
+  {
+    "id": "23",
+    "gate": 23,
+    "sector": "SECTOR 05 — TIME AND MATH",
+    "learningZone": "JS Math",
+    "title": "GATE 23 — MATH",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nNEXUS runs a math defense system. Solve every calculation or the gate stays locked.",
+    "hints": [
+      "Math.round() nearest, Math.floor() down, Math.ceil() up",
+      "Spread an array into Math.max: Math.max(...nums)",
+      "Random integer between min and max: Math.floor(Math.random() * (max - min + 1)) + min",
+      "Circle area formula: Math.PI * r * r"
+    ],
+    "codeHint": "console.log(Math._____(7.65));\nconsole.log(Math._____(7.65));\nconsole.log(Math._____(7.65));\nlet nums = [14, 3, 88, 42, 7];\nconsole.log(Math.___(___nums));\nconsole.log(Math.___(___nums));\nlet area = Math.__ * 8 * 8;\nconsole.log(area);",
+    "initialCode": "// Task 1: Round 7.65 three ways (round, floor, ceil)\n// Your code here\n\n// Task 2: Find the max and min of [14, 3, 88, 42, 7] using spread\n// Your code here\n\n// Task 3: Generate a random integer between 50 and 100\n// Your code here\n\n// Task 4: Calculate the area of a circle with radius 8 using Math.PI\n// Your code here\n",
+    "solution": "console.log(Math.round(7.65));\nconsole.log(Math.floor(7.65));\nconsole.log(Math.ceil(7.65));\n\nlet nums = [14, 3, 88, 42, 7];\nconsole.log(Math.max(...nums));\nconsole.log(Math.min(...nums));\n\nlet rand = Math.floor(Math.random() * 51) + 50;\nconsole.log(rand);\n\nlet area = Math.PI * 8 * 8;\nconsole.log(area);",
+    "validateCode": "const hasRound = code.includes('Math.round(7.65)') || code.includes('Math.round(n)');\nif (!hasRound) return { success: false, message: 'Must use Math.round() on 7.65' };\nconst hasSpread = code.includes('Math.max(...') && code.includes('Math.min(...');\nif (!hasSpread) return { success: false, message: 'Must use spread (...) with Math.max() and Math.min()' };\nconst hasPI = code.includes('Math.PI');\nif (!hasPI) return { success: false, message: 'Must calculate circle area using Math.PI' };\nreturn { success: true, message: 'GATE 23 CLEARED — Math defense system bypassed.' };"
+  },
+  {
+    "id": "24",
+    "gate": 24,
+    "sector": "SECTOR 06 — ITERATION METHODS",
+    "learningZone": "JS Iterations",
+    "title": "GATE 24 — ARRAY ITERATIONS",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nThe iteration toolkit transforms, filters, and reduces data. These are the most used array tools in real apps.",
+    "hints": [
+      ".map() transforms every item and returns a new array of the same length",
+      ".filter() returns only items that pass a condition test",
+      ".reduce() collapses the array into a single value",
+      ".find() returns the first item that matches (not an array)"
+    ],
+    "codeHint": "const nums = [12, 45, 7, 88, 33];\nconst doubled = nums.____(n => n * ___);\nconst above20 = nums.______(n => n > ___);\nconst total = nums.______((___, n) => ___ + n, 0);\nconst first = nums.____(n => n > ___);\nconsole.log(doubled, above20, total, first);",
+    "initialCode": "// Given: [12, 45, 7, 88, 33]\n// 1. map — double each number\n// 2. filter — keep only those above 20\n// 3. reduce — get the total sum\n// 4. find — get the first one above 40\n\nconst nums = [12, 45, 7, 88, 33];\n// Your code here\n",
+    "solution": "const nums = [12, 45, 7, 88, 33];\nconst doubled = nums.map(n => n * 2);\nconst above20 = nums.filter(n => n > 20);\nconst total = nums.reduce((sum, n) => sum + n, 0);\nconst first = nums.find(n => n > 40);\nconsole.log(doubled);\nconsole.log(above20);\nconsole.log(total);\nconsole.log(first);",
+    "validateCode": "const hasMap = code.includes('.map(');\nif (!hasMap) return { success: false, message: 'Must use .map() to transform the array' };\nconst hasFilter = code.includes('.filter(');\nif (!hasFilter) return { success: false, message: 'Must use .filter() to keep items above 20' };\nconst hasReduce = code.includes('.reduce(');\nif (!hasReduce) return { success: false, message: 'Must use .reduce() to sum the values' };\nconst hasFind = code.includes('.find(');\nif (!hasFind) return { success: false, message: 'Must use .find() to get the first match' };\nreturn { success: true, message: 'GATE 24 CLEARED — Data pipeline fully operational.' };"
+  },
+  {
+    "id": "25",
+    "gate": 25,
+    "sector": "SECTOR 07 — ASYNC AND FINAL BREACH",
+    "learningZone": "JS Async / Promises / Fetch",
+    "title": "GATE 25 — ASYNC SYNTAX",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nReal apps wait for data. Async syntax lets your code wait without freezing. This is the final sector before the kill switch.",
+    "hints": [
+      "new Promise((resolve, reject) => { resolve(value) }) creates a Promise",
+      ".then(value => ...) handles a resolved Promise",
+      "async function with await pauses until a Promise resolves",
+      "try/catch inside async functions handles errors from awaited Promises"
+    ],
+    "codeHint": "function getSignal() {\n  return new _______((_______) => {\n    setTimeout(() => _______(\"SIGNAL ACQUIRED\"), 1000);\n  });\n}\ngetSignal().______(value => console.log(value));\n\nasync function runMission() {\n  try {\n    const signal = _____ getSignal();\n    console.log(signal);\n  } catch (err) { console.log(err); }\n}",
+    "initialCode": "// Task 1: A function returning a Promise that resolves with \"SIGNAL ACQUIRED\" after 1 second\n// Handle it with .then()\n// Your code here\n\n// Task 2: Rewrite it as an async/await function with try/catch\n// Your code here\n",
+    "solution": "function getSignal() {\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(\"SIGNAL ACQUIRED\"), 1000);\n  });\n}\n\ngetSignal().then(value => console.log(value));\n\nasync function runMission() {\n  try {\n    const signal = await getSignal();\n    console.log(signal);\n  } catch (err) {\n    console.log(\"Error:\", err);\n  }\n}\n\nrunMission();",
+    "validateCode": "const hasPromise = code.includes('new Promise(');\nif (!hasPromise) return { success: false, message: 'Must create a Promise using new Promise()' };\nconst hasThen = code.includes('.then(');\nif (!hasThen) return { success: false, message: 'Must handle the Promise with .then()' };\nconst hasAsync = code.includes('async function') || code.includes('async (');\nif (!hasAsync) return { success: false, message: 'Must write an async function' };\nconst hasAwait = code.includes('await ');\nif (!hasAwait) return { success: false, message: 'Must use await inside the async function' };\nconst hasTryCatch = code.includes('try {') && code.includes('catch (');\nif (!hasTryCatch) return { success: false, message: 'Must include try/catch inside the async function' };\nreturn { success: true, message: 'GATE 25 CLEARED — Signal acquired. Async comms restored.' };"
+  },
+  {
+    "id": "26",
+    "gate": 26,
+    "sector": "SECTOR 07 — ASYNC AND FINAL BREACH",
+    "learningZone": "JS Destructuring",
+    "title": "GATE 26 — DESTRUCTURING",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nDestructuring extracts data from arrays and objects into clean variables in one line.",
+    "hints": [
+      "Array destructuring: const [first, , third] = array — use commas to skip items",
+      "Rest in destructuring: const [first, ...rest] = array",
+      "Object destructuring: const { name, rank } = agent",
+      "Rename while destructuring: const { rank: title } = agent"
+    ],
+    "codeHint": "const [first, , third, ...rest] = [90, 55, 78, 63];\nconst agent = { name: \"Zero\", rank: \"Commander\", score: 88 };\nconst { name, rank: ___ } = agent;\nconsole.log(first, third, rest);\nconsole.log(name, title);",
+    "initialCode": "// Task 1: Destructure [90, 55, 78, 63]\n//   - get the first, skip the second, get the third, collect the rest\n// Your code here\n\n// Task 2: Destructure an agent object to get name and rank\n//   - rename rank to title\n// Your code here\n",
+    "solution": "const scores = [90, 55, 78, 63];\nconst [first, , third, ...rest] = scores;\nconsole.log(first);  // 90\nconsole.log(third);  // 78\nconsole.log(rest);   // [63]\n\nconst agent = { name: \"Zero\", rank: \"Commander\", score: 88 };\nconst { name, rank: title } = agent;\nconsole.log(name);   // \"Zero\"\nconsole.log(title);  // \"Commander\"",
+    "validateCode": "const hasArrayDestructure = code.match(/const \\[.*\\]/);\nif (!hasArrayDestructure) return { success: false, message: 'Must use array destructuring with const [...]' };\nconst hasSkip = code.match(/\\[\\w+, ,/) || code.match(/\\[\\w+,,/);\nif (!hasSkip) return { success: false, message: 'Must skip an element using a blank comma: [first, , third]' };\nconst hasObjectDestructure = code.match(/const \\{.*\\}/);\nif (!hasObjectDestructure) return { success: false, message: 'Must use object destructuring with const {...}' };\nconst hasRename = code.includes(': title') || code.match(/\\w+: \\w+/);\nif (!hasRename) return { success: false, message: 'Must rename a property during object destructuring (e.g., rank: title)' };\nreturn { success: true, message: 'GATE 26 CLEARED — Data extracted cleanly.' };"
+  },
+  {
+    "id": "27",
+    "gate": 27,
+    "sector": "SECTOR 07 — ASYNC AND FINAL BREACH",
+    "learningZone": "JS Spread and Rest",
+    "title": "GATE 27 — SPREAD AND REST",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nSpread expands. Rest collects. Same syntax ... — opposite purposes.",
+    "hints": [
+      "Spread copies: const copy = [...original] — new array, not a reference",
+      "Spread merges: const merged = [...a, ...b]",
+      "Spread into function: Math.min(...nums)",
+      "Rest in function params: function total(...nums) collects all args into an array"
+    ],
+    "codeHint": "const original = [1, 2, 3];\nconst copy = [___original];\nconst a = [\"Zero\", \"Fox\"];\nconst b = [\"Rook\", \"Lynx\"];\nconst merged = [___a, ___b];\nconst nums = [3, 1, 4, 1, 5];\nMath.min(___nums);\nconst agent = { name: \"Zero\", rank: \"Commander\" };\nconst updated = { ___agent, rank: \"Director\" };\nfunction sumAll(first, second, ___others) {\n  return others.reduce((a, b) => a + b, first + second);\n}",
+    "initialCode": "// Task 1: Copy an array without reference\n// Your code here\n\n// Task 2: Merge two agent name arrays\n// Your code here\n\n// Task 3: Spread an array into Math.min()\n// Your code here\n\n// Task 4: Copy an object and override one property\n// Your code here\n\n// Task 5: Write a function using rest parameters that sums any number of arguments\n// Your code here\n",
+    "solution": "const original = [1, 2, 3];\nconst copy = [...original];\nconsole.log(copy);\n\nconst a = [\"Zero\", \"Fox\"];\nconst b = [\"Rook\", \"Lynx\"];\nconst merged = [...a, ...b];\nconsole.log(merged);\n\nconst nums = [3, 1, 4, 1, 5];\nconsole.log(Math.min(...nums));\n\nconst agent = { name: \"Zero\", rank: \"Commander\" };\nconst updated = { ...agent, rank: \"Director\" };\nconsole.log(updated);\n\nfunction sumAll(...args) {\n  return args.reduce((a, b) => a + b, 0);\n}\nconsole.log(sumAll(1, 2, 3, 4, 5));",
+    "validateCode": "const hasSpreadArray = code.match(/\\[\\.\\.\\.\\w+\\]/);\nif (!hasSpreadArray) return { success: false, message: 'Must spread an array into a new array [...array]' };\nconst hasMerge = (code.match(/\\.\\.\\.\\w+/g) || []).length >= 2;\nif (!hasMerge) return { success: false, message: 'Must merge two arrays using spread [...a, ...b]' };\nconst hasSpreadFn = code.match(/Math\\.\\w+\\(\\.\\.\\./);\nif (!hasSpreadFn) return { success: false, message: 'Must spread an array into a function like Math.min(...nums)' };\nconst hasObjectSpread = code.match(/\\{\\.\\.\\.\\w+/);\nif (!hasObjectSpread) return { success: false, message: 'Must spread an object using {...obj}' };\nconst hasRest = code.match(/function \\w+\\(\\.\\.\\./) || code.match(/=> \\w+\\.reduce/) || code.includes('...args');\nif (!hasRest) return { success: false, message: 'Must use rest parameters in a function (...args)' };\nreturn { success: true, message: 'GATE 27 CLEARED — Spread and rest mastered.' };"
+  },
+  {
+    "id": "28",
+    "gate": 28,
+    "sector": "SECTOR 07 — ASYNC AND FINAL BREACH",
+    "learningZone": "JS Errors",
+    "title": "GATE 28 — ERROR HANDLING",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nUnhandled errors crash the system. NEXUS is counting on it. Catch every error.",
+    "hints": [
+      "try { ... } catch (error) { ... } catches runtime errors gracefully",
+      "finally { ... } always runs whether or not an error occurred",
+      "throw new Error(\"message\") lets you throw your own errors",
+      "error.message gives the error description"
+    ],
+    "codeHint": "function safeDivide(a, b) {\n  if (b === 0) _____ new Error(\"Cannot divide by zero\");\n  return a / b;\n}\ntry {\n  console.log(safeDivide(10, 2));\n  console.log(safeDivide(10, 0));\n} _____ (error) {\n  console.log(\"Error:\", error._______);\n} _______ {\n  console.log(\"CALCULATION COMPLETE\");\n}",
+    "initialCode": "// Write safeDivide(a, b) that throws an Error if b is 0\n// Call it in a try/catch with both valid and invalid case\n// Add a finally block logging \"CALCULATION COMPLETE\"\n\n// Your code here\n",
+    "solution": "function safeDivide(a, b) {\n  if (b === 0) throw new Error(\"Cannot divide by zero\");\n  return a / b;\n}\n\ntry {\n  console.log(safeDivide(10, 2));\n  console.log(safeDivide(10, 0));\n} catch (error) {\n  console.log(\"Error:\", error.message);\n} finally {\n  console.log(\"CALCULATION COMPLETE\");\n}",
+    "validateCode": "const hasThrow = code.includes('throw new Error(');\nif (!hasThrow) return { success: false, message: 'Must throw an Error using throw new Error()' };\nconst hasTry = code.includes('try {');\nif (!hasTry) return { success: false, message: 'Must wrap the call in a try block' };\nconst hasCatch = code.includes('catch (');\nif (!hasCatch) return { success: false, message: 'Must include a catch block to handle the error' };\nconst hasFinally = code.includes('finally {');\nif (!hasFinally) return { success: false, message: 'Must include a finally block' };\nconst hasLog = logs.some(l => l.includes('CALCULATION COMPLETE'));\nif (!hasLog) return { success: false, message: 'The finally block must log \"CALCULATION COMPLETE\"' };\nreturn { success: true, message: 'GATE 28 CLEARED — All errors handled. System stable.' };"
+  },
+  {
+    "id": "29",
+    "gate": 29,
+    "sector": "SECTOR 07 — ASYNC AND FINAL BREACH",
+    "learningZone": "JS Classes",
+    "title": "GATE 29 — CLASSES",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nClasses are blueprints. Build one and stamp out as many agents as needed.",
+    "hints": [
+      "constructor(params) sets up the object when you call new ClassName()",
+      "this.property refers to the instance's own data",
+      "extends lets a subclass inherit from a parent class",
+      "super(args) calls the parent constructor from inside a subclass"
+    ],
+    "codeHint": "class Agent {\n  constructor(name, rank) {\n    this.___ = name;\n    this.___ = rank;\n    this.missions = 0;\n  }\n  introduce() { return `I am ${this.___}...`; }\n  completeMission() { this.missions___; }\n}\nclass Hacker _______ Agent {\n  constructor(name, rank, specialty) {\n    _____(name, rank);\n    this.specialty = specialty;\n  }\n  exploit(target) { return `${this.name} hacking ${target}`; }\n}",
+    "initialCode": "// Task 1: Write an Agent class with name, rank, missions (0)\n//   - introduce() method\n//   - completeMission() method (increments missions)\n// Create two instances\n// Your code here\n\n// Task 2: Write a Hacker subclass with exploit(target) method\n// Your code here\n",
+    "solution": "class Agent {\n  constructor(name, rank) {\n    this.name = name;\n    this.rank = rank;\n    this.missions = 0;\n  }\n\n  introduce() {\n    return `I am ${this.name}, rank ${this.rank}.`;\n  }\n\n  completeMission() {\n    this.missions++;\n  }\n}\n\nconst zero = new Agent(\"Zero\", \"Commander\");\nconst fox = new Agent(\"Fox\", \"Lieutenant\");\nconsole.log(zero.introduce());\nzero.completeMission();\nconsole.log(zero.missions);\n\nclass Hacker extends Agent {\n  constructor(name, rank, specialty) {\n    super(name, rank);\n    this.specialty = specialty;\n  }\n\n  exploit(target) {\n    return `${this.name} is hacking ${target}`;\n  }\n}\n\nconst ghost = new Hacker(\"Ghost\", \"Elite\", \"cryptography\");\nconsole.log(ghost.introduce());\nconsole.log(ghost.exploit(\"NEXUS\"));",
+    "validateCode": "const hasClass = code.includes('class Agent');\nif (!hasClass) return { success: false, message: 'Must define an Agent class' };\nconst hasConstructor = code.includes('constructor(');\nif (!hasConstructor) return { success: false, message: 'Must include a constructor' };\nconst hasIntroduce = code.includes('introduce()');\nif (!hasIntroduce) return { success: false, message: 'Must add an introduce() method' };\nconst hasExtends = code.includes('extends Agent');\nif (!hasExtends) return { success: false, message: 'Must write a Hacker subclass using extends Agent' };\nconst hasSuper = code.includes('super(');\nif (!hasSuper) return { success: false, message: 'Must call super() in the Hacker constructor' };\nconst hasExploit = code.includes('exploit(');\nif (!hasExploit) return { success: false, message: 'Must add an exploit() method to the Hacker class' };\nreturn { success: true, message: 'GATE 29 CLEARED — Agent blueprints activated.' };"
+  },
+  {
+    "id": "30",
+    "gate": 30,
+    "sector": "SECTOR 07 — ASYNC AND FINAL BREACH",
+    "learningZone": "JS Modules",
+    "title": "GATE 30 — FINAL BREACH",
+    "story": "[INCOMING TRANSMISSION — CIPHER HQ]\n\nThis is the last gate. Modules let you split code across files and import only what you need. NEXUS cannot fight what it cannot find. Divide your code. Conquer the system.",
+    "hints": [
+      "Named export: export const VERSION = \"1.0\" or export function name() {}",
+      "Default export: export default function() {} — only one per file",
+      "Named import: import { formatName, VERSION } from \"./utils.js\"",
+      "Script tags need type=\"module\" to use ES module imports"
+    ],
+    "codeHint": "// utils.js\n______ function formatName(name) {\n  return \"AGENT: \" + name.___________();\n}\n______ const VERSION = \"1.0\";\n\n// main.js\n______ { formatName, VERSION } ______ \"./utils.js\";\nconsole.log(formatName(\"zero\"));\nconsole.log(VERSION);",
+    "initialCode": "// utils.js — write the exports here\n// (simulate by writing both files as comments and the usable code below)\n\n// utils.js:\n// export function formatName(name) — returns \"AGENT: [NAME]\" uppercase\n// export const VERSION = \"1.0\"\n\n// main.js:\n// import both and use them\n\n// Runnable simulation:\n// Your code here\n",
+    "solution": "// utils.js\nexport function formatName(name) {\n  return \"AGENT: \" + name.toUpperCase();\n}\nexport const VERSION = \"1.0\";\n\n// main.js\nimport { formatName, VERSION } from \"./utils.js\";\nconsole.log(formatName(\"zero\"));\nconsole.log(VERSION);\n\n// Simulation (runnable without actual module system):\nfunction formatNameSim(name) {\n  return \"AGENT: \" + name.toUpperCase();\n}\nconst VERSION_SIM = \"1.0\";\nconsole.log(formatNameSim(\"zero\"));\nconsole.log(VERSION_SIM);",
+    "validateCode": "const hasExport = code.includes('export function') || code.includes('export const');\nif (!hasExport) return { success: false, message: 'Must use export to export a function and a constant' };\nconst hasImport = code.includes('import {') && code.includes('from \"');\nif (!hasImport) return { success: false, message: 'Must use import { ... } from \"./utils.js\" syntax' };\nconst hasFormatFn = code.includes('toUpperCase()') && (code.includes('AGENT:') || code.includes(\"AGENT:\"));\nif (!hasFormatFn) return { success: false, message: 'formatName must return the name in uppercase prefixed with \"AGENT: \"' };\nconst hasVersion = code.includes('VERSION') && code.includes('\"1.0\"');\nif (!hasVersion) return { success: false, message: 'Must export a VERSION constant set to \"1.0\"' };\nreturn { success: true, message: 'GATE 30 CLEARED — ALL 30 GATES BREACHED. NEXUS IS DOWN. MISSION COMPLETE.' };"
+  }
+]

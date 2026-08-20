@@ -1,20 +1,22 @@
 export const gate02 = {
   id: "02",
-  sector: "SECTOR 02 \u2014 DEPLOYMENT ZONE",
+  sector: "SECTOR 01 \u2014 CIPHER GATEWAY",
   learningZone: "JS Where To",
-  title: "GATE 02 \u2014 DEPLOYMENT POINT",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nYour code needs to be deployed correctly or it will never execute. NEXUS is counting on you placing your script in the wrong location so it runs before the page loads \u2014 crashing on empty elements. There are three places JavaScript can live: inside a <script> tag in the head, inside a <script> tag at the bottom of body, or in an external .js file. Know the difference. Deploy correctly.\n\nMISSION OBJECTIVE:\n1. Create a variable `externalScriptTag` containing the HTML string that links an external JavaScript file called \"cipher.js\".\n2. Create a variable `inlineScriptTag` containing a script tag placed at the bottom of a body element.",
+  title: "GATE 02 \u2014 DEPLOYMENT",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nCode placed in the wrong location runs before the page loads and crashes. Know where to put your scripts.",
   hints: [
-  "External file: <script src=\"cipher.js\"></script>",
-  "Place scripts at the bottom of <body> so HTML loads first",
-  "External files keep your HTML clean and the JS reusable"
+  "Place <script src=\"file.js\"></script> at the bottom of <body> so HTML loads first",
+  "An external script uses the src attribute: <script src=\"mission.js\"></script>",
+  "An inline <script> block can run code directly in the HTML"
 ],
-  codeHint: "const _________________ = '<script ___=\"cipher.js\"></script>';\nconst _______________ = '<body>...<script>______();</script></body>';",
-  initialCode: "// Task 1: Link external JS file\nconst externalScriptTag = \"\";\n\n// Task 2: Inline script in correct position\nconst inlineScriptTag = \"\";\n",
-  solution: "const externalScriptTag = '<script src=\"cipher.js\"></script>';\nconst inlineScriptTag = '<body><h1>CIPHER</h1><script>console.log(\"READY\");</script></body>';",
+  codeHint: "<script ___ = \"mission.js\"></script>\n<____>\n  // ____ code here\n</____>",
+  initialCode: "<!-- Task 1: Link external file mission.js -->\n<!-- Your code here -->\n\n<!-- Task 2: Write an inline <script> block -->\n<!-- Your code here -->\n",
+  solution: "<script src=\"mission.js\"></script>\n<script>\n  console.log(\"INLINE SCRIPT ACTIVE\");\n</script>",
   validate: (code, result, logs = []) => {
-    if (!code.includes('cipher.js')) return { success: false, message: 'Task 1 incomplete: Must link external file "cipher.js".' };
-    if (!code.includes('<script') || !code.includes('</script>')) return { success: false, message: 'Task 2 incomplete: Must define script tags.' };
-    return { success: true, message: 'GATE 02 CLEARED: Deployment architecture verified.' };
+    const hasSrc = code.includes('src') && code.includes('mission.js');
+    if (!hasSrc) return { success: false, message: 'Must link an external file called mission.js using the src attribute' };
+    const hasInline = code.includes('<script>') && code.includes('</script>');
+    if (!hasInline) return { success: false, message: 'Must include an inline <script> block' };
+    return { success: true, message: 'GATE 02 CLEARED — Scripts deployed correctly.' };
   }
 };

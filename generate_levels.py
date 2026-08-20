@@ -1,7 +1,7 @@
 """
 generate_levels.py
 Reads levels_data.json and automatically generates:
-- src/levels/gate01.js ... src/levels/gate19.js
+- src/levels/gate01.js ... src/levels/gate30.js
 - src/levels/index.js
 Ensures every line of codeHint contains at least one blank/dash '____'.
 """
@@ -39,7 +39,11 @@ def main():
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    levels = data.get('levels', [])
+    if isinstance(data, list):
+        levels = data
+    else:
+        levels = data.get('levels', [])
+
     if not levels:
         print("No levels found in JSON!")
         return
@@ -71,7 +75,6 @@ def main():
         description = json.dumps(lvl.get('story', ''))
         hints_json = json.dumps(lvl.get('hints', []), indent=2)
         initial_code = json.dumps(lvl.get('initialCode', ''))
-        
         solution_json = json.dumps(lvl.get('solution', ''))
         
         validate_body = lvl.get('validateCode', 'return { success: true, message: "Gate cleared!" };')

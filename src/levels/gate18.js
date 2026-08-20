@@ -1,24 +1,29 @@
 export const gate18 = {
   id: "18",
-  sector: "SECTOR 18 \u2014 STREAM PROCESSOR",
-  learningZone: "JS Iterations",
-  title: "GATE 18 \u2014 ITERATION PROTOCOLS",
-  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nData never sits still in CIPHER. It gets looped, transformed, filtered, and reduced constantly. The iteration protocols are the engine that processes everything \u2014 from scanning the network to building reports. NEXUS cannot keep up with a developer who knows every iteration tool in the arsenal.\n\nMISSION OBJECTIVE:\nGiven:\n`const threatData = [{ agent: \"Zero\", score: 88 }, { agent: \"Fox\", score: 45 }, { agent: \"Rook\", score: 91 }, { agent: \"Lynx\", score: 62 }, { agent: \"Ghost\", score: 77 }];`\n1. `names`: use `map()` to extract an array of just the agent names\n2. `highThreats`: use `filter()` for agents with `score > 70`\n3. `totalScore`: use `reduce()` to sum all agent scores\n4. `topAgent`: use `find()` for the first agent with `score > 85`\nReturn `{ names, highThreats, totalScore, topAgent }`.",
+  sector: "SECTOR 03 \u2014 DATA STRUCTURES",
+  learningZone: "JS Maps",
+  title: "GATE 18 \u2014 MAP SYNTAX",
+  description: "[INCOMING TRANSMISSION \u2014 CIPHER HQ]\n\nMaps store key-value pairs like objects but keys can be any type \u2014 not just strings.",
   hints: [
-  "map \u2014 transforms, returns new array same length",
-  "filter \u2014 returns new array with only passing elements",
-  "reduce \u2014 collapses to single value: (acc, curr) => acc + curr.score",
-  "find \u2014 returns the first matching element (not an array)"
+  "new Map() creates a Map \u2014 use .set(key, value) to add entries",
+  ".get(key) retrieves a value, .has(key) checks if a key exists",
+  ".delete(key) removes an entry, .size returns the count",
+  "for...of with destructuring: for (let [key, value] of map)"
 ],
-  codeHint: "const names = threatData.map(a => a._____);\nconst highThreats = threatData.______(a => a.score > 70);\nconst totalScore = threatData.______( (sum, a) => sum + a.score, _ );\nconst topAgent = threatData.____(a => a.score > 85);\nreturn { names, ____, totalScore, topAgent };",
-  initialCode: "const threatData = [\n  { agent: \"Zero\", score: 88 },\n  { agent: \"Fox\", score: 45 },\n  { agent: \"Rook\", score: 91 },\n  { agent: \"Lynx\", score: 62 },\n  { agent: \"Ghost\", score: 77 }\n];\n\n// Task 1: map\n// Task 2: filter\n// Task 3: reduce\n// Task 4: find\n\n",
-  solution: "const threatData = [\n  { agent: \"Zero\", score: 88 },\n  { agent: \"Fox\", score: 45 },\n  { agent: \"Rook\", score: 91 },\n  { agent: \"Lynx\", score: 62 },\n  { agent: \"Ghost\", score: 77 }\n];\n\nconst names = threatData.map(a => a.agent);\nconst highThreats = threatData.filter(a => a.score > 70);\nconst totalScore = threatData.reduce((sum, a) => sum + a.score, 0);\nconst topAgent = threatData.find(a => a.score > 85);\n\nreturn { names, highThreats, totalScore, topAgent };",
+  codeHint: "let ____ = new Map();\nscores.___(\"Zero\", 88);\nscores.___(\"Fox\", 72);\nscores.___(\"Rook\", 95);\nconsole.log(scores.___(___ ));\nconsole.log(scores.___(___ ));\nscores.______(___ );\nfor (let [key, value] ___ scores) {\n  ____.log(`${key} \u2192 ${value}`);\n} // ____",
+  initialCode: "// Create a Map of 3 agents and their threat scores\n// 1. Retrieve one score\n// 2. Check if an agent exists\n// 3. Delete one entry\n// 4. Loop and log all as \"name \u2192 score\"\n\n// Your code here\n",
+  solution: "let scores = new Map();\nscores.set(\"Zero\", 88);\nscores.set(\"Fox\", 72);\nscores.set(\"Rook\", 95);\nconsole.log(scores.get(\"Zero\"));\nconsole.log(scores.has(\"Fox\"));\nscores.delete(\"Fox\");\nfor (let [key, value] of scores) {\n  console.log(`${key} \u2192 ${value}`);\n}",
   validate: (code, result, logs = []) => {
-    if (!result) return { success: false, message: 'Must return { names, highThreats, totalScore, topAgent }.' };
-    if (!Array.isArray(result.names) || result.names.length !== 5) return { success: false, message: 'names must be mapped array of 5 agent names.' };
-    if (!Array.isArray(result.highThreats) || result.highThreats.length !== 3) return { success: false, message: 'highThreats should contain 3 agents with score > 70.' };
-    if (result.totalScore !== 363) return { success: false, message: 'totalScore should sum to 363 (88+45+91+62+77).' };
-    if (!result.topAgent || result.topAgent.agent !== 'Zero') return { success: false, message: 'topAgent should find Zero (first with score > 85).' };
-    return { success: true, message: 'GATE 18 CLEARED: Iteration protocols mastered.' };
+    const hasMap = code.includes('new Map(');
+    if (!hasMap) return { success: false, message: 'Must create a Map using new Map()' };
+    const hasSet = code.includes('.set(');
+    if (!hasSet) return { success: false, message: 'Must add entries using .set(key, value)' };
+    const hasGet = code.includes('.get(');
+    if (!hasGet) return { success: false, message: 'Must retrieve a value using .get()' };
+    const hasHas = code.includes('.has(');
+    if (!hasHas) return { success: false, message: 'Must check existence using .has()' };
+    const hasLoop = code.includes('of scores') || code.includes('of intel');
+    if (!hasLoop) return { success: false, message: 'Must loop through the Map with for...of' };
+    return { success: true, message: 'GATE 18 CLEARED — Intel map fully restored.' };
   }
 };
