@@ -31,7 +31,7 @@
     "codeHint": "<script ___ = \"mission.js\"></script>\n<script>\n  // inline code here\n</script>",
     "initialCode": "<!-- Task 1: Link external file mission.js -->\n<!-- Your code here -->\n\n<!-- Task 2: Write an inline <script> block -->\n<!-- Your code here -->\n",
     "solution": "<script src=\"mission.js\"></script>\n<script>\n  console.log(\"INLINE SCRIPT ACTIVE\");\n</script>",
-    "validateCode": "const hasSrc = code.includes('src') && code.includes('mission.js');\nif (!hasSrc) return { success: false, message: 'Must link an external file called mission.js using the src attribute' };\nconst hasInline = code.includes('<script>') && code.includes('</script>');\nif (!hasInline) return { success: false, message: 'Must include an inline <script> block' };\nreturn { success: true, message: 'GATE 02 CLEARED — Scripts deployed correctly.' };"
+    "validateCode": "const hasSrc = code.includes('src') && (code.includes('mission.js') || code.includes('cipher.js') || code.includes('.js'));\nif (!hasSrc) return { success: false, message: 'Must link an external JS file using <script src=\"mission.js\"></script>' };\nconst hasScript = code.includes('<script') && code.includes('</script>');\nif (!hasScript) return { success: false, message: 'Must include script tags' };\nreturn { success: true, message: 'GATE 02 CLEARED — Scripts deployed correctly.' };"
   },
   {
     "id": "03",

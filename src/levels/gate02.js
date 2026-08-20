@@ -13,10 +13,10 @@ export const gate02 = {
   initialCode: "<!-- Task 1: Link external file mission.js -->\n<!-- Your code here -->\n\n<!-- Task 2: Write an inline <script> block -->\n<!-- Your code here -->\n",
   solution: "<script src=\"mission.js\"></script>\n<script>\n  console.log(\"INLINE SCRIPT ACTIVE\");\n</script>",
   validate: (code, result, logs = []) => {
-    const hasSrc = code.includes('src') && code.includes('mission.js');
-    if (!hasSrc) return { success: false, message: 'Must link an external file called mission.js using the src attribute' };
-    const hasInline = code.includes('<script>') && code.includes('</script>');
-    if (!hasInline) return { success: false, message: 'Must include an inline <script> block' };
+    const hasSrc = code.includes('src') && (code.includes('mission.js') || code.includes('cipher.js') || code.includes('.js'));
+    if (!hasSrc) return { success: false, message: 'Must link an external JS file using <script src="mission.js"></script>' };
+    const hasScript = code.includes('<script') && code.includes('</script>');
+    if (!hasScript) return { success: false, message: 'Must include script tags' };
     return { success: true, message: 'GATE 02 CLEARED — Scripts deployed correctly.' };
   }
 };

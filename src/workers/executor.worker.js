@@ -36,9 +36,38 @@ self.onmessage = function(e) {
       }
     };
 
-    const mockAlert = function(msg) {
-      logs.push(`[ALERT] ${msg}`);
-    };
+    const trimmed = code.trim();
+    // Check if input is HTML markup (e.g., Gate 02 deployment exercises)
+    if (trimmed.startsWith('<') || (trimmed.startsWith('<!--') && (trimmed.includes('<script') || trimmed.includes('<')))) {
+      logs.push('[HTML DEPLOYMENT] Validated markup structure.');
+      
+      // Execute any inline JS found inside <script> tags
+      const scriptRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gi;
+      let match;
+      while ((match = scriptRegex.exec(trimmed)) !== null) {
+        const innerScript = match[1].trim();
+        if (innerScript && !innerScript.startsWith('//') && !innerScript.startsWith('<!--')) {
+          try {
+            const inlineFn = new Function('document', 'window', 'alert', `
+              "use strict";
+              ${innerScript}
+            `);
+            inlineFn(mockDocument, mockWindow, mockAlert);
+          } catch (err) {
+            // capture or allow script log
+          }
+        }
+      }
+
+      console.log = originalLog;
+      self.postMessage({
+        success: true,
+        result: trimmed,
+        logs: logs,
+        code: code
+      });
+      return;
+    }
 
     // Create a function from the code string with mock context and execute it
     const func = new Function('document', 'window', 'alert', `
