@@ -10,22 +10,41 @@ function App() {
   const [resultStatus, setResultStatus] = useState(null)
   const workerRef = useRef(null)
 
+  // Mock level data
+  const currentLevel = {
+    title: "LEVEL 01: TEMPERATURE ANOMALY",
+    description: "The mainframe servers are overheating. We need to convert the raw Fahrenheit sensor data into Celsius to calibrate the cooling systems. Can you create a variable named 'celsius' that converts 100 degrees Fahrenheit to Celsius? (Formula: (F - 32) * 5/9)",
+    hints: [
+      "Use 'let' or 'const' to declare a variable.",
+      "The formula is (100 - 32) * 5 / 9.",
+      "Return the variable at the end so the system can verify it, e.g., 'return celsius;'"
+    ],
+    validate: (code, result) => {
+      if (!code.includes('celsius')) {
+        return { success: false, message: "Error: You need to declare a variable named 'celsius'." };
+      }
+      
+      const expected = (100 - 32) * 5 / 9;
+      if (result !== expected) {
+        return { success: false, message: "Error: The calculation is incorrect, or you forgot to 'return celsius;' at the end." };
+      }
+
+      return { success: true, message: "MISSION ACCOMPLISHED: Temperature anomaly resolved." };
+    }
+  }
+
   useEffect(() => {
     // Initialize Web Worker for code execution
     workerRef.current = new ExecutorWorker()
     
     workerRef.current.onmessage = (e) => {
-      const { success, result, logs, error } = e.data
+      const { success, result, logs, error, code } = e.data
       
       setOutput(logs)
       
       if (success) {
-        // Here we could validate if the result matches the expected answer
-        // For this mock level, we expect a variable 'celsius' or a specific math result
-        setResultStatus({
-          success: true,
-          message: 'Execution Successful! ' + (result !== undefined ? `Result: ${result}` : '')
-        })
+        const validation = currentLevel.validate(code, result);
+        setResultStatus(validation);
       } else {
         setResultStatus({
           success: false,
@@ -43,17 +62,6 @@ function App() {
     setOutput([])
     setResultStatus({ success: true, message: 'Executing...' })
     workerRef.current.postMessage(code)
-  }
-
-  // Mock level data
-  const currentLevel = {
-    title: "LEVEL 01: TEMPERATURE ANOMALY",
-    description: "The mainframe servers are overheating. We need to convert the raw Fahrenheit sensor data into Celsius to calibrate the cooling systems. Can you create a variable named 'celsius' that converts 100 degrees Fahrenheit to Celsius? (Formula: (F - 32) * 5/9)",
-    hints: [
-      "Use 'let' or 'const' to declare a variable.",
-      "The formula is (100 - 32) * 5 / 9.",
-      "Return the variable at the end so the system can verify it, e.g., 'return celsius;'"
-    ]
   }
 
   return (

@@ -25,7 +25,8 @@ self.onmessage = function(e) {
     self.postMessage({
       success: true,
       result: result,
-      logs: logs
+      logs: logs,
+      code: code
     });
   } catch (error) {
     // Restore console.log
